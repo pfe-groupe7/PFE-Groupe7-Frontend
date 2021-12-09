@@ -45,7 +45,7 @@
                           <i class="input-icon fa fa-lock"></i>
                         </div>
                         <div class="form-group mt-4">
-                          <input type="submit" value="envoyer">
+                          <input class="btn mt-4" type="submit" value="Envoyer">
                         </div>
                         <p class="mb-5 mt-5 text-center">
                           <a class="link" href="forgot">Mot de passe oublié?</a>
@@ -122,7 +122,7 @@
                           </select>
                           <i class="input-icon fa fa-map-marker"></i>
                         </div>
-                          <input type="submit" value="envoyer">
+                          <input class="btn mt-4" type="submit" value="Envoyer">
                       </form>
                     </div>
                   </div>
