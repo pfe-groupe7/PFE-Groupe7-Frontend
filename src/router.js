@@ -13,6 +13,7 @@ export default new Router({
   routes: [
     { path: "/", component: Home },
     { path: "/login", component: Login },
+    { path: "/register", component: Login },
     { path: "/createAd", component: CreateAd },
     { path: "/forgot", component: Forgot },
     {path:"/reset/:token",component:Reset}
