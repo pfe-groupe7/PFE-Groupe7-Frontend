@@ -35,7 +35,7 @@ export default {
   box-sizing: border-box;
 }
 body {
-  min-height: 100vh;
+  min-height: 50vh;
   display: flex;
   font-weight: 400;
   font-family: "Fira Sans", sans-serif;
@@ -57,30 +57,20 @@ html,
 #root,
 .auth-wrapper {
   width: 100%;
-  height: 100%;
+  height: 98%;
 }
 
 #app {
   text-align: center;
 }
 
-.navbar-light {
-  background-color: #3A5749;
-  box-shadow: 0px 14px 80 px rgba(34, 35, 58, 0.2);
-}
 .auth-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: left;
 }
-.auth-inner {
-  width: 600px;
-  margin: auto;
-  background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 40px 55px 0 55px;
-}
+
 
 .auth-wrapper h3 {
   text-align: center;
@@ -92,15 +82,5 @@ html,
 .custom-control-label {
   font-weight: 400;
 }
-.forgot-password,
-.forgot-password a {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7f7d7d;
-  margin: 0;
-}
-.forgot-password {
-  color: #167bff;
-}
+
 </style>
