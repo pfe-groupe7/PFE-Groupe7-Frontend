@@ -5,13 +5,12 @@
       <img src="../assets/images/vincilogo.png" height="100" alt="vinci market logo">
     </a>
       
-       <select name="categorie" id="subject" class="btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
+       <select name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
           <option selected disabled>Catégorie</option>
           <option value="1">Maisons et jardin</option>
-          <option value="2">Meubles</option>
-          <option value="3">Pour la maison</option>
-          <option value="4">Jardin</option>
-          <option value="5">Electroménager</option>
+          <option value="2">Famille</option>
+          <option value="3">Vêtements et accessoires</option>
+          <option value="4">Loisirs - hobbys</option>
       </select>
      
       <form class="form-inline">
