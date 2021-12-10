@@ -144,29 +144,32 @@ export default {
   components: {},
   data() {
     return {
-      prenom: "",
-      nom: "",
-      email: "",
-      password: "",
-      campus: "",
+      prenomRegister: "",
+      nomRegister: "",
+      emailRegister: "",
+      passwordRegister: "",
+      campusRegister: "",
+      emailLogin: "",
+      passwordLogin: "",
       error: "",
     };
   },
   methods: {
     async handleSubmitRegister() {
+    
       try {
         await fetch("http://localhost:8000/register", {
           method: "POST",
           body: JSON.stringify({
-            firstname: this.prenom,
-            lastname: this.nom,
-            email: this.email,
+            firstname: this.prenomRegister,
+            lastname: this.nomRegister,
+            email: this.emailRegister,
             password: this.password,
-            campus: this.campus,
+            campus: this.campusRegister,
             moderator: "False",
           }),
-        });
-        this.$router.push("/");
+        }).then( this.$router.push("/"));
+       
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
@@ -176,11 +179,15 @@ export default {
         await fetch("http://localhost:8000/login", {
           method: "POST",
           body: JSON.stringify({
-            email: this.email,
-            password: this.password,
+            email: this.emailLogin,
+            password: this.passwordLogin,
+
           }),
+        }).then(response => response.json()).then((response)=>{
+            localStorage.setItem("token", response.data.token);
+            this.$store.dispatch("user", response.data.user);
+            this.$router.push("/login");
         });
-        this.$router.push("/login");
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
