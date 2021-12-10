@@ -7,6 +7,7 @@ import CreateAd from './components/CreateAd.vue'
 
 import Forgot from "./components/Forgot.vue";
 import Reset from './components/Reset.vue'
+import Annonce from './components/Annonce.vue'
 
 export default new Router({
   mode: "history",
@@ -15,6 +16,7 @@ export default new Router({
     { path: "/login", component: Login },
     { path: "/register", component: Login },
     { path: "/createAd", component: CreateAd },
+    { path: "/annonce", component: Annonce },
     { path: "/forgot", component: Forgot },
     {path:"/reset/:token",component:Reset}
   ],
