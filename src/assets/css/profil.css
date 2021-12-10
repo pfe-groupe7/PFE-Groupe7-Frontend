@@ -1,0 +1,32 @@
+
+/* notifications */
+@import url(https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+.Message {
+  display: table;
+  position: relative;
+  margin: 40px auto 0;
+  width: 500px;
+  background-color: #27AE60;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.Message--orange {
+    background-color: #FCA624;
+  }
+.Message--green {
+    background-color: #27AE60;
+}
+.Message-icon {
+    display: table-cell;
+    vertical-align: middle;
+    width: 60px;
+    padding: 30px;
+    text-align: center;
+    background-color: rgba(black, 0.25);
+  }
+.Message-body {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 30px 20px 30px 10px;
+  }
