@@ -16,10 +16,10 @@
             <a href="#"><img src="../assets/images/quotidien.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
           </div>
           <div class="col-3">
-            <a href="#"><img src="../assets/images/vetements.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
+            <a href="#"><img src="../assets/images/vetements.png" class="rounded" alt="Vetements" style="width:90%; height:auto"></a>
           </div>
           <div class="col-3">
-            <a href="#"><img src="../assets/images/loisirs.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
+            <a href="#"><img src="../assets/images/loisirs.png" class="rounded" alt="Loisirs" style="width:90%; height:auto"></a>
           </div>
       </div>
     </div>
