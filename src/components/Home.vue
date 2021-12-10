@@ -1,19 +1,19 @@
 <template>
   <div class="container">
-    <h1>Catégories</h1>
-    <div class="row">
+    <h2>Catégories</h2>
+    <div class="row mt-4">
         
         <div class="col-3">
-          <img src="https://www.w3.org/html/logo/downloads/HTML5_sticker.png" class="rounded" alt="Maisons et Jardin" style="width:100%; height:auto">
+          <a href="#"> <img src="../assets/images/maison.png" class="rounded" alt="Maison et Jardin" style="width:90%; height:auto"></a>
         </div>
         <div class="col-3">
-          <img src="https://www.w3.org/html/logo/downloads/HTML5_sticker.png" class="rounded" alt="Famille" style="width:100%; height:auto">
-        </div>
-         <div class="col-3">
-          <img src="https://www.w3.org/html/logo/downloads/HTML5_sticker.png" class="rounded" alt="Vêtements et accessoires" style="width:100%; height:auto">
+          <a href="#"><img src="../assets/images/quotidien.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
         </div>
         <div class="col-3">
-          <img src="https://www.w3.org/html/logo/downloads/HTML5_sticker.png" class="rounded" alt="Loisirs et hobbys" style="width:100%; height:auto">
+          <a href="#"><img src="../assets/images/vetements.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
+        </div>
+        <div class="col-3">
+          <a href="#"><img src="../assets/images/loisirs.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
         </div>
     </div>
 
@@ -32,3 +32,5 @@ export default {
   }
 }
 </script>
+
+<style scoped src="../assets/css/home.css"></style>

@@ -1,0 +1,12 @@
+.container {
+  background-color: wheat;
+  padding: 20px 0 40px 40px;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
+}
+h2 {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  font-weight: 600;
+  color: #3a5749;
+}

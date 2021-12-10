@@ -47,7 +47,7 @@
                                     <div class=" col-4" style="margin-bottom: 30px;">
                                         <label class="form-label" style="margin-left: 5px;margin-bottom:5px; font-size:19px;">Catégorie</label>
                                       <select value="Catégorie" name="categorie" id="subject" class="form-style"  required v-model="categorie">
-                                        <optgroup label="Maisons et jardin">
+                                        <optgroup label="Maison et jardin">
                                           <option value="1">Outils</option>
                                           <option value="2">Meubles</option>
                                           <option value="3">Pour la maison</option>
