@@ -137,16 +137,6 @@
                     </select>
                   </div>
                 </div>
-                <div class="input-group">
-                  <textarea
-                    class="input--style-1"
-                    type="text"
-                    name="description"
-                    v-model="description"
-                    placeholder="Description de l'objet"
-                    required="required"
-                    rows="1"
-                  ></textarea>
                 </div>
               </div>
             </div>

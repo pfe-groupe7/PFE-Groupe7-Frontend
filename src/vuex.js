@@ -1,8 +1,9 @@
 import Vue from'vue'
 import Vuex from 'vuex'
 
-
 Vue.use(Vuex);
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
 
 const state ={
 
@@ -14,11 +15,15 @@ const store = new Vuex.Store({
     getters:{
         user:(state)=>{
             return state.user;
+        },
+        getUserId:(state)=>{
+            return state.user.id;
         }
     },
     actions:{
         user(context ,user){
             context.commit('user',user);
+        
         }
     },
     mutations:{
