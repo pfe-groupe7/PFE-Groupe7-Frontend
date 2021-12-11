@@ -23,21 +23,23 @@
         </div>
       </form>
         <router-link to="/createAd"><a class="btn mt-1">
-         Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-</router-link>
+          Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+        </router-link>
         <ul class="navbar-nav ml-auto" v-if="!user">
           <li class="nav-item">
             <router-link to="/login" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
           </li>
         </ul>
         
-        <ul class="mt-1 nav-link  dropdown fa-10x" v-if="user" id="profile">
+        <ul class="mt-2 pb-2 nav-link  dropdown fa-10x" v-if="user" id="profile">
            <i class="dropbtn fa fa-user-circle " ></i>
-          <div class="dropdown-content">
+          <div class="dropdown-content" >
             
-            <a href="javascript:void(0)" @click="handleClick" class="nav-link">Déconnecter</a>
-            <a href="/profile" @click="handleClick" class="nav-link">mon profile</a>
-            <a href="/myads"  class="nav-link">mes annonces</a>
+            <a href="/myads"  class="dropdown-item">Mes annonces</a>                   
+            <a href="/profile" @click="handleClick" class="dropdown-item">Éditer mon profil</a>
+     
+            <a href="javascript:void(0)" @click="handleClick" class="dropdown-item">Déconnexion</a>
+
           </div>
        </ul>
 

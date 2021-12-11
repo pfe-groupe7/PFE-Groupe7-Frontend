@@ -20,7 +20,9 @@
     "primevue": "^3.10.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.3",
+    "vue-simple-alert": "^1.1.1",
     "vue-step-wizard": "^0.1.17",
+    "vuejs-dialog": "^1.4.2",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

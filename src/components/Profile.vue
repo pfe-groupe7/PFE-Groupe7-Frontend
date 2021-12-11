@@ -1,14 +1,11 @@
 <template>
-    <div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg"></div>
-        </div>
-        <div class="col-md-5 border">
+    <div class="container ">
+    <div class="card card-1">
+        
             <form>
             <div class="p-3 py-5">
                 <div class="d-flex  justify-content-between align-items-center mb-3">
-                    <h4 class="text-right border rounded p-2">Mon Profil</h4>
+                    <h4 class="text-right p-2">Mon profil</h4>
                 </div>
                 <div class="row mt-2">
                     <div class="col-md-6"><label class="labels">Nom</label><input type="text" v-model="nom" class="form-control"   readonly></div>
@@ -16,7 +13,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12"><label class="labels">Email</label><input type="text" v-model="email" class="form-control"   readonly></div>
-                    <div class="col-md-12"><label class="labels">Compus</label>
+                    <div class="col-md-12 mt-3"><label class="labels">Campus</label>
                         <select class="form-select" aria-label="Default select example">
                         <option selected>{{campus}}</option>
                         <option value="1">Woluwe</option>
@@ -27,11 +24,11 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-6 "><label class="labels">Mot de passe</label><input id="password" type="password"  class="form-control"   v-model="password"></div>
-                    <div class="col-md-6"><label class="labels">Retaper le Mot de passe</label><input type="password" v-model="confirmed_password"  class="form-control" ></div>
+                    <div class="col-md-6"><label class="labels">Confirmer le mot de passe</label><input type="password" v-model="confirmed_password"  class="form-control" ></div>
                 </div>
-                <div class="row mt-5">
-                <div class="col-md-6 mt-5 text-center"><button v-on:click="deleteUser" class="btn btn-danger profile-button" type="button">Supprimer mon compte</button></div>
-                <div class="col-md-6 mt-5 text-center"><button v-on:click="handleSubmit" class="btn btn-primary profile-button" type="button">Enregistrer</button></div>
+                <div class="row mt-4">
+                <div class="col-md-5 mt-5 text-center"><button v-on:click="deleteUser" class="btn btn-danger profile-button" type="button">Supprimer mon compte</button></div>
+                <div class="col-md-6 mt-5 text-center">  <button v-on:click="handleSubmit" class="btnSave" type="button">Enregistrer les modifications</button></div>
                 </div>
                 <div v-show="notif" class="row mt-3">
                     <div class="col-md-6 Message Message--green">
@@ -39,7 +36,7 @@
                             <i class="fa fa-check"></i>
                         </div>
                         <div class="Message-body">
-                            <p>votre porfil été bien modifié</p>
+                            <p>Votre profil a bien été modifié</p>
                         </div>
                     </div>
                 </div>
@@ -58,7 +55,6 @@
             </form>
         </div>
        
-    </div>
 </div>
 </template>
 <script>
@@ -133,6 +129,7 @@ export default {
     },
     async deleteUser()
     {
+      if(this.$confirm("Êtes-vous sûr de vouloir supprimer votre compte ?", "Supprimer votre compte", "error")){
          try {
         await fetch("http://localhost:8000/users/delete", {
           method: "POST",
@@ -141,7 +138,7 @@ export default {
             
           }),
         }).then(response => response.json()).then(()=>{
-            this.message = "votre compte a  été bien suprrimé ";
+            this.message = "Votre compte a  été bien suprrimé ";
             this.notifDel=true;
             localStorage.removeItem('token');
             this.$store.dispatch('user',null);
@@ -152,6 +149,7 @@ export default {
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
+    }
     }
   },
 };
