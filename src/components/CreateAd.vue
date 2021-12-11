@@ -5,7 +5,7 @@
         <h2 class="title mb-4 pb-3">Ajoutez votre annonce</h2>
       </div>
       <div class="card-body">
-        <form class="wizard-container" method="POST" action="#" id="js-wizard-form" @submit.prevent="handleSubmit">
+        <form  method="POST" action="#" id="js-wizard-form" @submit.prevent="handleSubmit">
           <error v-if="error" :error="error" />
           <ul class="tab-list">
             <li class="tab-list__item active">
@@ -282,25 +282,24 @@
           <div v-if="step === 3" class="Panel-Content" id="tab3">
             <div class="row text-center">
               <h1>Upload images</h1>
-              <div class="dropbox">
-                <input
-                  type="file"
-                  :name="imageArray"
-                  :disabled="isSaving"
-                  @change="handleImage"
-                  @click="onUpload"
-                  accept="image/*"
-                  class="input-file"
-                  multiple
-                />
-                <!-- filesChange($event.target.name, $event.target.files);
-                    fileCount = $event.target.files.length; -->
-                <p v-if="isInitial">
-                  Drag your file(s) here to begin<br />
-                  or click to browse
-                </p>
-                <p v-if="isSaving">Uploading {{ fileCount }} files...</p>
-              </div>
+              <div>
+        <div
+          class="previewBlock"
+          @click="chooseFile"
+          :style="{ 'background-image': `url(${filePreview})` }">
+        </div>
+
+        <div>
+          <input
+            class="form-control form-control-lg"
+            ref="fileInput"
+            type="file"
+            id="formFileLg"
+            @input="selectImgFile">
+        </div>
+    </div>
+                
+              
             </div>
           </div>
           <div id="boutons">
@@ -347,7 +346,8 @@ export default {
       uploadError: null,
       currentStatus: null,
       uploadFieldName: "",
-      imageArrau: null,
+      imageArray: null,
+      filePreview: null,
       titre: "",
       categorie: "",
       description: "",
@@ -376,7 +376,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log(this.imageArray);
+      console.log(this.selectImgFile);
       try {
         await fetch("http://localhost:8000/createAd", {
           method: "POST",
@@ -398,11 +398,23 @@ export default {
         this.error = "Une erreur est survenue!";
       }
     },
-    handleImage(event) {
-      this.imageArray = event.target.files;
-      console.log(this.imageArray);
-     
-    },
+  
+    chooseFile () {
+              this.$refs.fileInput.click()
+          },
+          selectImgFile () {
+            let fileInput = this.$refs.fileInput
+            let imgFile = fileInput.files
+
+            if (imgFile && imgFile[0]) {
+              let reader = new FileReader
+              reader.onload = e => {
+                this.filePreview = e.target.result
+              }
+              reader.readAsDataURL(imgFile[0])
+              this.$emit('fileInput', imgFile[0])
+            }
+          },
 
     activatePanel(stepIndex) {
       this.step = stepIndex;
