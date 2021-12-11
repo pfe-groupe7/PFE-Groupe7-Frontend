@@ -30,6 +30,7 @@ export default {
 }
 </script>
 
+
 <style>
 
 
@@ -39,8 +40,6 @@ export default {
   box-sizing: border-box;
 }
 body {
-  min-height: 50vh;
-  display: flex;
   font-weight: 400;
   font-family: "Fira Sans", sans-serif;
 }
@@ -58,14 +57,15 @@ span {
 body,
 html,
 #app,
-#root,
-.auth-wrapper {
+#root {
   width: 100%;
   height: 98%;
 }
 
+
 #app {
   text-align: center;
+  margin-bottom: 10%;
 }
 
 .auth-wrapper {

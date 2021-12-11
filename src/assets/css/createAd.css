@@ -557,7 +557,9 @@ label.error {
 .card-1 {
   background: transparent;
 }
-
+#cardAdd {
+  margin-top: 5%;
+}
 .card-1 .card-body {
   background: #84a796;
   -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);

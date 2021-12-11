@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <div class="section mt-4">
     <div class="container">
       <div class="row full-height justify-content-center">
         <div class="col-12 text-center align-self-center">
