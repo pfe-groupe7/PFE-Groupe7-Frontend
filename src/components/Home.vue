@@ -1,6 +1,16 @@
 <template>   
-  <div class="container" >
-    
+
+  <div>
+
+    <div class="video-background">
+      <div class="video-wrap">
+        <div id="video">
+          <video id="bgvid"  autoplay loop muted playsinline>
+            <source src="../assets/videos/stars.mp4" type="video/mp4" >
+          </video>
+        </div>
+      </div>
+    </div>  
     <div id="categories">
 
       <h2>Catégories</h2>

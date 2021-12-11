@@ -1,7 +1,7 @@
 <template>
 
- <div class="wrapper wrapper--w820">
-            <div class="card card-1">
+ <div class="wrapper wrapper--w820" id="cardAdd">
+            <div class="card card-1 mt-5" >
                 <div class="card-heading">
                     <h2 class="title mb-4 pb-3">Ajoutez votre annonce</h2>
                 </div>
