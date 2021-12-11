@@ -302,16 +302,15 @@
               <div class="dropbox">
                 <input
                   type="file"
-                  multiple
-                  :name="uploadFieldName"
+                  :name="imageArray"
                   :disabled="isSaving"
-                  @change="
-                    handleImage
-                  "
+                  @change="handleImage"
+                  @click="onUpload"
                   accept="image/*"
                   class="input-file"
+                  multiple
                 />
-<!-- filesChange($event.target.name, $event.target.files);
+                <!-- filesChange($event.target.name, $event.target.files);
                     fileCount = $event.target.files.length; -->
                 <p v-if="isInitial">
                   Drag your file(s) here to begin<br />
@@ -363,6 +362,7 @@ export default {
       uploadError: null,
       currentStatus: null,
       uploadFieldName: "",
+      imageArrau: null,
       titre: "",
       categorie: "",
       description: "",
@@ -374,7 +374,7 @@ export default {
       error: "",
     };
   },
-  
+
   computed: {
     isInitial() {
       return this.currentStatus === STATUS_INITIAL;
@@ -391,21 +391,21 @@ export default {
   },
   methods: {
     async handleSubmit() {
-        console.log(this.uploadFieldName);
+      console.log(this.imageArray);
       try {
         await fetch("http://localhost:8000/createAd", {
           method: "POST",
           body: JSON.stringify({
-            titre:this.titre,
-            categorie:this.categorie,
-            description:this.description,
-            prix:this.prix,
-            campus:this.campus,
-            localisation1:this.localisation1,
-            localisation2:this.localisation2,
-             localisation3:this.localisation3,
-             uploadedFiles:this.uploadedFiles,
-             uploadFieldName:this.uploadFieldName,
+            titre: this.titre,
+            categorie: this.categorie,
+            description: this.description,
+            prix: this.prix,
+            campus: this.campus,
+            localisation1: this.localisation1,
+            localisation2: this.localisation2,
+            localisation3: this.localisation3,
+            uploadedFiles: this.imageArray,
+            uploadFieldName: this.uploadFieldName,
           }),
         });
         this.$router.push("/");
@@ -413,18 +413,11 @@ export default {
         this.error = "Une erreur est survenue!";
       }
     },
-handleImage(e){
-  const selectedImage = e.target.files[0];
-  this.createBase64Image(selectedImage);
-},
-creatBase64Image(fileObject){
-  const reader = new FileReader();
-
-  reader.onload = (e) =>{
-      this.image = e.target.result;
-  };
-  reader.readAsBinaryString(fileObject);
-},
+    handleImage(event) {
+      this.imageArray = event.target.files;
+      console.log(this.imageArray);
+     
+    },
 
     activatePanel(stepIndex) {
       this.step = stepIndex;
