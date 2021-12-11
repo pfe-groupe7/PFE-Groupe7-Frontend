@@ -4,16 +4,15 @@
     <a class="navbar-brand" href="/">
       <img src="../assets/images/vincilogo.png" height="100" alt="vinci market logo">
     </a>
-      <div class="nav-item dropdown">
-          <a class="btn mt-1 nav-link dropdown-toggle" data-toggle="dropdown">Catégories</a>
-          <div class="dropdown-menu">
-            <a href="#" class="dropdown-item">Maison et jardin</a>
-            <a href="#" class="dropdown-item"> Famille</a>
-            <a href="#" class="dropdown-item">Vêtements et accessoires</a>
-            <a href="#" class="dropdown-item">Loisirs et hobbys</a>
-            <a href="#" class="dropdown-item">Electronique</a>
-          </div>
-			</div>
+      
+       <select name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
+          <option selected disabled>Catégorie</option>
+          <option value="1">Maisons et jardin</option>
+          <option value="2">Famille</option>
+          <option value="3">Vêtements et accessoires</option>
+          <option value="4">Loisirs - hobbys</option>
+      </select>
+     
       <form class="form-inline">
         <div class="flexbox">
           <div class="search">
@@ -41,6 +40,7 @@
             <a href="/myads"  class="nav-link">mes annonces</a>
           </div>
        </ul>
+
   </nav>
   
 </div>
@@ -50,12 +50,18 @@
 import { mapGetters } from "vuex";
 export default {
   name: 'Nav',
+  data () {
+    return {
+
+}
+  },
   methods:{
      handleClick(){
        localStorage.removeItem('token');
        this.$store.dispatch('user',null);
        this.$router.push('/');
-     }
+     },
+     
   },
   computed:{
     ...mapGetters(['user'])

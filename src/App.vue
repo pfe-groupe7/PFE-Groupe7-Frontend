@@ -6,18 +6,22 @@
       <router-view :user="user"/>
         </div>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 
 import Nav from './components/Nav.vue'
+import Footer from './components/Footer.vue'
+
 import axios from "axios";
 
 export default {
   name: "App",
     components: {
    Nav,
+   Footer
   },
   async created() {
     const response = await axios.get("user");

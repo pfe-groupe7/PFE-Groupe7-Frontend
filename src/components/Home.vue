@@ -1,7 +1,28 @@
-<template>
-  <div>
-    <h3 v-if="user">Salut,{{ user.firstname }} {{ user.lastname }}</h3>
-    <h3 v-if="!user">Vous n'etes pas connecte</h3>
+<template>   
+  <div class="container" >
+    
+    <div id="categories">
+
+      <h2>Catégories</h2>
+      <div class="row mt-4">
+          
+          <div class="col-3">
+            <a href="#"> <img src="../assets/images/maison.png" class="rounded" alt="Maison et Jardin" style="width:90%; height:auto"></a>
+          </div>
+          <div class="col-3">
+            <a href="#"><img src="../assets/images/quotidien.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
+          </div>
+          <div class="col-3">
+            <a href="#"><img src="../assets/images/vetements.png" class="rounded" alt="Vetements" style="width:90%; height:auto"></a>
+          </div>
+          <div class="col-3">
+            <a href="#"><img src="../assets/images/loisirs.png" class="rounded" alt="Loisirs" style="width:90%; height:auto"></a>
+          </div>      
+          <a href="/annonces" class="btn mt-5" type="submit">Voir toutes les annonces</a>
+
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -17,3 +38,5 @@ export default {
   }
 }
 </script>
+
+<style scoped src="../assets/css/home.css"></style>
