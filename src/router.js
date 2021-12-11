@@ -7,7 +7,7 @@ import CreateAd from './components/CreateAd.vue'
 
 import Forgot from "./components/Forgot.vue";
 import Reset from './components/Reset.vue'
-import Annonce from './components/Annonce.vue'
+import DetailAd from './components/DetailAd.vue'
 import Profile from './components/Profile.vue'
 
 import MyAds from './components/MyAds.vue'
@@ -20,8 +20,8 @@ export default new Router({
     { path: "/login", component: Login },
     { path: "/register", component: Login },
     { path: "/createAd", component: CreateAd },
-    { path: "/annonce", component: Annonce },
-    { path: "/annonces", component: Ads },
+    { path: "/detailAd", component: DetailAd },
+    { path: "/ads", component: Ads },
     { path: "/forgot", component: Forgot },
     {path:"/reset/:token",component:Reset},
     { path: "/profile", component: Profile },
