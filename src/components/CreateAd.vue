@@ -5,7 +5,12 @@
         <h2 class="title mb-4 pb-3">Ajoutez votre annonce</h2>
       </div>
       <div class="card-body">
-        <form  method="POST" action="#" id="js-wizard-form" @submit.prevent="handleSubmit">
+        <form
+          method="POST"
+          action="#"
+          id="js-wizard-form"
+          @submit.prevent="handleSubmit"
+        >
           <error v-if="error" :error="error" />
           <ul class="tab-list">
             <li class="tab-list__item active">
@@ -131,175 +136,180 @@
                     </select>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div v-if="step === 2" class="Panel-Content" id="tab2">
+            <div class="form">
+              <div class="wrapper">
+                <input type="radio" name="select" id="option-1" />
+                <input type="radio" name="select" id="option-2" checked />
+                <label
+                  for="option-1"
+                  class="option option-1"
+                  @click="showPrice(1)"
+                >
+                  <div class="dot"></div>
+                  <span>A vendre</span>
+                </label>
+                <label
+                  for="option-2"
+                  @click="showPrice(0)"
+                  class="option option-2"
+                >
+                  <div class="dot"></div>
+                  <span>A donner</span>
+                </label>
+              </div>
+              <div id="prix" class="row align-items-center" v-if="show === 1">
+                <div class="col-3">
+                  <input
+                    class="input--style-1"
+                    type="number>0"
+                    v-model="prix"
+                    placeholder="Prix"
+                    required="required"
+                  />
                 </div>
               </div>
             </div>
-            <div v-if="step === 2" class="Panel-Content" id="tab2">
-              <div class="form">
-                <div class="wrapper">
-                  <input type="radio" name="select" id="option-1" />
-                  <input type="radio" name="select" id="option-2" checked />
+            <div class="form">
+              <div class="row align-items-center">
+                <div class="col-4">
                   <label
-                    for="option-1"
-                    class="option option-1"
-                    @click="showPrice(1)"
+                    class="form-label"
+                    style="margin-left: 5px; font-size: 19px"
+                    >Campus</label
                   >
-                    <div class="dot"></div>
-                    <span>A vendre</span>
-                  </label>
+                  <select
+                    name="campus"
+                    id="subject"
+                    class="form-style"
+                    required="required"
+                    v-model="campus"
+                  >
+                    <option value="Woluwe" @click="showSelect(1)">
+                      Woluwe
+                    </option>
+                    <option value="Ixelles" @click="showSelect(2)">
+                      Ixelles
+                    </option>
+                    <option value="Louvain" @click="showSelect(3)">
+                      Louvain-La-Neuve
+                    </option>
+                  </select>
+                </div>
+                <div class="col-4" v-if="select === 1">
                   <label
-                    for="option-2"
-                    @click="showPrice(0)"
-                    class="option option-2"
+                    class="form-label"
+                    style="margin-left: 5px; font-size: 19px"
+                    >Localisation</label
                   >
-                    <div class="dot"></div>
-                    <span>A donner</span>
-                  </label>
+                  <select
+                    name="campus"
+                    id="subject"
+                    class="form-style"
+                    required="required"
+                    v-model="localisation1"
+                  >
+                    <option value="PlaceDeAlma3">Place de l'Alma, 3</option>
+                    <option value="PromenadeDeAlma59">
+                      Promenade de l'Alma, 59
+                    </option>
+                    <option value="ClosChapelleAuxChamps41">
+                      Clos Chapelle-aux-Champs, 41
+                    </option>
+                    <option value="ClosChapelleAuxChamps43">
+                      Clos Chapelle-aux-Champs, 43
+                    </option>
+                    <option value="AvenueEmmanuelMounier84">
+                      Avenue Emmanuel Mounier, 84
+                    </option>
+                  </select>
                 </div>
-                <div id="prix" class="row align-items-center" v-if="show === 1">
-                  <div class="col-3">
-                    <input
-                      class="input--style-1"
-                      type="number>0"
-                      v-model="prix"
-                      placeholder="Prix"
-                      required="required"
-                    />
-                  </div>
+                <div class="col-4" v-if="select === 2">
+                  <label
+                    class="form-label"
+                    style="margin-left: 5px; font-size: 19px"
+                    >Localisation</label
+                  >
+                  <select
+                    name="campus"
+                    id="subject"
+                    class="form-style"
+                    required="required"
+                    v-model="localisation2"
+                  >
+                    <option value="ChausseeDeWavre249">
+                      Chaussée de Wavre, 249
+                    </option>
+                    <option value="RueDeLimauge14">Rue de Limauge, 14</option>
+                    <option value="RueArlon">Rue d’Arlon, 3-5-11,4-6-14</option>
+                    <option value="RueTreves">
+                      Rue de Trèves, 84 /Rue d’Arlon, 53
+                    </option>
+                  </select>
                 </div>
-              </div>
-              <div class="form">
-                <div class="row align-items-center">
-                  <div class="col-4">
-                    <label
-                      class="form-label"
-                      style="margin-left: 5px; font-size: 19px"
-                      >Campus</label
-                    >
-                    <select
-                      name="campus"
-                      id="subject"
-                      class="form-style"
-                      required="required"
-                      v-model="campus"
-                    >
-                      <option value="Woluwe" @click="showSelect(1)">
-                        Woluwe
-                      </option>
-                      <option value="Ixelles" @click="showSelect(2)">
-                        Ixelles
-                      </option>
-                      <option value="Louvain" @click="showSelect(3)">
-                        Louvain-La-Neuve
-                      </option>
-                    </select>
-                  </div>
-                  <div class="col-4" v-if="select === 1">
-                    <label
-                      class="form-label"
-                      style="margin-left: 5px; font-size: 19px"
-                      >Localisation</label
-                    >
-                    <select
-                      name="campus"
-                      id="subject"
-                      class="form-style"
-                      required="required"
-                      v-model="localisation1"
-                    >
-                      <option value="PlaceDeAlma3">Place de l'Alma, 3</option>
-                      <option value="PromenadeDeAlma59">
-                        Promenade de l'Alma, 59
-                      </option>
-                      <option value="ClosChapelleAuxChamps41">
-                        Clos Chapelle-aux-Champs, 41
-                      </option>
-                      <option value="ClosChapelleAuxChamps43">
-                        Clos Chapelle-aux-Champs, 43
-                      </option>
-                      <option value="AvenueEmmanuelMounier84">
-                        Avenue Emmanuel Mounier, 84
-                      </option>
-                    </select>
-                  </div>
-                  <div class="col-4" v-if="select === 2">
-                    <label
-                      class="form-label"
-                      style="margin-left: 5px; font-size: 19px"
-                      >Localisation</label
-                    >
-                    <select
-                      name="campus"
-                      id="subject"
-                      class="form-style"
-                      required="required"
-                      v-model="localisation2"
-                    >
-                      <option value="ChausseeDeWavre249">
-                        Chaussée de Wavre, 249
-                      </option>
-                      <option value="RueDeLimauge14">Rue de Limauge, 14</option>
-                      <option value="RueArlon">
-                        Rue d’Arlon, 3-5-11,4-6-14
-                      </option>
-                      <option value="RueTreves">
-                        Rue de Trèves, 84 /Rue d’Arlon, 53
-                      </option>
-                    </select>
-                  </div>
-                  <div class="col-4" v-if="select === 3">
-                    <label
-                      class="form-label"
-                      style="margin-left: 5px; font-size: 19px"
-                      >Localisation</label
-                    >
-                    <select
-                      name="campus"
-                      id="subject"
-                      class="form-style"
-                      required="required"
-                      v-model="localisation3"
-                    >
-                      <option value="CheminDeLaBardane17">
-                        Chemin de la Bardane, 17
-                      </option>
-                      <option value="VoieCardijn10">Voie Cardijn, 10</option>
-                      <option value="RueDuTraiteDeRome1">
-                        Rue du traité de Rome, 1
-                      </option>
-                      <option value="RuePaulinLadeuze14">
-                        Rue Paulin Ladeuze, 14
-                      </option>
-                      <option value="RueDeUnionEuropeenne4">
-                        Rue de l’Union européenne, 4
-                      </option>
-                    </select>
-                  </div>
+                <div class="col-4" v-if="select === 3">
+                  <label
+                    class="form-label"
+                    style="margin-left: 5px; font-size: 19px"
+                    >Localisation</label
+                  >
+                  <select
+                    name="campus"
+                    id="subject"
+                    class="form-style"
+                    required="required"
+                    v-model="localisation3"
+                  >
+                    <option value="CheminDeLaBardane17">
+                      Chemin de la Bardane, 17
+                    </option>
+                    <option value="VoieCardijn10">Voie Cardijn, 10</option>
+                    <option value="RueDuTraiteDeRome1">
+                      Rue du traité de Rome, 1
+                    </option>
+                    <option value="RuePaulinLadeuze14">
+                      Rue Paulin Ladeuze, 14
+                    </option>
+                    <option value="RueDeUnionEuropeenne4">
+                      Rue de l’Union européenne, 4
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
+          </div>
 
           <div v-if="step === 3" class="Panel-Content" id="tab3">
             <div class="row text-center">
               <h1>Upload images</h1>
-              <div>
-        <div
-          class="previewBlock"
-          @click="chooseFile"
-          :style="{ 'background-image': `url(${filePreview})` }">
-        </div>
-
-        <div>
-          <input
-            class="form-control form-control-lg"
-            ref="fileInput"
-            type="file"
-            id="formFileLg"
-            @input="selectImgFile">
-        </div>
-    </div>
-                
-              
+              <div class="dropbox">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    @change="imageSelected"
+                    class="custom-file-input"
+                    id="customFile"
+                    multiple
+                  />
+                  <label class="custom-file-label" for="customFile"
+                    >Choisir photo</label
+                  >
+                </div>
+                <div
+                  v-for="(photo, index) in imagepreview"
+                  v-bind:key="index"
+                  class="mt-3"
+                >
+                  <img
+                    :src="imagepreview[index]"
+                    class="figure-img img-fluid rounded"
+                    style="max-height: 100px"
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div id="boutons">
@@ -318,11 +328,9 @@
                 Envoyer &nbsp;<i class="fa fa-check"></i>
               </button>
             </div>
-                </div>
-
+          </div>
         </form>
-    </div>
-
+      </div>
     </div>
   </div>
 </template>
@@ -345,9 +353,8 @@ export default {
       uploadedFiles: [],
       uploadError: null,
       currentStatus: null,
-      uploadFieldName: "",
-      imageArray: null,
-      filePreview: null,
+      image: null,
+      imagepreview: [],
       titre: "",
       categorie: "",
       description: "",
@@ -376,7 +383,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log(this.selectImgFile);
+      console.log(this.image);
       try {
         await fetch("http://localhost:8000/createAd", {
           method: "POST",
@@ -389,7 +396,7 @@ export default {
             localisation1: this.localisation1,
             localisation2: this.localisation2,
             localisation3: this.localisation3,
-            uploadedFiles: this.imageArray,
+            uploadedFiles: this.image,
             uploadFieldName: this.uploadFieldName,
           }),
         });
@@ -398,23 +405,18 @@ export default {
         this.error = "Une erreur est survenue!";
       }
     },
-  
-    chooseFile () {
-              this.$refs.fileInput.click()
-          },
-          selectImgFile () {
-            let fileInput = this.$refs.fileInput
-            let imgFile = fileInput.files
 
-            if (imgFile && imgFile[0]) {
-              let reader = new FileReader
-              reader.onload = e => {
-                this.filePreview = e.target.result
-              }
-              reader.readAsDataURL(imgFile[0])
-              this.$emit('fileInput', imgFile[0])
-            }
-          },
+    imageSelected(e) {
+      this.image = e.target.files;
+      for (var i = 0; i < this.image.length; i++) {
+        let reader = new FileReader();
+        console.log(this.image[0]);
+        reader.onload = (e) => {
+          this.imagepreview.push(e.target.result);
+        };
+        reader.readAsDataURL(this.image[i]);
+      }
+    },
 
     activatePanel(stepIndex) {
       this.step = stepIndex;
