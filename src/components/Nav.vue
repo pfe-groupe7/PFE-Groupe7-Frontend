@@ -30,14 +30,19 @@
             <router-link to="/login" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
           </li>
         </ul>
-           <ul class="navbar-nav ml-auto" v-if="user">
-          <li class="nav-item">
-            <router-link to="/profile" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
+        
+        <ul class="mt-1 nav-link  dropdown fa-10x" v-if="user" id="profile">
+           <i class="dropbtn fa fa-user-circle " ></i>
+          <div class="dropdown-content">
+            
+            <a href="javascript:void(0)" @click="handleClick" class="nav-link">Déconnecter</a>
+            <a href="/profile" @click="handleClick" class="nav-link">mon profile</a>
+            <a href="/myads"  class="nav-link">mes annonces</a>
+          </div>
+       </ul>
 
-            <a class="btn-mt-1 nav-link" href="javascript:void(0)" @click="handleClick" >Déconnecter&nbsp;&nbsp;</a>
-          </li>
-        </ul>
   </nav>
+  
 </div>
 </template>
 

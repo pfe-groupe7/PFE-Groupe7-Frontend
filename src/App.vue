@@ -64,8 +64,10 @@ html,
   height: 98%;
 }
 
+
 #app {
   text-align: center;
+  margin-bottom: 10%;
 }
 
 .auth-wrapper {
