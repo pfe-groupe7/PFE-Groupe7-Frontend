@@ -5,13 +5,7 @@
         <h2 class="title mb-4 pb-3">Ajoutez votre annonce</h2>
       </div>
       <div class="card-body">
-        <form
-          class="wizard-container"
-          method="POST"
-          action="#"
-          id="js-wizard-form"
-          @submit.prevent="handleSubmit"
-        >
+        <form class="wizard-container" method="POST" action="#" id="js-wizard-form" @submit.prevent="handleSubmit">
           <error v-if="error" :error="error" />
           <ul class="tab-list">
             <li class="tab-list__item active">
@@ -284,7 +278,6 @@
                 </div>
               </div>
             </div>
-          </div>
 
           <div v-if="step === 3" class="Panel-Content" id="tab3">
             <div class="row text-center">
@@ -326,9 +319,11 @@
                 Envoyer &nbsp;<i class="fa fa-check"></i>
               </button>
             </div>
-          </div>
+                </div>
+
         </form>
-      </div>
+    </div>
+
     </div>
   </div>
 </template>
