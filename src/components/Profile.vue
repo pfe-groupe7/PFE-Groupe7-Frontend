@@ -1,6 +1,6 @@
 <template>
     <div class="container ">
-    <div class="card card-1">
+    <div class="card card-1 mt-5">
         
             <form>
             <div class="p-3 py-5">
