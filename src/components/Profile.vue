@@ -26,8 +26,8 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-6 "><label class="labels">Mot de passe</label><input id="password" type="text" class="form-control"   v-model="password"></div>
-                    <div class="col-md-6"><label class="labels">Retaper le Mot de passe</label><input  v-model="confirmed_password" type="text" class="form-control" ></div>
+                    <div class="col-md-6 "><label class="labels">Mot de passe</label><input id="password" type="password"  class="form-control"   v-model="password"></div>
+                    <div class="col-md-6"><label class="labels">Retaper le Mot de passe</label><input type="password" v-model="confirmed_password"  class="form-control" ></div>
                 </div>
                 <div class="row mt-5">
                 <div class="col-md-6 mt-5 text-center"><button v-on:click="deleteUser" class="btn btn-danger profile-button" type="button">Supprimer mon compte</button></div>
@@ -134,7 +134,7 @@ export default {
     async deleteUser()
     {
          try {
-        await fetch("http://localhost:8000/delete", {
+        await fetch("http://localhost:8000/users/delete", {
           method: "POST",
           body: JSON.stringify({
             email:this.email

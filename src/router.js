@@ -8,6 +8,7 @@ import CreateAd from './components/CreateAd.vue'
 import Forgot from "./components/Forgot.vue";
 import Reset from './components/Reset.vue'
 import Profile from './components/Profile.vue'
+import MyAds from './components/MyAds.vue'
 export default new Router({
   mode: "history",
   routes: [
@@ -18,5 +19,6 @@ export default new Router({
     { path: "/forgot", component: Forgot },
     {path:"/reset/:token",component:Reset},
     { path: "/profile", component: Profile },
+    { path: "/myads", component: MyAds },
   ],
 });
