@@ -4,7 +4,6 @@
     <div class="auth-wrapper">
       <div class="auth-inner">
       <router-view :user="user"/>
-        
         </div>
     </div>
     <Footer />

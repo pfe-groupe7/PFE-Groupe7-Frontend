@@ -1,24 +1,43 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <div v-if="message" class="alert alert-success" role="alert">
-      {{ message }}
-    </div>
-
-    <error v-if="error" :error="error" />
-
-    <h3>Mot de passe oublié</h3>
-
-    <div class="form-group">
-      <label>Email</label>
-      <input
-        type="email"
-        class="form-control"
-        v-model="email"
-        placeholder="Email"
-      />
-    </div>
-    <button class="btn btn-primary btn-block">Envoyer</button>
-  </form>
+<div class="section">
+      <div class="container">
+      <div class="row full-height justify-content-center">
+        <div class="col-12 text-center align-self-center">
+          <div class="section pb-5 pt-sm-2 text-center ">
+            <div class="card-3d-wrap mx-auto">
+              <div class="card-3d-wrapper">
+                <div class="card-front">
+                  <div class="center-wrap">
+                    <div class="section text-center">
+                        <form @submit.prevent="handleSubmit">
+                          <div v-if="message" class="alert alert-success" role="alert">
+                            {{ message }}
+                          </div>
+                          <error v-if="error" :error="error" />
+                          <h4 class="mb-4 pb-4">Mot de passe oublié</h4>
+                          <div class="form-group">
+                            <label class="pb-4 mt-4">Entrez votre adresse mail</label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              v-model="email"
+                              placeholder="Email"
+                            />
+                          </div>
+                          <div class="form-group mt-4">
+                              <input class="btn mt-4" type="submit" value="Envoyer">
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
 </template>
 
 
@@ -55,3 +74,4 @@ export default {
   },
 };
 </script>
+<style scoped src="../assets/css/login.css"></style>

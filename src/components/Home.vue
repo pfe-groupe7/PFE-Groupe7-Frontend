@@ -1,9 +1,6 @@
 <template>   
   <div class="container" >
-    <div class="showcase mt-4">
-          <video src="" muted loop autoplay></video>
-    <div class="overlay"> </div>
-    </div>
+    
     <div id="categories">
 
       <h2>Catégories</h2>
@@ -20,8 +17,11 @@
           </div>
           <div class="col-3">
             <a href="#"><img src="../assets/images/loisirs.png" class="rounded" alt="Loisirs" style="width:90%; height:auto"></a>
-          </div>
+          </div>      
+          <a href="/annonces" class="btn mt-5" type="submit">Voir toutes les annonces</a>
+
       </div>
+
     </div>
   </div>
 </template>

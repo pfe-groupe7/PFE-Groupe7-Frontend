@@ -48,7 +48,7 @@
                           <input class="btn mt-4" type="submit" value="Envoyer">
                         </div>
                         <p class="mb-5 mt-5 text-center">
-                          <a class="link" href="forgot">Mot de passe oublié?</a>
+                          <a class="link" href="/forgot">Mot de passe oublié?</a>
                         </p>
                       </form>
                     </div>

@@ -7,7 +7,7 @@
       
        <select name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
           <option selected disabled>Catégorie</option>
-          <option value="1">Maison et jardin</option>
+          <option value="1">Maisons et jardin</option>
           <option value="2">Famille</option>
           <option value="3">Vêtements et accessoires</option>
           <option value="4">Loisirs - hobbys</option>
@@ -32,7 +32,9 @@
         </ul>
            <ul class="navbar-nav ml-auto" v-if="user">
           <li class="nav-item">
-            <a href="javascript:void(0)" @click="handleClick" class="nav-link">Déconnecter</a>
+            <router-link to="/profile" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
+
+            <a class="btn-mt-1 nav-link" href="javascript:void(0)" @click="handleClick" >Déconnecter&nbsp;&nbsp;</a>
           </li>
         </ul>
   </nav>
