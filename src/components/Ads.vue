@@ -1,139 +1,115 @@
 <template>
   <div class="post">
     <div class="loading" v-if="loading">Chargement...</div>
-     <div class="error" v-if="error">{{error}}</div>
-    <div v-if="ad" class="content">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img
-          src="https://bulma.io/images/placeholders/1280x960.png"
-          alt="Placeholder image"
-        />
-      </figure>
-    </div>
-    <div class="card-content">
-      <div class="media">
-        <div class="media-content">
-          <p class="title is-4">{{ ad.title }}</p>
-        </div>
-        <div>
-          <button
-            class="button is-small"
-            :title="removeFromFavouriteLabel"
-            v-show="ad.isFavourite"
-            @click="removeFromFavourite(ad.id)"
-          >
-            <span class="icon is-small">
-              <i class="fas fa-heart"></i>
-            </span>
-          </button>
-          <button
-            class="button is-small"
-            :title="addToFavouriteLabel"
-            v-show="!ad.isFavourite"
-            @click="saveToFavorite(ad.id)"
-          >
-            <span class="icon is-small">
-              <i class="far fa-heart"></i>
-            </span>
-          </button>
-        </div>
+    <div class="error" v-if="error">{{ error }}</div>
+    <div v-for="ad in list" v-bind:key="ad.id" class="list">
+      <div class="card-image">
+        <div
+          id="product"
+          class="single-product rounded"
+          :style="{ backgroundImage: 'url(' + ad.photo + ')' }"
+        ></div>
       </div>
-      <div class="content is-clearfix">
-        <p>{{ ad.description }}</p>
-        <p class="is-pulled-right">
-          <span class="title is-4"
-            ><strong>&euro; {{ ad.price }}</strong></span
-          >
-        </p>
-      </div>
-      <div class="card-footer btn-actions">
-        <div class="card-footer-item field is-grouped">
-          <div class="buttons">
-            <button class="button is-text">Contactez le vendeur</button>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4">{{ ad.title }}</p>
+          </div>
+          <div>
+            <button
+              class="button is-small"
+              :title="removeFromFavouriteLabel"
+              v-show="ad.isFavourite"
+              @click="removeFromFavourite(ad.id)"
+            >
+              <span class="icon is-small">
+                <i class="fas fa-heart"></i>
+              </span>
+            </button>
+            <button
+              class="button is-small"
+              :title="addToFavouriteLabel"
+              v-show="!ad.isFavourite"
+              @click="saveToFavorite(ad.id)"
+            >
+              <span class="icon is-small">
+                <i class="far fa-heart"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="content is-clearfix">
+          <p>{{ ad.description }}</p>
+          <p class="is-pulled-right">
+            <span class="title is-4"
+              ><strong>&euro; {{ ad.price }}</strong></span
+            >
+          </p>
+        </div>
+        <div class="card-footer btn-actions">
+          <div class="card-footer-item field is-grouped">
+            <div class="buttons">
+              <button class="button is-text">Contactez le vendeur</button>
+            </div>
           </div>
         </div>
       </div>
+      <nuxt-link
+        class="details"
+        :to="{
+          name: 'Ads',
+          params: {
+            id: ad.id,
+            title: ad.title,
+            price: ad.price,
+            description: ad.description,
+            location: ad.location,
+          },
+        }"
+      >
+      </nuxt-link>
     </div>
-    <nuxt-link
-      class="details"
-      :to="{
-        name: 'product_detail-id',
-        params: {
-          id: ad.id,
-          title: ad.title,
-          price: ad.price,
-          description: ad.description,
-          location: ad.location,
-        },
-      }"
-    >
-    </nuxt-link>
-  </div>
   </div>
 </template>
 
 <script>
-import Get from "../Get.js"
+
 export default {
-  name: "products",
-  props: ["product"],
+  name: "Ads",
+  components: {},
   data() {
+    this.$store.dispatch("annonces", {
+      title: "test",
+      price: "12",
+      desxcription: "test1",
+      location: "Alma",
+    });
     return {
-      error:null,
+      error: null,
       loading: false,
       addToCartLabel: "Add to cart",
       viewDetailsLabel: "Details",
       selected: 1,
       quantityArray: [],
+      list: [],
+      annonces:this.$store.getters.annonces,
     };
   },
-  watch: {
-  "$route" : "fetchName"  
-  },
-  mounted() {
-    for (let i = 1; i <= 20; i++) {
-      this.quantityArray.push(i);
-    }
-    if (this.$props.product.quantity > 1) {
-      this.selected = this.$props.product.quantity;
-    }
-  },
-  computed: {
-    isUserLogged() {
-      return this.$store.getters.isUserLoggedIn;
-    },
-  },
-  methods: {
-    saveToFavorite(id) {
-      let isUserLogged = this.$store.state.userInfo.isLoggedIn;
-      if (isUserLogged) {
-        this.$store.commit("addToFavourite", id);
-      } else {
-        this.$store.commit("showLoginModal", true);
+  async mounted() {
+     console.log(this.annonces)
+    //   let id=this.$store.getters.getUserId;
+            try {
+        await fetch("http://localhost:8000/annonces/", {
+          method: "GET"
+        }).then(response => response.json()).then((response)=>{
+           
+                console.log(response)
+                this.list=response(e=>e.seller_id==this.annonces.id);
+        });
+      } catch (e) {
+        this.error = "Une erreur est survenue!";
       }
-    },
-    removeFromFavourite(id) {
-      this.$store.commit("removeFromFavourite", id);
-    },
-    onSelectQuantity(id) {
-      let data = {
-        id: id,
-        quantity: this.selected,
-      };
-      this.$store.commit("quantity", data);
-    },
-    fetchName (){
-      this.error =null
-      this.loading-true
-      Get((err,ad) =>{
-        this.loading = false
-        if(err){
-          this.error =err
-        }else this.ad =ad 
-      })
-    }
-  },
+  }
 };
 </script>
 
