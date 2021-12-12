@@ -32,7 +32,7 @@
         </ul>
         
         <ul class="mt-2 pb-2 nav-link  dropdown fa-10x" v-else  id="profile">
-           <i class="dropbtn fa fa-user-circle " ></i>
+           <i class="dropbtn fa fa-user-circle " >{{user.firstname}}</i>
            
           <div class="dropdown-content" >
             
@@ -68,7 +68,7 @@ export default {
        localStorage.removeItem('token');
        this.$store.dispatch('user',null);
        this.user=null;
-       this.$router.go(this.$router.currentRoute)
+      this.$router.push("/")
      },
      profile(){
        this.$router.push("/profile")

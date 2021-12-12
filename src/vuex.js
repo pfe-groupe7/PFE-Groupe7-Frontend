@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 import Vuelidate from 'vuelidate'
+import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuelidate)
 
  const  state = {
@@ -11,6 +12,9 @@ Vue.use(Vuelidate)
 };
 
 const store = new Vuex.Store({
+    plugins: [createPersistedState({
+        storage: window.sessionStorage,
+    })],
     state,
     getters:{
         user:(state)=>{
