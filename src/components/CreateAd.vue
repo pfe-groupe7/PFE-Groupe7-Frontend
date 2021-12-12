@@ -291,23 +291,20 @@
                     type="file"
                     @change="imageSelected"
                     class="custom-file-input"
-                    id="customFile"
                     multiple
                   />
                   <label class="custom-file-label" for="customFile"
                     >Choisir photo</label
                   >
                 </div>
-                <div
-                  v-for="(photo, index) in imagepreview"
-                  v-bind:key="index"
-                  class="mt-3"
-                >
+                <div v-for="(image, key) in imagepreview" :key="key">
                   <img
-                    :src="imagepreview[index]"
+                    :src="imagepreview[key]"
                     class="figure-img img-fluid rounded"
+                    :ref="'image'"
                     style="max-height: 100px"
                   />
+                  {{ image.name }}
                 </div>
               </div>
             </div>
@@ -409,14 +406,17 @@ export default {
     imageSelected(e) {
       this.image = e.target.files;
       for (var i = 0; i < this.image.length; i++) {
-        let reader = new FileReader();
-        console.log(this.image[0]);
-        reader.onload = (e) => {
-          this.imagepreview.push(e.target.result);
-        };
-        reader.readAsDataURL(this.image[i]);
-      }
-    },
+         this.imagepreview.push(this.image[i]);
+        }
+        for(let i=0 ;i<this.imagepreview.length ;i++){
+           let reader = new FileReader();
+           reader.onload = ()=> {
+             this.$refs.image[i].src = reader.result;
+           }
+                   reader.readAsDataURL(this.imagepreview[i]);
+
+        }
+        },
 
     activatePanel(stepIndex) {
       this.step = stepIndex;
