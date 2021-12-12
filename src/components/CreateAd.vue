@@ -161,6 +161,7 @@
                   <div class="dot"></div>
                   <span>A vendre</span>
                 </label>
+                
                 <label
                   for="option-2"
                   @click="showPrice(0)"
