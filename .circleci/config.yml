@@ -21,8 +21,17 @@ workflows:
   sample:
     jobs:
       - node/test
+      steps:
+      - checkout
+      - run:
+        name: "install pytest"
+        command: python -m pip install pytest
+
+      -run:
+        name: "mockTest"
+        commande: pytest ~/project/PFE-Frontend/test.py
       - heroku/deploy-via-git:
-          #force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
+          force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
             - node/test # only run deploy-via-git job if the build job has completed
           #filters:
