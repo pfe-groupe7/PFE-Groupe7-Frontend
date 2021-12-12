@@ -90,7 +90,7 @@
                             name="email"
                             class="form-style"
                             placeholder="Adresse e-mail"
-                            id="email"
+                            
                             v-model="emailRegister"
                           />
                           <i class="input-icon fa fa-envelope"></i>
@@ -101,7 +101,7 @@
                             name="password"
                             class="form-style"
                             placeholder="Mot de passe"
-                            id="password"
+                           
                             v-model="mdpRegister"
                           />
                           <i class="input-icon fa fa-lock"></i>
@@ -116,9 +116,9 @@
                             <option value="" disabled selected>
                               Sélectionne ton campus
                             </option>
-                            <option value="0">Woluwe</option>
-                            <option value="1">Ixelles</option>
-                            <option value="2">Louvain-La-Neuve</option>
+                            <option value="1">Woluwe</option>
+                            <option value="2">Ixelles</option>
+                            <option value="3">Louvain-La-Neuve</option>
                           </select>
                           <i class="input-icon fa fa-map-marker"></i>
                         </div>
@@ -138,20 +138,25 @@
 
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: "Login",
 
-  components: {},
+  computed:{
+    ...mapGetters(['user'])
+  },
   data() {
     return {
       prenomRegister: "",
       nomRegister: "",
       emailRegister: "",
-      passwordRegister: "",
+      mdpRegister: "",
       campusRegister: "",
       emailLogin: "",
-      passwordLogin: "",
       error: "",
+      mdpLogin:""
+
+
     };
   },
   methods: {
@@ -164,11 +169,13 @@ export default {
             firstname: this.prenomRegister,
             lastname: this.nomRegister,
             email: this.emailRegister,
-            password: this.password,
+            password: this.mdpRegister,
             campus: this.campusRegister,
             moderator: "False",
           }),
-        }).then( this.$router.push("/"));
+        }).then( 
+           this.$router.push("/")
+          );
        
       } catch (e) {
         this.error = "Une erreur est survenue!";
@@ -180,13 +187,19 @@ export default {
           method: "POST",
           body: JSON.stringify({
             email: this.emailLogin,
-            password: this.passwordLogin,
+            password: this.mdpLogin,
 
           }),
         }).then(response => response.json()).then((response)=>{
-            localStorage.setItem("token", response.data.token);
-            this.$store.dispatch("user", response.data.user);
-            this.$router.push("/login");
+          console.log(response)
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("user", response.user.id);
+            this.$store.dispatch("user", response.user);
+           // this.$parent.children[0].update()
+           console.log(this.$parent.$children[0].user=response.user)
+           console.log(this.$parent.$children[0])
+             this.$router.push("/");
+
         });
       } catch (e) {
         this.error = "Une erreur est survenue!";

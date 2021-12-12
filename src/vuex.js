@@ -5,9 +5,9 @@ Vue.use(Vuex);
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)
 
-const state ={
+ const  state = {
 
-    user:null 
+    user:null
 };
 
 const store = new Vuex.Store({
