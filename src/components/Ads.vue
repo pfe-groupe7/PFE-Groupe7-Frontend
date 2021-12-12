@@ -1,6 +1,8 @@
 <template>
   <div class="post">
     <div class="loading" v-if="loading">Chargement...</div>
+     <div class="error" v-if="error">{{error}}</div>
+    <div v-if="ad" class="content">
     <div class="card-image">
       <figure class="image is-4by3">
         <img
@@ -68,14 +70,17 @@
     >
     </nuxt-link>
   </div>
+  </div>
 </template>
 
 <script>
+import Get from "../Get.js"
 export default {
   name: "products",
   props: ["product"],
   data() {
     return {
+      error:null,
       loading: false,
       addToCartLabel: "Add to cart",
       viewDetailsLabel: "Details",
@@ -83,10 +88,8 @@ export default {
       quantityArray: [],
     };
   },
-  created() {
-    // récupérer les données lorsque la vue est créée et
-    // que les données sont déjà observées
-    this.fetchData();
+  watch: {
+  "$route" : "fetchName"  
   },
   mounted() {
     for (let i = 1; i <= 20; i++) {
@@ -120,6 +123,16 @@ export default {
       };
       this.$store.commit("quantity", data);
     },
+    fetchName (){
+      this.error =null
+      this.loading-true
+      Get((err,ad) =>{
+        this.loading = false
+        if(err){
+          this.error =err
+        }else this.ad =ad 
+      })
+    }
   },
 };
 </script>
