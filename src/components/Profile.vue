@@ -77,13 +77,14 @@ export default {
       confirmed_password:""
     }
   },  async mounted(){
-      console.log(this.$store)
-      let id=this.$store.getters.getUserId;
+      // console.log(this.$store.getters.getUserId)
+      let id=localStorage.getItem("user");
+      console.log(localStorage.getItem("user"))
             try {
         await fetch("http://localhost:8000/users/"+id, {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
-            console.log(response[0])
+            console.log(response)
            
       this.prenom= response[0].fields.firstname;
       this.nom= response[0].fields.lastname;
