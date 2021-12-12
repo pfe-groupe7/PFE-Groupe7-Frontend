@@ -9,7 +9,6 @@ import Forgot from "./components/Forgot.vue";
 import Reset from './components/Reset.vue'
 import Annonce from './components/Annonce.vue'
 import Profile from './components/Profile.vue'
-
 import MyAds from './components/MyAds.vue'
 import Ads from './components/Ads.vue'
 

@@ -31,12 +31,13 @@
           </li>
         </ul>
         
-        <ul class="mt-2 pb-2 nav-link  dropdown fa-10x" v-if="user" id="profile">
+        <ul class="mt-2 pb-2 nav-link  dropdown fa-10x" v-else  id="profile">
            <i class="dropbtn fa fa-user-circle " ></i>
+           
           <div class="dropdown-content" >
             
-            <a href="/myads"  class="dropdown-item">Mes annonces</a>                   
-            <a href="/profile" @click="handleClick" class="dropdown-item">Éditer mon profil</a>
+            <a href="javascript:void(0)" @click="myAds"   class="dropdown-item">Mes annonces</a>                   
+            <a href="javascript:void(0)" @click="profile"   class="dropdown-item">Éditer mon profil</a>
      
             <a href="javascript:void(0)" @click="handleClick" class="dropdown-item">Déconnexion</a>
 
@@ -49,24 +50,35 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+//  import { mapGetters } from "vuex";
+
+
 export default {
   name: 'Nav',
   data () {
+    let user=this.$store.getters.user
     return {
+      user:user
 
 }
   },
   methods:{
      handleClick(){
+       console.log(this.user)
        localStorage.removeItem('token');
        this.$store.dispatch('user',null);
-       this.$router.push('/');
+       this.user=null;
+       this.$router.go(this.$router.currentRoute)
      },
+     profile(){
+       this.$router.push("/profile")
+     },
+     myAds(){
+      this.$router.push("/myads")
+       
+     }
      
-  },
-  computed:{
-    ...mapGetters(['user'])
+     
   }
   
 }

@@ -58,18 +58,12 @@
 </div>
 </template>
 <script>
+// import { mapGetters } from "vuex";
 export default {
   name: "Profile",
 
   components: {},
    data() {  
-       this.$store.dispatch("user",  {
-      "nom": "Arto",
-      "prenom": "Hellas",
-      "id": 1,
-      "compus": "test",
-      "email": "a@gamil.com"
-    });
        console.log(this.$store.getters.getUserId)
     return {
       notif:false,
@@ -82,19 +76,21 @@ export default {
       message:"",
       confirmed_password:""
     }
-  },  async mounted() {
+  },  async mounted(){
+      console.log(this.$store)
       let id=this.$store.getters.getUserId;
             try {
         await fetch("http://localhost:8000/users/"+id, {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
-            
-      this.prenom= response.prenom;
-      this.nom= response.nom;
-      this.email=response.email;
-      this.password= response.password;
-      this.confirmed_password=response.password;
-      this.campus=response.compus;
+            console.log(response[0])
+           
+      this.prenom= response[0].fields.firstname;
+      this.nom= response[0].fields.lastname;
+      this.email=response[0].fields.email;
+      this.password= response[0].fields.password;
+      this.confirmed_password=response[0].fields.password;
+      this.campus=response[0].campusName;
    
         });
       } catch (e) {

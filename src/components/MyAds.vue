@@ -6,31 +6,35 @@
 								<div class="header">
 										<h2>Mes annonces</h2>
 								</div>
+                
 						</div>
 				</div>
-                <div v-for="ad in list"  v-bind:key="ad.id" class="list">
+                <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
                            
                             <!-- Single Product -->
                             <div  class="col-md-5 col-lg-1 col-xxl-3">
-                                
-                                    <div  id="product" class="single-product rounded" :style="{ backgroundImage : 'url(' + ad.photo + ')' }">
-                                      
+                             
+
+                             
+                                    <div  id="product" class="single-product rounded" :style="{ backgroundImage : 'url(' + ad.photo[0].fields.url + ')' }">
+                                     
                                             <div class="part-1">
-                                                <span  v-if="ad.state=='rejeté' " class="rejected rounded">{{ad.state}}</span>
-                                                <span  v-else-if="ad.state=='fermé' " class="closed rounded">{{ad.state}}</span>
-                                                <span  v-else-if="ad.state=='en attente de validation' " class="pending rounded">{{ad.state}}</span>
-                                                <span  v-else-if="ad.state=='pubilé'" class="valid rounded">{{ad.state}}</span>
-                                                <a :href="'ads/'+ad.id" style=" left: -18px;   width: 241px;position: absolute; height: 175px !important;"></a>
+                                                <span  v-if="ad.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
+                                                <span  v-else-if="ad.fields.state=='fermé' " class="closed rounded">{{ad.fields.state}}</span>
+                                                <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
+                                                <span  v-else-if="ad.fields.state=='publié'" class="valid rounded">{{ad.fields.state}}</span>
+                                                <a :href="'ads/'+ad.fields.pk" style=" left: -18px;   width: 241px;position: absolute; height: 175px !important;"></a>
                                                     <ul >
-                                                            <li ><a  :id="ad.id" v-on:click="deleteAd"><i class="bi bi-trash"></i></a></li>    									
+                                                            <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
                                                     </ul>		
+
                                             </div>
-                                            <!-- <div class="">
-                                                    <h3 class="product-title">{{ad.title}}</h3>
-                                            </div> -->
+                                          <div class="">
+                                                    <h3 class="product-title">{{ad.fields.title}}</h3>
+                                            </div> 
                                     </div>
                             </div>
-                                            
+                                           
                     <!-- </div> -->
                 </div>    
         </div>    
@@ -55,13 +59,13 @@ export default {
 
   components: {},
    data() {  
-      this.$store.dispatch("user",  {
-      "nom": "Arto",
-      "prenom": "Hellas",
-      "id": 1,
-      "compus": "test",
-      "email": "a@gamil.com"
-    });
+    //   this.$store.dispatch("user",  {
+    //   "nom": "Arto",
+    //   "prenom": "Hellas",
+    //   "id": 1,
+    //   "compus": "test",
+    //   "email": "a@gamil.com"
+    // });
     return {
       list:[],
       user:this.$store.getters.user,
@@ -73,12 +77,15 @@ export default {
      console.log(this.user)
     //   let id=this.$store.getters.getUserId;
             try {
-        await fetch("http://localhost:8000/ads/", {
+        await fetch("http://localhost:8000/ads", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
-           
-                console.log(response)
-                this.list=response.filter(e=>e.seller_id==this.user.id);
+          let ads=response.ads
+          this.medias= response
+          this.list=ads.filter(e=>e.fields.seller==this.user.id);
+          this.list.map(ad=>ad['photo']=this.medias[`${ad.pk}`])
+          console.log(this.list)
+                
         });
       } catch (e) {
         this.error = "Une erreur est survenue!";
@@ -87,17 +94,14 @@ export default {
   methods: {
     async deleteAd(e)
     {
+      console.log(this.list)
         try {
-        await fetch("http://localhost:8000/ads/delete", {
-          method: "POST",
-          body: JSON.stringify({
-            ad_id:e.target.id
-            
-          }),
+        await fetch("http://localhost:8000/ads/delete/"+e.target.id, {
+          method: "GET"
         }).then(response => response.json()).then(()=>{
             this.message = "votre annonce a  été bien suprrimé ";
             this.notif=true;
-           setTimeout(() => this.$router.go(this.$router.currentRoute),2000);
+           setTimeout(() => this.$router.go(),2000);
             
         });
         

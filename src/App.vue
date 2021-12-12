@@ -12,21 +12,59 @@
 
 <script>
 
+
 import Nav from './components/Nav.vue'
 import Footer from './components/Footer.vue'
 
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "App",
     components: {
    Nav,
    Footer
+  },data(){
+    return{
+      user:[]
+    }
   },
+
   async created() {
-    const response = await axios.get("user");
-     this.$store.dispatch('user',response.data);
+    // this.user=this.$store.getters.user
+    // const response = await axios.get("user");
+    //  this.$store.dispatch('user',response.data);
+    //  console.log("1")
+    //    await fetch("http://localhost:8000/users/"+localStorage.getItem("user") , {
+    //     method: "GET"
+    //   }).then(response => response.json()).then((us)=>{
+    //      this.user=us[0].fields
+    //      console.log(this.user)
+    //   this.user["id"]=us[0].pk;
+    //   console.log(this.user)
+    //   })
+     
 },
+async mounted(){
+  // this.user=this.$store.getters.user
+  console.log("1")
+  await fetch("http://localhost:8000/users/"+localStorage.getItem("user") , {
+        method: "GET"
+      }).then(response => response.json()).then((us)=>{
+         this.user=us[0].fields
+         console.log(this.user)
+      this.user["id"]=us[0].pk;
+      console.log(this.user)
+      })
+},methods:{
+     async update(){
+       this.user=  await fetch("http://localhost:8000/users/"+localStorage.getItem("user") , {
+        method: "GET"
+      }).then(response => response.json())
+       return this.user;
+       
+     }
+     
+  }
 }
 </script>
 
