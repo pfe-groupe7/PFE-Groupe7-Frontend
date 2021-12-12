@@ -577,6 +577,7 @@ label.error {
 .wrapper {
   justify-content: space-evenly;
   border-radius: 5px;
+  padding-top: 5%;
 }
 
 .wrapper .option {
