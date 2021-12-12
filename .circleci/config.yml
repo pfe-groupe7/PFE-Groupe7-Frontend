@@ -13,6 +13,21 @@ orbs:
   # See here https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project
   heroku: circleci/heroku@1.2
 
+jobs:
+  tests:
+    docker:
+      - image: circleci/python:3.9.7
+
+    steps:
+      - checkout
+      - run: 
+          name: "install pytest"
+          command: python -m pip install pytest # python -m pip install pytest
+      - run: 
+          name: "Test"          
+          command:  pytest  ~/project/PFE-Backend/test.py
+
+
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
@@ -21,15 +36,7 @@ workflows:
   sample:
     jobs:
       - node/test
-      steps:
-      - checkout
-      - run:
-        name: "install pytest"
-        command: python -m pip install pytest
-
-      -run:
-        name: "mockTest"
-        commande: pytest ~/project/PFE-Frontend/test.py
+      - tests
       - heroku/deploy-via-git:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
