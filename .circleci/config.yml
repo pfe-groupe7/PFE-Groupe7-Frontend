@@ -25,7 +25,7 @@ jobs:
           command: python -m pip install pytest # python -m pip install pytest
       - run: 
           name: "Test"          
-          command:  pytest  ~/project/PFE-Backend/test.py
+          command:  pytest  ~/project/PFE-Frontend/test.py
 
 
 workflows:
