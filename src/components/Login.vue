@@ -169,11 +169,13 @@ export default {
             firstname: this.prenomRegister,
             lastname: this.nomRegister,
             email: this.emailRegister,
-            password: this.password,
+            password: this.mdpRegister,
             campus: this.campusRegister,
             moderator: "False",
           }),
-        }).then( this.$router.push("/"));
+        }).then( 
+           this.$router.push("/")
+          );
        
       } catch (e) {
         this.error = "Une erreur est survenue!";
@@ -185,7 +187,7 @@ export default {
           method: "POST",
           body: JSON.stringify({
             email: this.emailLogin,
-            password: this.passwordLogin,
+            password: this.mdpLogin,
 
           }),
         }).then(response => response.json()).then((response)=>{
@@ -196,7 +198,7 @@ export default {
            // this.$parent.children[0].update()
            console.log(this.$parent.$children[0].user=response.user)
            console.log(this.$parent.$children[0])
-            this.$router.push("/");
+             this.$router.push("/");
 
         });
       } catch (e) {
