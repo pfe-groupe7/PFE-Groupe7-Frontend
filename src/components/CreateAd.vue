@@ -149,6 +149,7 @@
             </div>
           </div>
           <div v-if="step === 2" class="Panel-Content" id="tab2">
+            
             <div class="form">
               <div class="wrapper">
                 <input type="radio" name="select" id="option-1" />
