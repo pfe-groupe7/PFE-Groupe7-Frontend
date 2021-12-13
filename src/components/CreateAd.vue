@@ -329,6 +329,8 @@
 
 <script>
 import { upload } from "./file-upload.service";
+
+import URL from "./config";
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
   STATUS_SUCCESS = 2,
@@ -378,7 +380,7 @@ export default {
     async handleSubmit() {
       console.log(this.selectImgFile);
       try {
-        await fetch("http://localhost:8000/createAd", {
+        await fetch(URL+"createAd", {
           method: "POST",
           body: JSON.stringify({
             titre: this.titre,

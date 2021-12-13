@@ -58,7 +58,8 @@
 </div>
 </template>
 <script>
-// import { mapGetters } from "vuex";
+
+import URL from "./config";
 export default {
   name: "Profile",
 
@@ -81,7 +82,7 @@ export default {
       let id=localStorage.getItem("user");
       console.log(localStorage.getItem("user"))
             try {
-        await fetch("http://localhost:8000/users/"+id, {
+        await fetch(URL+"users/"+id, {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
             console.log(response)
@@ -107,7 +108,7 @@ export default {
               setTimeout(() => this.notifDel = false, 3000);
               return;
           }
-        await fetch("http://localhost:8000/profile", {
+        await fetch(URL+"profile", {
           method: "POST",
           body: JSON.stringify({
             email:this.email,
@@ -128,7 +129,7 @@ export default {
     {
       if(this.$confirm("Êtes-vous sûr de vouloir supprimer votre compte ?", "Supprimer votre compte", "error")){
          try {
-        await fetch("http://localhost:8000/users/delete", {
+        await fetch(URL+"users/delete", {
           method: "POST",
           body: JSON.stringify({
             email:this.email

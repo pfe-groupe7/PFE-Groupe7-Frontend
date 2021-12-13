@@ -6,6 +6,7 @@
       <router-view :user="user"/>
         </div>
     </div>
+    <Chat/>
     <Footer />
   </div>
 </template>
@@ -15,14 +16,16 @@
 
 import Nav from './components/Nav.vue'
 import Footer from './components/Footer.vue'
+import Chat from './components/Chat.vue'
 
-// import axios from "axios";
+import URL from "./config";
 
 export default {
   name: "App",
     components: {
    Nav,
-   Footer
+   Footer,
+   Chat
   },data(){
     return{
       user:[]
@@ -34,7 +37,7 @@ export default {
     // const response = await axios.get("user");
     //  this.$store.dispatch('user',response.data);
     //  console.log("1")
-    //    await fetch("http://localhost:8000/users/"+localStorage.getItem("user") , {
+    //    await fetch(URL+"users/"+localStorage.getItem("user") , {
     //     method: "GET"
     //   }).then(response => response.json()).then((us)=>{
     //      this.user=us[0].fields
@@ -47,7 +50,7 @@ export default {
 async mounted(){
   // this.user=this.$store.getters.user
   console.log("1")
-  await fetch("http://localhost:8000/users/"+localStorage.getItem("user") , {
+  await fetch(URL+"users/"+localStorage.getItem("user") , {
         method: "GET"
       }).then(response => response.json()).then((us)=>{
          this.user=us[0].fields
@@ -57,7 +60,7 @@ async mounted(){
       })
 },methods:{
      async update(){
-       this.user=  await fetch("http://localhost:8000/users/"+localStorage.getItem("user") , {
+       this.user=  await fetch(URL+"users/"+localStorage.getItem("user") , {
         method: "GET"
       }).then(response => response.json())
        return this.user;

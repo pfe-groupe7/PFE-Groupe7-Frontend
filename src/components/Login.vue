@@ -139,6 +139,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
+import URL from "./config";
 export default {
   name: "Login",
 
@@ -163,7 +165,7 @@ export default {
     async handleSubmitRegister() {
     
       try {
-        await fetch("http://localhost:8000/register", {
+        await fetch(URL+"register", {
           method: "POST",
           body: JSON.stringify({
             firstname: this.prenomRegister,
@@ -183,7 +185,7 @@ export default {
     },
     async handleSubmitLogin() {
       try {
-        await fetch("http://localhost:8000/login", {
+        await fetch(URL+"login", {
           method: "POST",
           body: JSON.stringify({
             email: this.emailLogin,
