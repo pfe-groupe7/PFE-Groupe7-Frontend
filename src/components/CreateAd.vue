@@ -1,3 +1,6 @@
+# Can't return to previous page from photo upload if photo is loaded
+# photo upload glitches if no info is provided beforehand 
+
 <template>
   <div class="wrapper wrapper--w820 mt-5">
     <div class="card card-1">
@@ -93,56 +96,86 @@
                       required
                       v-model="categorie"
                     >
-                      <optgroup label="Maison et jardin">
-                        <option value="Outils">Outils</option>
-                        <option value="Meubles">Meubles</option>
-                        <option value="PourLaMaison">Pour la maison</option>
-                        <option value="Jardin">Jardin</option>
-                        <option value="Electromenager">Electroménager</option>
+                      <optgroup label="Maison et Jardin">
+                        <option value=2>Outils</option>
+                        <option value=3>Meubles</option>
+                        <option value=4>Pour la maison</option>
+                        <option value=5>Jardin</option>
+                        <option value=6>Electroménager</option>
                       </optgroup>
                       <optgroup label="Famille">
-                        <option value="SanteEtBeaute">Santé et beauté</option>
-                        <option value="FournituresPourAnimaux">
+                        <option value=8>Santé et beauté</option>
+                        <option value=9>
                           Fournitures pour animaux
                         </option>
-                        <option value="PuericultureEtEnfants">
+                        <option value=10>
                           Puériculture et enfants
                         </option>
-                        <option value="JouetsEtJeux">Jouets et jeux</option>
+                        <option value=11>Jouets et jeux</option>
                       </optgroup>
                       <optgroup label="Vêtements et accessoires">
-                        <option value="SacsEtBagages">Sacs et bagages</option>
-                        <option value="VetementsEtChaussuresFemmes">
+                        <option value=13>
                           Vêtements et chaussures femmes
                         </option>
-                        <option value="VetementsEtChaussuresHommes">
+                        <option value=14>
                           Vêtements et chaussures hommes
                         </option>
-                        <option value="BijouxEtAccessoires">
+                        <option value=15>
                           Bijoux et accessoires
+                        </option>
+                        <option value=16>
+                          Sacs et bagages
                         </option>
                       </optgroup>
                       <optgroup label="Loisirs - hobbys">
-                        <option value="Velos">Vélos</option>
-                        <option value="LoisirsCreatifs">
+                        <option value="To redefine">Vélos</option>
+                        <option value=18>
                           Loisirs créatifs
                         </option>
-                        <option value="PiecesAuto">Pièces auto</option>
-                        <option value="SportsEtActivitesExterieures">
+                        <option value=19>Pièces auto</option>
+                        <option value=20>
                           Sports et activités d’extérieures
                         </option>
-                        <option value="JeuxVideo">Jeux vidéo</option>
-                        <option value="LivresFilmsEtMusique">
+                        <option value=21>Jeux vidéo</option>
+                        <option value=22>
                           Livres, films et musique
                         </option>
-                        <option value="InstrumentsDeMusique">
+                        <option value=23>
                           Instruments de musique
                         </option>
-                        <option value="AntiquiteEtObjetsDeCollection">
+                        <option value=24>
                           Antiquité et objets de collection
                         </option>
                       </optgroup>
+                      <optiongroup>
+                        <option value=2§>
+                          Electronique et ordinateurs
+                        </option>  
+                        <option value=2è>
+                          Téléphones mobiles
+                        </option>  
+                      </optiongroup>
                     </select>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-8" style="margin-left: 100px">
+                    <label
+                      class="form-label"
+                      style="
+                        margin-left: 5px;
+                        margin-bottom: 5px;
+                        font-size: 19px;
+                      "
+                      >Description</label
+                    >
+                    <input
+                      class="input--style-1"
+                      type="text"
+                      v-model="description"
+                      placeholder="Description de l'annonce"
+                      required="required"
+                    />
                   </div>
                 </div>
               </div>
@@ -151,8 +184,8 @@
           <div v-if="step === 2" class="Panel-Content" id="tab2">
             <div class="form">
               <div class="wrapper">
-                <input type="radio" name="select" id="option-1" />
-                <input type="radio" name="select" id="option-2" checked />
+                <input v-model ="status" v-bind:value="'à vendre'"  type="radio" name="select" id="option-1" />
+                <input v-model ="status" v-bind:value="'à donner'"  type="radio" name="select" id="option-2" checked />
                 <label
                   for="option-1"
                   class="option option-1"
@@ -198,13 +231,13 @@
                     required="required"
                     v-model="campus"
                   >
-                    <option value="Woluwe" @click="showSelect(1)">
+                    <option value=2 @click="showSelect(1)">
                       Woluwe
                     </option>
-                    <option value="Ixelles" @click="showSelect(2)">
+                    <option value=1 @click="showSelect(2)">
                       Ixelles
                     </option>
-                    <option value="Louvain" @click="showSelect(3)">
+                    <option value=3 @click="showSelect(3)">
                       Louvain-La-Neuve
                     </option>
                   </select>
@@ -344,6 +377,7 @@
 
 <script>
 import { upload } from "./file-upload.service";
+let userId=localStorage.getItem("user");
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
   STATUS_SUCCESS = 2,
@@ -365,6 +399,7 @@ export default {
       titre: "",
       categorie: "",
       description: "",
+      status:"",
       prix: "",
       campus: "",
       localisation1: "",
@@ -390,15 +425,28 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log(this.image);
+     // console.log(this.image);
+      console.log(this.titre)
+      console.log(this.categorie)
+      console.log(this.description)
+      console.log(this.prix)
+      console.log(this.campus)
+      console.log(this.localisation1)
+      console.log(this.localisation2)
+      console.log(this.localisation3)
+      console.log(this.image)
+     // console.log(this.uploadedFiles)
+
       try {
-        await fetch("http://localhost:8000/createAd", {
+        await fetch("http://localhost:8000/ad", {
           method: "POST",
           body: JSON.stringify({
-            titre: this.titre,
-            categorie: this.categorie,
+            userId: userId,
+            title: this.titre,
+            category: this.categorie,
             description: this.description,
-            prix: this.prix,
+            price: this.prix,
+            status:this.status,
             campus: this.campus,
             localisation1: this.localisation1,
             localisation2: this.localisation2,
