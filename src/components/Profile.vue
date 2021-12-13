@@ -63,13 +63,7 @@ export default {
 
   components: {},
    data() {  
-       this.$store.dispatch("user",  {
-      "nom": "Arto",
-      "prenom": "Hellas",
-      "id": 1,
-      "compus": "test",
-      "email": "a@gamil.com"
-    });
+       
        console.log(this.$store.getters.getUserId)
     return {
       notif:false,

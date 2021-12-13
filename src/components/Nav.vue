@@ -25,6 +25,9 @@
         <router-link to="/createAd"><a class="btn mt-1">
           Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
         </router-link>
+         <router-link to="/MederatorPage"><a class="btn mt-1">
+          Mederator &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+        </router-link>
         <ul class="navbar-nav ml-auto" v-if="!user">
           <li class="nav-item">
             <router-link to="/login" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
