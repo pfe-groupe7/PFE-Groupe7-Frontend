@@ -72,7 +72,7 @@
                       type="text"
                       v-model="titre"
                       placeholder="Titre de l'annonce"
-                      required="required"
+                      required
                     />
                   </div>
                   <div class="col-4" style="margin-bottom: 30px">
@@ -294,7 +294,7 @@
 
           <div v-if="step === 3" class="Panel-Content" id="tab3">
             <div class="row text-center">
-              <h1>Upload images</h1>
+              <h1>Télécharger une ou plusieurs image(s)</h1>
               <div class="dropbox">
                 <div class="custom-file">
                   <input
@@ -304,7 +304,7 @@
                     multiple
                   />
                   <label class="custom-file-label" for="customFile"
-                    >Choisir photo</label
+                    >Choisir une photo ou une vidéo</label
                   >
                 </div>
                 <div v-for="(image, key) in imagepreview" :key="key">

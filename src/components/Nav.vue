@@ -6,7 +6,7 @@
     </a>
       
        <select name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
-          <option selected disabled>Catégorie</option>
+          <option selected disabled>Catégories</option>
           <option value="1">Maison et jardin</option>
           <option value="2">Famille</option>
           <option value="3">Vêtements et accessoires</option>
