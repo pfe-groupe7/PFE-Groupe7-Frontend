@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper wrapper--w820">
+  <div class="wrapper wrapper--w820 mt-5">
     <div class="card card-1">
       <div class="card-heading">
         <h2 class="title mb-4 pb-3">Ajoutez votre annonce</h2>
@@ -57,7 +57,16 @@
             <div v-if="step === 1" class="Panel-Content" id="tab1">
               <div class="form">
                 <div class="row align-items-center">
-                  <div class="col-4">
+                  <div class="col-4" style="margin-bottom: 30px">
+                    <label
+                      class="form-label"
+                      style="
+                        margin-left: 5px;
+                        margin-bottom: 5px;
+                        font-size: 19px;
+                      "
+                      >Titre</label
+                    >
                     <input
                       class="input--style-1"
                       type="text"
@@ -84,7 +93,7 @@
                       required
                       v-model="categorie"
                     >
-                      <optgroup label="Maisons et jardin">
+                      <optgroup label="Maison et jardin">
                         <option value="Outils">Outils</option>
                         <option value="Meubles">Meubles</option>
                         <option value="PourLaMaison">Pour la maison</option>
@@ -139,7 +148,7 @@
               </div>
             </div>
           </div>
-          <div v-if="step === 2" class="Panel-Content" id="tab2">
+          <div v-if="step === 2" class="Panel-Content" id="tab2" style="margin-top:40px;">
             <div class="form">
               <div class="wrapper">
                 <input type="radio" name="select" id="option-1" />
