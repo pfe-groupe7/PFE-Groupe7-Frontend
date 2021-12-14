@@ -6,7 +6,7 @@
       <router-view :user="user"/>
         </div>
     </div>
-    <Chat/>
+    <Chats/>
     <Footer />
   </div>
 </template>
@@ -16,7 +16,7 @@
 
 import Nav from './components/Nav.vue'
 import Footer from './components/Footer.vue'
-import Chat from './components/Chat.vue'
+import Chats from './components/Chats.vue'
 
 import URL from "./config";
 
@@ -25,7 +25,7 @@ export default {
     components: {
    Nav,
    Footer,
-   Chat
+   Chats
   },data(){
     return{
       user:[]

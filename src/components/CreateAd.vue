@@ -330,7 +330,7 @@
 <script>
 import { upload } from "./file-upload.service";
 
-import URL from "./config";
+import URL from "../config.js";
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
   STATUS_SUCCESS = 2,

@@ -140,7 +140,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import URL from "./config";
+import URL from "../config.js";
 export default {
   name: "Login",
 
@@ -185,6 +185,7 @@ export default {
     },
     async handleSubmitLogin() {
       try {
+        console.log(URL)
         await fetch(URL+"login", {
           method: "POST",
           body: JSON.stringify({

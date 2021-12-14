@@ -59,11 +59,17 @@
 </template>
 <script>
 
-import URL from "./config";
+import URL from "../config";
+import {mapGetters} from 'vuex';
+
 export default {
   name: "Profile",
 
-  components: {},
+  components: {}, computed: {
+    ...mapGetters({
+      user: 'user',
+    }),
+  },  
    data() {  
        console.log(this.$store.getters.getUserId)
     return {
@@ -79,8 +85,10 @@ export default {
     }
   },  async mounted(){
       // console.log(this.$store.getters.getUserId)
-      let id=localStorage.getItem("user");
-      console.log(localStorage.getItem("user"))
+      // let id=localStorage.getItem("user");
+      // console.log(localStorage.getItem("user"))
+     let  id=this.user.id
+      console.log(this.user)
             try {
         await fetch(URL+"users/"+id, {
           method: "GET"
