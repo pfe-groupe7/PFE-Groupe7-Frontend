@@ -185,3 +185,10 @@ export default {
 
 <style scoped src="../assets/css/ads.css"></style>
 
+
+  }
+};
+</script>
+
+<style scoped src="../assets/css/ads.css"></style>
+
