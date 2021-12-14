@@ -1,142 +1,147 @@
-// Base Colors
-$shade-10: #2c3e50 !default;
-$shade-1: #d7dcdf !default;
-$shade-0: #fff !default;
-$teal: #1abc9c !default;
-
-
-// Reset
-* {
-  &,
-  &:before,
-  &:after {
-    box-sizing: border-box;
-  }
+.details {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  z-index: 1;
+}
+.button,
+.select {
+  z-index: 2;
+}
+.w-100 {
+  width: 100% !important;
+}
+.d-block {
+  display: block !important;
 }
 
-body {
-  font-family: sans-serif;
-  padding: 60px 20px;
-  
-  @media (min-width: 600px) {
-    padding: 60px;
-  }
+img {
+  margin-top: 20px;
+  height: 300px;
+  width: 100%;
 }
 
-.range-slider {
-  margin: 60px 0 0 0%;
+.title {
+  font-size: 35px;
 }
-
-
-// Range Slider
-$range-width: 100% !default;
-
-$range-handle-color: $shade-10 !default;
-$range-handle-color-hover: $teal !default;
-$range-handle-size: 20px !default;
-
-$range-track-color: $shade-1 !default;
-$range-track-height: 10px !default;
-
-$range-label-color: $shade-10 !default;
-$range-label-width: 60px !default;
-
-.range-slider {
-  width: $range-width;
-}
-
-.range-slider__range {
-  -webkit-appearance: none;
-  width: calc(100% - (#{$range-label-width + 13px}));
-  height: $range-track-height;
-  border-radius: 5px;
-  background: $range-track-color;
-  outline: none;
-  padding: 0;
-  margin: 0;
-
-  // Range Handle
-  &::-webkit-slider-thumb {
-    appearance: none;
-    width: $range-handle-size;
-    height: $range-handle-size;
-    border-radius: 50%;
-    background: $range-handle-color;
-    cursor: pointer;
-    transition: background .15s ease-in-out;
-
-    &:hover {
-      background: $range-handle-color-hover;
-    }
-  }
-
-  &:active::-webkit-slider-thumb {
-    background: $range-handle-color-hover;
-  }
-
-  &::-moz-range-thumb {
-    width: $range-handle-size;
-    height: $range-handle-size;
-    border: 0;
-    border-radius: 50%;
-    background: $range-handle-color;
-    cursor: pointer;
-    transition: background .15s ease-in-out;
-
-    &:hover {
-      background: $range-handle-color-hover;
-    }
-  }
-
-  &:active::-moz-range-thumb {
-    background: $range-handle-color-hover;
-  }
-  
-  // Focus state
-  &:focus {
-    
-    &::-webkit-slider-thumb {
-      box-shadow: 0 0 0 3px $shade-0,
-                  0 0 0 6px $teal;
-    }
-  }
-}
-
-
-// Range Label
-.range-slider__value {
-  display: inline-block;
-  position: relative;
-  width: $range-label-width;
-  color: $shade-0;
-  line-height: 20px;
+.btn,
+.btnContact {
+  margin-top: 2%;
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0 40px;
+  letter-spacing: 1px;
+  align-items: center;
   text-align: center;
-  border-radius: 3px;
-  background: $range-label-color;
-  padding: 5px 10px;
-  margin-left: 8px;
-
-  &:after {
-    position: absolute;
-    top: 8px;
-    left: -7px;
-    width: 0;
-    height: 0;
-    border-top: 7px solid transparent;
-    border-right: 7px solid $range-label-color;
-    border-bottom: 7px solid transparent;
-    content: '';
-  }
+  border: none;
+  background-color: #ffeba7;
+  color: #3a5749;
+  box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
+}
+.btn {
+  padding-top: 4%;
+}
+.col-4 {
+  margin-left: 100px;
 }
 
-
-// Firefox Overrides
-::-moz-range-track {
-    background: $range-track-color;
-    border: 0;
+.col-3 {
+  margin-left: 120px;
 }
 
-input::-moz-focus-inner,
-input::-moz-focus-outer { 
-  border: 0; 
+.btn:active,
+.btn:focus {
+  background-color: #3a5749;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+.btn:hover {
+  background-color: #27332d;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+.row {
+  margin-top: 50px;
+  margin-left: 100px;
+}
+.col-10 {
+  text-align: center;
+  align-items: center;
+}
+#subject {
+  width: 90%;
+}
+.triText {
+  font-weight: 300;
+  font-size: 18px;
+  margin-left: 20%;
+  color: rgb(0, 24, 54);
+  margin-bottom: -30px;
+}
+.triControl {
+  margin-left: 20%;
+}
+.mp-Select-input {
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #fff4d1;
+  margin-left: 50%;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  width: 180px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+#annonce {
+  box-shadow: 2px 4px 8px 0 rgba(21, 21, 21, 0.2);
+  margin: 10px 50px 100px 10px;
+  border-radius: 10%;
+  width: 370px;
+  color: white;
+  font-size: 20px;
+  background-color: #456857;
+}
+#annonce:hover {
+  background-color: #5a856f;
+}
+.prixCursor {
+  margin: 50px 10px 50px 0px;
+  width: 90%;
+}
+.radioButton {
+  font-size: 20px;
+}
+.form-check {
+  margin-top: 20px;
+}
+#radio {
+  margin-right: 10px;
+}
+.categorie {
+  margin-top: 150px;
+}
+.card-footer {
+  background-color: transparent;
+  margin-top: 7%;
+  margin-bottom: 5%;
+}
+.card-content {
+  padding: 0;
+}
+
+.btn2 {
+  border-radius: 5px;
+  background-color: #fff4d1;
+  height: 45px;
+  width: 180px;
 }
