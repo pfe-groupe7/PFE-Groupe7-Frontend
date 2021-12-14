@@ -45,10 +45,16 @@
                           <i class="input-icon fa fa-lock"></i>
                         </div>
                         <div class="form-group mt-4">
-                          <input class="btn mt-4" type="submit" value="Envoyer">
+                          <input
+                            class="btn mt-4"
+                            type="submit"
+                            value="Envoyer"
+                          />
                         </div>
                         <p class="mb-5 mt-5 text-center">
-                          <a class="link" href="/forgot">Mot de passe oublié?</a>
+                          <a class="link" href="/forgot"
+                            >Mot de passe oublié?</a
+                          >
                         </p>
                       </form>
                     </div>
@@ -60,6 +66,7 @@
                     <div class="section text-center">
                       <form @submit.prevent="handleSubmitRegister">
                         <error v-if="error" :error="error" />
+                         <error v-if="error1" :error="error1" />
                         <h4 class="mb-4 pb-3">Inscription</h4>
                         <div class="form-group">
                           <input
@@ -90,7 +97,6 @@
                             name="email"
                             class="form-style"
                             placeholder="Adresse e-mail"
-                            
                             v-model="emailRegister"
                           />
                           <i class="input-icon fa fa-envelope"></i>
@@ -101,7 +107,6 @@
                             name="password"
                             class="form-style"
                             placeholder="Mot de passe"
-                           
                             v-model="mdpRegister"
                           />
                           <i class="input-icon fa fa-lock"></i>
@@ -122,7 +127,7 @@
                           </select>
                           <i class="input-icon fa fa-map-marker"></i>
                         </div>
-                          <input class="btn mt-4" type="submit" value="Envoyer">
+                        <input class="btn mt-4" type="submit" value="Envoyer"   />
                       </form>
                     </div>
                   </div>
@@ -138,12 +143,12 @@
 
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
   name: "Login",
 
-  computed:{
-    ...mapGetters(['user'])
+  computed: {
+    ...mapGetters(["user"]),
   },
   data() {
     return {
@@ -154,15 +159,20 @@ export default {
       campusRegister: "",
       emailLogin: "",
       error: "",
-      mdpLogin:""
-
-
+      error1:"",
+      mdpLogin: "",
     };
   },
   methods: {
-    async handleSubmitRegister() {
     
+    async handleSubmitRegister() {
       try {
+
+        var reg = "/^([a-zA-Z0-9]+.?[a-zA-Z0-9]+)@((student.)?vinci.be)/";
+        if(!reg.test(this.emailRegister))
+         this.error1="Veuillez entrer un email valide. EX :student.vinci.be Ou sans student. ";
+         console.log("hrln");
+  
         await fetch("http://localhost:8000/register", {
           method: "POST",
           body: JSON.stringify({
@@ -173,10 +183,8 @@ export default {
             campus: this.campusRegister,
             moderator: "False",
           }),
-        }).then( 
-           this.$router.push("/")
-          );
-       
+          }).then(this.$router.push("/"))
+
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
@@ -188,19 +196,19 @@ export default {
           body: JSON.stringify({
             email: this.emailLogin,
             password: this.mdpLogin,
-
           }),
-        }).then(response => response.json()).then((response)=>{
-          console.log(response)
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
             localStorage.setItem("token", response.token);
             localStorage.setItem("user", response.user.id);
             this.$store.dispatch("user", response.user);
-           // this.$parent.children[0].update()
-           console.log(this.$parent.$children[0].user=response.user)
-           console.log(this.$parent.$children[0])
-             this.$router.push("/");
-
-        });
+            // this.$parent.children[0].update()
+            console.log((this.$parent.$children[0].user = response.user));
+            console.log(this.$parent.$children[0]);
+            this.$router.push("/");
+          });
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
@@ -209,3 +217,4 @@ export default {
 };
 </script>
 <style scoped src="../assets/css/login.css"></style>
+
