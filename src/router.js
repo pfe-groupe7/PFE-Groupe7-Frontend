@@ -20,7 +20,7 @@ export default new Router({
     { path: "/register", component: Login },
     { path: "/createAd", component: CreateAd },
     { path: "/detailAd", component: DetailAd },
-    { path: "/ads", component: Ads },
+    { path: "/ads/:title?/:cat?", component: Ads },
     { path: "/forgot", component: Forgot },
     {path:"/reset/:token",component:Reset},
     { path: "/profile", component: Profile },

@@ -2,8 +2,8 @@
 <div>
   <div style="margin-top:18%;width: 27%;float: left;">
       <div class="form-check">
- <select @change="filter()" v-model="byCategory" name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
-          <option selected >{{byCategory}}</option>
+ <select @change="filter()" v-model="byCategory" name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Tous">
+          <option  >Tous</option>
           <option  v-for="category in categories"  v-bind:key="category.pk" :value="category.categoryName">{{category.categoryName}}</option>
       </select>
       </div>
@@ -26,8 +26,9 @@
 <i class="fa fa-sort-asc fa-3x" aria-hidden="true"></i></a>
 <a @click="sortDESC()">
 <i  class="fa fa-sort-desc fa-3x" aria-hidden="true"></i></a>
-<select name="campus" id="subject" @change="filter"  class="form-style" required="required"  v-model="byCampus">
-      <option selected >{{byCampus}}</option>
+<select name="campus" id="subject" @change="filter"  class="form-style"  v-model="byCampus" required value="Tous" >
+      <!-- <option selected >{{byCampus}}</option> -->
+      <option  >Tous</option>
       <option value="2" >Woluwe</option>
       <option value="1" >Ixelles</option>
       <option value="3" >Louvain-La-Neuve</option>
@@ -138,11 +139,12 @@ export default {
       medias:[],
       adsCampus:[],
       filterdList:[],
+      bytitle:""
 
     };
   },created(){
-    
-   },
+    ()=>console.log("created")
+  } ,
   async mounted() {
      console.log(this.annonces)
     //   let id=this.$store.getters.getUserId;
@@ -166,6 +168,21 @@ export default {
                  this.filterdList=this.list
                
                 // this.list=response(e=>e.seller_id==this.annonces.id);
+        }).then(()=>{
+              console.log(this.$route.params)
+              if(this.$route.params.title||this.$route.params.cat){
+              this.byCategory=this.$route.params.cat!="Catégorie" ?this.$route.params.cat :"Tous"
+              this.bytitle=this.$route.params.title
+              console.log(this.bytitle+""+this.byCategory)
+              this.filterdList=this.list
+              console.log(this.filterdList)
+              if(this.byCategory!="Tous")
+              this.filterdList=this.filterdList.filter(e=>((e.category==this.categories.filter(i=>i.id==this.byCategory)[0].categoryName)));
+              console.log(this.filterdList)
+              if(this.bytitle!="Tous")
+              this.filterdList=this.filterdList.filter(e=>(e.title.toUpperCase().includes(this.bytitle.toUpperCase())));
+              console.log(this.filterdList)
+    }
         });
       } catch (e) {
         this.error = "Une erreur est survenue!";
