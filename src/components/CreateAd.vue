@@ -128,7 +128,7 @@
                         </option>
                       </optgroup>
                       <optgroup label="Loisirs - hobbys">
-                        <option value="To redefine">Vélos</option>
+                        <option value="25">Vélos</option>
                         <option value=18>
                           Loisirs créatifs
                         </option>
