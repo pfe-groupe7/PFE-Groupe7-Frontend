@@ -97,61 +97,61 @@
                       v-model="categorie"
                     >
                       <optgroup label="Maison et Jardin">
-                        <option value=2>Outils</option>
-                        <option value=3>Meubles</option>
-                        <option value=4>Pour la maison</option>
-                        <option value=5>Jardin</option>
-                        <option value=6>Electroménager</option>
+                        <option value=1>Outils</option>
+                        <option value=2>Meubles</option>
+                        <option value=3>Pour la maison</option>
+                        <option value=4>Jardin</option>
+                        <option value=5>Electroménager</option>
                       </optgroup>
                       <optgroup label="Famille">
-                        <option value=8>Santé et beauté</option>
-                        <option value=9>
+                        <option value=6>Santé et beauté</option>
+                        <option value=7>
                           Fournitures pour animaux
                         </option>
-                        <option value=10>
+                        <option value=8>
                           Puériculture et enfants
                         </option>
-                        <option value=11>Jouets et jeux</option>
+                        <option value=9>Jouets et jeux</option>
                       </optgroup>
                       <optgroup label="Vêtements et accessoires">
-                        <option value=13>
+                        <option value=10>
                           Vêtements et chaussures femmes
                         </option>
-                        <option value=14>
+                        <option value=11>
                           Vêtements et chaussures hommes
                         </option>
-                        <option value=15>
+                        <option value=12>
                           Bijoux et accessoires
                         </option>
-                        <option value=16>
+                        <option value=13>
                           Sacs et bagages
                         </option>
                       </optgroup>
                       <optgroup label="Loisirs - hobbys">
-                        <option value="25">Vélos</option>
-                        <option value=18>
+                        <option value="21">Vélos</option>
+                        <option value=14>
                           Loisirs créatifs
                         </option>
-                        <option value=19>Pièces auto</option>
-                        <option value=20>
+                        <option value=15>Pièces auto</option>
+                        <option value=16>
                           Sports et activités d’extérieures
                         </option>
-                        <option value=21>Jeux vidéo</option>
-                        <option value=22>
+                        <option value=17>Jeux vidéo</option>
+                        <option value=18>
                           Livres, films et musique
                         </option>
-                        <option value=23>
+                        <option value=19>
                           Instruments de musique
                         </option>
-                        <option value=24>
+                        <option value=20>
                           Antiquité et objets de collection
                         </option>
                       </optgroup>
                       <optiongroup>
-                        <option value=2§>
+                        <option value=22>
                           Electronique et ordinateurs
                         </option>  
-                        <option value=2è>
+                        <option value=23>
                           Téléphones mobiles
                         </option>  
                       </optiongroup>
@@ -243,7 +243,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="localisation === 1">
+                <div class="col-4" v-if="selectedLocation === 2">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -254,7 +254,7 @@
                     id="subject"
                     class="form-style"
                     required="required"
-                    v-model="localisation1"
+                    v-model="location"
                   >
                     <option value=5>Place de l'Alma, 3</option>
                     <option value=6>
@@ -271,7 +271,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="localisation === 2">
+                <div class="col-4" v-if="selectedLocation === 1">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -282,7 +282,7 @@
                     id="subject"
                     class="form-style"
                     required="required"
-                    v-model="localisation2"
+                    v-model="location"
                   >
                     <option value=1>
                       Chaussée de Wavre, 249
@@ -294,7 +294,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="localisation === 3">
+                <div class="col-4" v-if="selectedLocation === 3">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -305,7 +305,7 @@
                     id="subject"
                     class="form-style"
                     required="required"
-                    v-model="localisation3"
+                    v-model="location"
                   >
                     <option value=10>
                       Chemin de la Bardane, 17
@@ -315,7 +315,7 @@
                       Rue du traité de Rome, 1
                     </option>
                     <option value="12">
-                      Rue Paulin Ladeuze, 14
+                      Rue Pauline Ladeuze, 14
                     </option>
                     <option value="14">
                       Rue de l’Union européenne, 4
@@ -390,7 +390,7 @@ export default {
   data() {
     return {
       step: 1,
-      localisation: 1,
+      selectedLocation: 1,
       show: 0,
       uploadedFiles: [],
       uploadError: null,
@@ -403,9 +403,7 @@ export default {
       status:"",
       prix: "",
       campus: "",
-      localisation1: "",
-      localisation2: "",
-      localisation3: "",
+      location: "",
       error: "",
     };
   },
@@ -432,9 +430,7 @@ export default {
       console.log(this.description)
       console.log(this.prix)
       console.log(this.campus)
-      console.log(this.localisation1)
-      console.log(this.localisation2)
-      console.log(this.localisation3)
+      console.log(this.location)
       console.log(this.image)
      // console.log(this.uploadedFiles)
 
@@ -449,9 +445,7 @@ export default {
             price: this.prix,
             status:this.status,
             campus: this.campus,
-            localisation1: this.localisation1,
-            localisation2: this.localisation2,
-            localisation3: this.localisation3,
+            location:this.location,
             uploadedFiles: this.image,
             uploadFieldName: this.uploadFieldName,
           }),
@@ -481,7 +475,7 @@ export default {
       this.step = stepIndex;
     },
     showSelect(event) {
-      this.localisation = parseInt(event.target.value)
+      this.selectedLocation = parseInt(event.target.value)
     },
     showPrice(showIndex) {
       this.show = showIndex;
