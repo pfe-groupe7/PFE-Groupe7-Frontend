@@ -11,6 +11,19 @@
 .select {
   z-index: 2;
 }
+.w-100 {
+  width: 100% !important;
+}
+.d-block {
+  display: block !important;
+}
+
+img {
+  margin-top: 20px;
+  height: 300px;
+  width: 100%;
+}
+
 .title {
   font-size: 35px;
 }
@@ -62,7 +75,6 @@
   align-items: center;
 }
 #subject {
-  margin-top: 100px;
   width: 90%;
 }
 .triText {
@@ -94,7 +106,7 @@
   box-shadow: 2px 4px 8px 0 rgba(21, 21, 21, 0.2);
   margin: 10px 50px 100px 10px;
   border-radius: 10%;
-  width: 350px;
+  width: 370px;
   color: white;
   font-size: 20px;
   background-color: #456857;
@@ -115,6 +127,9 @@
 #radio {
   margin-right: 10px;
 }
+.categorie {
+  margin-top: 150px;
+}
 .card-footer {
   background-color: transparent;
   margin-top: 7%;
@@ -127,6 +142,6 @@
 .btn2 {
   border-radius: 5px;
   background-color: #fff4d1;
-  height: 35px;
+  height: 45px;
   width: 180px;
 }

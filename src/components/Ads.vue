@@ -50,7 +50,7 @@
         <div class="card col-3" id="annonce" v-for="ad in filterdList" v-bind:key="ad.id" >
           <div class="card-image">
             <div id="product" class="single-product rounded">
-              <img  id="product" class="single-product rounded" src="../assets/images/loisirs.png"/>
+              <img class="d-block w-100 rounded" :src="getMedia(ad.id)">
             </div>
           </div>
           <div class="card-content">
