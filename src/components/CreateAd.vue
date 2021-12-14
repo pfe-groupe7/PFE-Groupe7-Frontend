@@ -96,61 +96,61 @@
                       v-model="categorie"
                     >
                       <optgroup label="Maison et Jardin">
-                        <option value=1>Outils</option>
-                        <option value=2>Meubles</option>
-                        <option value=3>Pour la maison</option>
-                        <option value=4>Jardin</option>
-                        <option value=5>Electroménager</option>
+                        <option value=2>Outils</option>
+                        <option value=3>Meubles</option>
+                        <option value=4>Pour la maison</option>
+                        <option value=5>Jardin</option>
+                        <option value=6>Electroménager</option>
                       </optgroup>
                       <optgroup label="Famille">
-                        <option value=6>Santé et beauté</option>
-                        <option value=7>
+                        <option value=8>Santé et beauté</option>
+                        <option value=9>
                           Fournitures pour animaux
                         </option>
-                        <option value=8>
+                        <option value=10>
                           Puériculture et enfants
                         </option>
-                        <option value=9>Jouets et jeux</option>
+                        <option value=11>Jouets et jeux</option>
                       </optgroup>
                       <optgroup label="Vêtements et accessoires">
-                        <option value=10>
+                        <option value=13>
                           Vêtements et chaussures femmes
                         </option>
-                        <option value=11>
+                        <option value=14>
                           Vêtements et chaussures hommes
                         </option>
-                        <option value=12>
+                        <option value=15>
                           Bijoux et accessoires
                         </option>
-                        <option value=13>
+                        <option value=16>
                           Sacs et bagages
                         </option>
                       </optgroup>
                       <optgroup label="Loisirs - hobbys">
-                        <option value="21">Vélos</option>
-                        <option value=14>
+                        <option value="25">Vélos</option>
+                        <option value=18>
                           Loisirs créatifs
                         </option>
-                        <option value=15>Pièces auto</option>
-                        <option value=16>
+                        <option value=19>Pièces auto</option>
+                        <option value=20>
                           Sports et activités d’extérieures
                         </option>
-                        <option value=17>Jeux vidéo</option>
-                        <option value=18>
+                        <option value=21>Jeux vidéo</option>
+                        <option value=22>
                           Livres, films et musique
                         </option>
-                        <option value=19>
+                        <option value=23>
                           Instruments de musique
                         </option>
-                        <option value=20>
+                        <option value=24>
                           Antiquité et objets de collection
                         </option>
                       </optgroup>
                       <optiongroup>
-                        <option value=22>
+                        <option value=27>
                           Electronique et ordinateurs
                         </option>  
-                        <option value=23>
+                        <option value=28>
                           Téléphones mobiles
                         </option>  
                       </optiongroup>
