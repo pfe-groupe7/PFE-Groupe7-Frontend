@@ -34,52 +34,52 @@
           <option value="1" >Ixelles</option>
           <option value="3" >Louvain-La-Neuve</option>
       </select> 
-    </div>  
-    <div class="col-10">
-      <div class="triControl">
-        <div class="triText">Trier par</div>
-        <div class="selectPrix"><select class="mp-Select-input">
-          <option @click="sortASC()">Prix bas à élevé </option>
-          <option @click="sortDESC()">Prix élevé à bas</option>
-          </select>
-        </div>
-        </div>
+  </div>  
+  <div class="col-10">
+    <div class="triControl">
+      <div class="triText">Trier par</div>
+      <div class="selectPrix"><select class="mp-Select-input">
+        <option @click="sortASC()">Prix bas à élevé </option>
+        <option @click="sortDESC()">Prix élevé à bas</option>
+        </select>
+      </div>
+    </div>
 
-      <div class="row">
-        <div class="error" v-if="error">{{ error }}</div>
-        <div class="card col-3" id="annonce" v-for="ad in filterdList" v-bind:key="ad.id" >
-          <div class="card-image">
-            <div id="product" class="single-product rounded">
-              <img class="d-block w-100 rounded" :src="getMedia(ad.id)">
+    <div class="row">
+      <div class="error" v-if="error">{{ error }}</div>
+      <div class="card col-3" id="annonce" v-for="ad in filterdList" v-bind:key="ad.id" >
+        <div class="card-image">
+          <div id="product" class="single-product rounded">
+            <img class="d-block w-100 rounded" :src="getMedia(ad.id)">
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title">{{ ad.title }}</p>
+            </div>
+            <div>
+            
             </div>
           </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title">{{ ad.title }}</p>
-              </div>
-              <div>
-              
-              </div>
-            </div>
-            <div class="content is-clearfix">
-              <p>{{ ad.description }}</p>
-              <p class="is-pulled-right">
-                <span class="prix"
-                  ><strong>{{ ad.price }} &euro; </strong></span
-                >
-              </p>
-            </div>
-            <div class="card-footer btn-actions">
-              <div class="card-footer-item">
-                  <a class="btn" href="/detailAd">Voir détail</a>
-              </div>
+          <div class="content is-clearfix">
+            <p>{{ ad.description }}</p>
+            <p class="is-pulled-right">
+              <span class="prix"
+                ><strong>{{ ad.price }} &euro; </strong></span
+              >
+            </p>
+          </div>
+          <div class="card-footer btn-actions">
+            <div class="card-footer-item">
+                <a class="btn" href="/detailAd">Voir détail</a>
             </div>
           </div>
         </div>
       </div>
-    </div> 
-  </div>
+    </div>
+  </div> 
+</div>
 
 </template>
 
@@ -179,13 +179,6 @@ export default {
     this.filterdList=this.filterdList.sort(function(a, b){return b.price-a.price});
   }
   
-  }
-};
-</script>
-
-<style scoped src="../assets/css/ads.css"></style>
-
-
   }
 };
 </script>
