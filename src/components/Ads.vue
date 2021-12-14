@@ -9,13 +9,13 @@
       </div>
       <div class="radioButton">
         <div class="form-check">
-          <input type="radio" id="radio" @change="filter"  name="fav_language" value="à donner"  v-model="state">
+          <input class="form-check-input" type="radio" id="radio" @change="filter"  name="fav_language" value="à donner"  v-model="state">
           <label class="form-check-label" for="defaultCheck1">
           A donner
           </label>
         </div>
         <div class="form-check">
-        <input type="radio" id="radio" @change="filter"  name="fav_language" value="à vendre"  v-model="state">
+        <input class="form-check-input" type="radio" id="radio" @change="filter"  name="fav_language" value="à vendre"  v-model="state">
           <label class="form-check-label" for="defaultCheck1">
           A vendre
           </label>
@@ -46,15 +46,12 @@
         </div>
 
       <div class="row">
-        <div class="loading" v-if="loading">Chargement...</div>
         <div class="error" v-if="error">{{ error }}</div>
         <div class="card col-3" id="annonce" v-for="ad in filterdList" v-bind:key="ad.id" >
           <div class="card-image">
-            <div
-              id="product"
-              class="single-product rounded"
-            ><img  id="product"
-              class="single-product rounded" :src="getMedia(ad.id)"/></div>
+            <div id="product" class="single-product rounded">
+              <img  id="product" class="single-product rounded" src="../assets/images/loisirs.png"/>
+            </div>
           </div>
           <div class="card-content">
             <div class="media">
@@ -75,7 +72,7 @@
             </div>
             <div class="card-footer btn-actions">
               <div class="card-footer-item">
-                  <button class="btn">Contactez le vendeur</button>
+                  <a class="btn" href="/detailAd">Voir détail</a>
               </div>
             </div>
           </div>

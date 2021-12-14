@@ -16,6 +16,7 @@
 }
 .btn,
 .btnContact {
+  margin-top: 2%;
   border-radius: 4px;
   height: 44px;
   font-size: 13px;
@@ -30,7 +31,9 @@
   color: #3a5749;
   box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
 }
-
+.btn {
+  padding-top: 4%;
+}
 .col-4 {
   margin-left: 100px;
 }
@@ -108,7 +111,6 @@
 }
 .form-check {
   margin-top: 20px;
-  margin-left: -30px;
 }
 #radio {
   margin-right: 10px;
@@ -121,9 +123,7 @@
 .card-content {
   padding: 0;
 }
-button {
-  margin-top: 5%;
-}
+
 .btn2 {
   border-radius: 5px;
   background-color: #fff4d1;
