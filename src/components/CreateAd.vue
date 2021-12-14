@@ -230,19 +230,20 @@
                     class="form-style"
                     required="required"
                     v-model="campus"
+                    @change="showSelect($event)"
                   >
-                    <option value=2 @click="showSelect(1)">
+                    <option value=2>
                       Woluwe
                     </option>
-                    <option value=1 @click="showSelect(2)">
+                    <option value=1>
                       Ixelles
                     </option>
-                    <option value=3 @click="showSelect(3)">
+                    <option value=3>
                       Louvain-La-Neuve
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="select === 1">
+                <div class="col-4" v-if="localisation === 1">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -255,22 +256,22 @@
                     required="required"
                     v-model="localisation1"
                   >
-                    <option value="PlaceDeAlma3">Place de l'Alma, 3</option>
-                    <option value="PromenadeDeAlma59">
+                    <option value=5>Place de l'Alma, 3</option>
+                    <option value=6>
                       Promenade de l'Alma, 59
                     </option>
-                    <option value="ClosChapelleAuxChamps41">
+                    <option value=7>
                       Clos Chapelle-aux-Champs, 41
                     </option>
-                    <option value="ClosChapelleAuxChamps43">
+                    <option value=8>
                       Clos Chapelle-aux-Champs, 43
                     </option>
-                    <option value="AvenueEmmanuelMounier84">
+                    <option value=9>
                       Avenue Emmanuel Mounier, 84
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="select === 2">
+                <div class="col-4" v-if="localisation === 2">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -283,17 +284,17 @@
                     required="required"
                     v-model="localisation2"
                   >
-                    <option value="ChausseeDeWavre249">
+                    <option value=1>
                       Chaussée de Wavre, 249
                     </option>
-                    <option value="RueDeLimauge14">Rue de Limauge, 14</option>
-                    <option value="RueArlon">Rue d’Arlon, 3-5-11,4-6-14</option>
-                    <option value="RueTreves">
+                    <option value=2>Rue de Limauge, 14</option>
+                    <option value=3>Rue d’Arlon, 3-5-11,4-6-14</option>
+                    <option value=4>
                       Rue de Trèves, 84 /Rue d’Arlon, 53
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="select === 3">
+                <div class="col-4" v-if="localisation === 3">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -306,17 +307,17 @@
                     required="required"
                     v-model="localisation3"
                   >
-                    <option value="CheminDeLaBardane17">
+                    <option value=10>
                       Chemin de la Bardane, 17
                     </option>
-                    <option value="VoieCardijn10">Voie Cardijn, 10</option>
-                    <option value="RueDuTraiteDeRome1">
+                    <option value="11">Voie Cardijn, 10</option>
+                    <option value="13">
                       Rue du traité de Rome, 1
                     </option>
-                    <option value="RuePaulinLadeuze14">
+                    <option value="12">
                       Rue Paulin Ladeuze, 14
                     </option>
-                    <option value="RueDeUnionEuropeenne4">
+                    <option value="14">
                       Rue de l’Union européenne, 4
                     </option>
                   </select>
@@ -389,7 +390,7 @@ export default {
   data() {
     return {
       step: 1,
-      select: 0,
+      localisation: 1,
       show: 0,
       uploadedFiles: [],
       uploadError: null,
@@ -471,7 +472,7 @@ export default {
            reader.onload = ()=> {
              this.$refs.image[i].src = reader.result;
            }
-                   reader.readAsDataURL(this.imagepreview[i]);
+          reader.readAsDataURL(this.imagepreview[i]);
 
         }
         },
@@ -479,8 +480,8 @@ export default {
     activatePanel(stepIndex) {
       this.step = stepIndex;
     },
-    showSelect(selectIndex) {
-      this.select = selectIndex;
+    showSelect(event) {
+      this.localisation = parseInt(event.target.value)
     },
     showPrice(showIndex) {
       this.show = showIndex;
