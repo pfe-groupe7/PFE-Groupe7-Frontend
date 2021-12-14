@@ -1,3 +1,6 @@
+# Can't return to previous page from photo upload if photo is loaded
+# photo upload glitches if no info is provided beforehand 
+
 <template>
   <div class="wrapper wrapper--w820 mt-5">
     <div class="card card-1">
@@ -93,56 +96,86 @@
                       required
                       v-model="categorie"
                     >
-                      <optgroup label="Maison et jardin">
-                        <option value="Outils">Outils</option>
-                        <option value="Meubles">Meubles</option>
-                        <option value="PourLaMaison">Pour la maison</option>
-                        <option value="Jardin">Jardin</option>
-                        <option value="Electromenager">Electroménager</option>
+                      <optgroup label="Maison et Jardin">
+                        <option value=1>Outils</option>
+                        <option value=2>Meubles</option>
+                        <option value=3>Pour la maison</option>
+                        <option value=4>Jardin</option>
+                        <option value=5>Electroménager</option>
                       </optgroup>
                       <optgroup label="Famille">
-                        <option value="SanteEtBeaute">Santé et beauté</option>
-                        <option value="FournituresPourAnimaux">
+                        <option value=6>Santé et beauté</option>
+                        <option value=7>
                           Fournitures pour animaux
                         </option>
-                        <option value="PuericultureEtEnfants">
+                        <option value=8>
                           Puériculture et enfants
                         </option>
-                        <option value="JouetsEtJeux">Jouets et jeux</option>
+                        <option value=9>Jouets et jeux</option>
                       </optgroup>
                       <optgroup label="Vêtements et accessoires">
-                        <option value="SacsEtBagages">Sacs et bagages</option>
-                        <option value="VetementsEtChaussuresFemmes">
+                        <option value=10>
                           Vêtements et chaussures femmes
                         </option>
-                        <option value="VetementsEtChaussuresHommes">
+                        <option value=11>
                           Vêtements et chaussures hommes
                         </option>
-                        <option value="BijouxEtAccessoires">
+                        <option value=12>
                           Bijoux et accessoires
+                        </option>
+                        <option value=13>
+                          Sacs et bagages
                         </option>
                       </optgroup>
                       <optgroup label="Loisirs - hobbys">
-                        <option value="Velos">Vélos</option>
-                        <option value="LoisirsCreatifs">
+                        <option value="21">Vélos</option>
+                        <option value=14>
                           Loisirs créatifs
                         </option>
-                        <option value="PiecesAuto">Pièces auto</option>
-                        <option value="SportsEtActivitesExterieures">
+                        <option value=15>Pièces auto</option>
+                        <option value=16>
                           Sports et activités d’extérieures
                         </option>
-                        <option value="JeuxVideo">Jeux vidéo</option>
-                        <option value="LivresFilmsEtMusique">
+                        <option value=17>Jeux vidéo</option>
+                        <option value=18>
                           Livres, films et musique
                         </option>
-                        <option value="InstrumentsDeMusique">
+                        <option value=19>
                           Instruments de musique
                         </option>
-                        <option value="AntiquiteEtObjetsDeCollection">
+                        <option value=20>
                           Antiquité et objets de collection
                         </option>
                       </optgroup>
+                      <optiongroup>
+                        <option value=22>
+                          Electronique et ordinateurs
+                        </option>  
+                        <option value=23>
+                          Téléphones mobiles
+                        </option>  
+                      </optiongroup>
                     </select>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-8" style="margin-left: 100px">
+                    <label
+                      class="form-label"
+                      style="
+                        margin-left: 5px;
+                        margin-bottom: 5px;
+                        font-size: 19px;
+                      "
+                      >Description</label
+                    >
+                    <input
+                      class="input--style-1"
+                      type="text"
+                      v-model="description"
+                      placeholder="Description de l'annonce"
+                      required="required"
+                    />
                   </div>
                 </div>
               </div>
@@ -151,8 +184,8 @@
           <div v-if="step === 2" class="Panel-Content" id="tab2">
             <div class="form">
               <div class="wrapper">
-                <input type="radio" name="select" id="option-1" />
-                <input type="radio" name="select" id="option-2" checked />
+                <input v-model ="status" v-bind:value="'à vendre'"  type="radio" name="select" id="option-1" />
+                <input v-model ="status" v-bind:value="'à donner'"  type="radio" name="select" id="option-2" checked />
                 <label
                   for="option-1"
                   class="option option-1"
@@ -197,19 +230,20 @@
                     class="form-style"
                     required="required"
                     v-model="campus"
+                    @change="showSelect($event)"
                   >
-                    <option value="Woluwe" @click="showSelect(1)">
+                    <option value=2>
                       Woluwe
                     </option>
-                    <option value="Ixelles" @click="showSelect(2)">
+                    <option value=1>
                       Ixelles
                     </option>
-                    <option value="Louvain" @click="showSelect(3)">
+                    <option value=3>
                       Louvain-La-Neuve
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="select === 1">
+                <div class="col-4" v-if="selectedLocation === 2">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -220,24 +254,24 @@
                     id="subject"
                     class="form-style"
                     required="required"
-                    v-model="localisation1"
+                    v-model="location"
                   >
-                    <option value="PlaceDeAlma3">Place de l'Alma, 3</option>
-                    <option value="PromenadeDeAlma59">
+                    <option value=5>Place de l'Alma, 3</option>
+                    <option value=6>
                       Promenade de l'Alma, 59
                     </option>
-                    <option value="ClosChapelleAuxChamps41">
+                    <option value=7>
                       Clos Chapelle-aux-Champs, 41
                     </option>
-                    <option value="ClosChapelleAuxChamps43">
+                    <option value=8>
                       Clos Chapelle-aux-Champs, 43
                     </option>
-                    <option value="AvenueEmmanuelMounier84">
+                    <option value=9>
                       Avenue Emmanuel Mounier, 84
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="select === 2">
+                <div class="col-4" v-if="selectedLocation === 1">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -248,19 +282,19 @@
                     id="subject"
                     class="form-style"
                     required="required"
-                    v-model="localisation2"
+                    v-model="location"
                   >
-                    <option value="ChausseeDeWavre249">
+                    <option value=1>
                       Chaussée de Wavre, 249
                     </option>
-                    <option value="RueDeLimauge14">Rue de Limauge, 14</option>
-                    <option value="RueArlon">Rue d’Arlon, 3-5-11,4-6-14</option>
-                    <option value="RueTreves">
+                    <option value=2>Rue de Limauge, 14</option>
+                    <option value=3>Rue d’Arlon, 3-5-11,4-6-14</option>
+                    <option value=4>
                       Rue de Trèves, 84 /Rue d’Arlon, 53
                     </option>
                   </select>
                 </div>
-                <div class="col-4" v-if="select === 3">
+                <div class="col-4" v-if="selectedLocation === 3">
                   <label
                     class="form-label"
                     style="margin-left: 5px; font-size: 19px"
@@ -271,19 +305,19 @@
                     id="subject"
                     class="form-style"
                     required="required"
-                    v-model="localisation3"
+                    v-model="location"
                   >
-                    <option value="CheminDeLaBardane17">
+                    <option value=10>
                       Chemin de la Bardane, 17
                     </option>
-                    <option value="VoieCardijn10">Voie Cardijn, 10</option>
-                    <option value="RueDuTraiteDeRome1">
+                    <option value="11">Voie Cardijn, 10</option>
+                    <option value="13">
                       Rue du traité de Rome, 1
                     </option>
-                    <option value="RuePaulinLadeuze14">
-                      Rue Paulin Ladeuze, 14
+                    <option value="12">
+                      Rue Pauline Ladeuze, 14
                     </option>
-                    <option value="RueDeUnionEuropeenne4">
+                    <option value="14">
                       Rue de l’Union européenne, 4
                     </option>
                   </select>
@@ -344,6 +378,7 @@
 
 <script>
 import { upload } from "./file-upload.service";
+let userId=localStorage.getItem("user");
 const STATUS_INITIAL = 0,
   STATUS_SAVING = 1,
   STATUS_SUCCESS = 2,
@@ -355,7 +390,7 @@ export default {
   data() {
     return {
       step: 1,
-      select: 0,
+      selectedLocation: 1,
       show: 0,
       uploadedFiles: [],
       uploadError: null,
@@ -365,11 +400,10 @@ export default {
       titre: "",
       categorie: "",
       description: "",
+      status:"",
       prix: "",
       campus: "",
-      localisation1: "",
-      localisation2: "",
-      localisation3: "",
+      location: "",
       error: "",
     };
   },
@@ -390,19 +424,28 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log(this.image);
+     // console.log(this.image);
+      console.log(this.titre)
+      console.log(this.categorie)
+      console.log(this.description)
+      console.log(this.prix)
+      console.log(this.campus)
+      console.log(this.location)
+      console.log(this.image)
+     // console.log(this.uploadedFiles)
+
       try {
-        await fetch("http://localhost:8000/createAd", {
+        await fetch("http://localhost:8000/ad", {
           method: "POST",
           body: JSON.stringify({
-            titre: this.titre,
-            categorie: this.categorie,
+            userId: userId,
+            title: this.titre,
+            category: this.categorie,
             description: this.description,
-            prix: this.prix,
+            price: this.prix,
+            status:this.status,
             campus: this.campus,
-            localisation1: this.localisation1,
-            localisation2: this.localisation2,
-            localisation3: this.localisation3,
+            location:this.location,
             uploadedFiles: this.image,
             uploadFieldName: this.uploadFieldName,
           }),
@@ -423,7 +466,7 @@ export default {
            reader.onload = ()=> {
              this.$refs.image[i].src = reader.result;
            }
-                   reader.readAsDataURL(this.imagepreview[i]);
+          reader.readAsDataURL(this.imagepreview[i]);
 
         }
         },
@@ -431,8 +474,8 @@ export default {
     activatePanel(stepIndex) {
       this.step = stepIndex;
     },
-    showSelect(selectIndex) {
-      this.select = selectIndex;
+    showSelect(event) {
+      this.selectedLocation = parseInt(event.target.value)
     },
     showPrice(showIndex) {
       this.show = showIndex;
