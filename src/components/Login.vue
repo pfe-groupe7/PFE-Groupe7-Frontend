@@ -96,7 +96,7 @@
                             name="email"
                             class="form-style"
                             placeholder="Adresse e-mail"
-                            pattern="/^([a-zA-Z0-9]+.?[a-zA-Z0-9]+)@((student.)?vinci.be)/"
+                            pattern="/^([a-zA-Z0-9]+\.?[a-zA-Z0-9]+)[a-z0-9._%+-]+@((student\.)?vinci\.be)/"
                             title="Veuillez entrer un email valide. EX :student.vinci.be Ou sans student. "
                             v-model="emailRegister"
                           />

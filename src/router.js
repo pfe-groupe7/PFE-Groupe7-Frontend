@@ -23,7 +23,7 @@ export default new Router({
     { path: "/ads", component: Ads },
     { path: "/forgot", component: Forgot },
     {path:"/reset/:token",component:Reset},
-    { path: "/profile", component: Profile },
+    { path: "/profile/:id", component: Profile },
     { path: "/myads", component: MyAds },
   ],
 });
