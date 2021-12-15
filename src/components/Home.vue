@@ -30,25 +30,21 @@
       </div>
 
     </div>
+ 
+
     <div class="row">
       <div id="carousel">
         <h3>Annonces <b>récentes</b></h3>
+          <b-carousel id="carousel-1" v-model="slide" :interval="300000"  controls   indicators  :value=0 style="text-shadow: 1px 1px 2px #333;" >
+            <b-carousel-slide class="card" v-for="ad in filterdList" v-bind:key="ad.id">
+            <p class="captionTitre"> {{ ad.title }} </p>
+            <img class="d-block rounded" :src="getMedia(ad.id)">
+            <p class="prix"><strong>{{ ad.price }} €</strong></p>
+            <a :href="'/detailAd/'+ad.id" class="btnDetail">Voir détail</a>
+            </b-carousel-slide>
 
-          <b-carousel
-                        id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
-
- <b-carousel-slide v-for="ad in filterdList" v-bind:key="ad.id"
-        :caption="ad.title"
-        :text="ad.price"
-        img-width=100
-        img-height=100
-        :img-src="getMedia(ad.id)"
-      ><a :href="'/detailAd/'+ad.id" class="btn mt-5">Voir Puls</a></b-carousel-slide>
-         
-                 </b-carousel>
-        
-    
-    </div>
+          </b-carousel>
+      </div>
 
     </div>
   </div>
