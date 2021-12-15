@@ -43,30 +43,8 @@
             <a :href="'/detailAd/'+ad.id" class="btnDetail">Voir détail</a>
             </b-carousel-slide>
 
-<<<<<<< HEAD
           </b-carousel>
       </div>
-=======
-          <b-carousel
-                        id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
-
- <b-carousel-slide  v-for="ad in filterdList" v-bind:key="ad.id"
-        :caption="ad.title"
-        :text="ad.price"
-        img-width=100
-        img-height=100
-        :img-src="getMedia(ad.id)"
-      >
-      <div v-if="token" >
-      <a :href="'/detailAd/'+ad.id" class="btn mt-5">Voir Puls</a>
-      </div>
-      </b-carousel-slide>
-         
-                 </b-carousel>
-        
-    
-    </div>
->>>>>>> 58891fff6c3bf6fb06af72f79f31bbc581d354d0
 
     </div>
   </div>
