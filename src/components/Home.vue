@@ -31,40 +31,22 @@
 
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div id="carousel">
         <h3>Annonces <b>récentes</b></h3>
-        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>   
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row">
-            <div class="col-sm-3" v-for="ad in list"  v-bind:key="ad.id">
-              <div class="thumb-wrapper">
-                <div class="img-box">
-                  <img src= "" class="img-fluid" alt="">
-                </div>
-                <div class="thumb-content">
-                  <h4>Apple iPad</h4>
-                  <p class="item-price"> <span> {{ad.price}}</span></p>
-                 
-                  <a href="#" class="btn mt-5">Contactez le vendeur</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>  
-        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-        <i class="fa fa-angle-left"></i>
-      </a>
-      <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-        <i class="fa fa-angle-right"></i>
-      </a>
-      </div>
-    </div>
+
+          <b-carousel
+                        id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
+
+ <b-carousel-slide v-for="ad in filterdList" v-bind:key="ad.id"
+        :caption="ad.title"
+        :text="ad.price"
+        img-width=100
+        img-height=100
+        :img-src="getMedia(ad.id)"
+      ><a :href="'/detailAd/'+ad.id" class="btn mt-5">Voir Puls</a></b-carousel-slide>
+         
+                 </b-carousel>
+        
     
     </div>
 
@@ -78,11 +60,63 @@ import { mapGetters } from "vuex"
 
 export default {
   name: "Home",
+  data(){
+    return {
+      list: [],
+      annonces:this.$store.getters.annonces,
+      categories:[],
+      campus:[],
+      medias:[],
+      adsCampus:[],
+      filterdList:[]
+      ,a:""}
+
+  },
 
   computed:{
     ...mapGetters(['user'])
+  },  async mounted() {
+  
+    //   let id=this.$store.getters.getUserId;
+            try {
+        await fetch("http://localhost:8000/ads", {
+          method: "GET"
+        }).then(response => response.json()).then((response)=>{
+                console.log(response)
+                response.campus.forEach(e=>e.fields["id"]=e.pk);
+                this.campus= response.campus.map(e=>e.fields);
+                response.categories.forEach(e=>e.fields["id"]=e.pk);
+                this.categories=response.categories.map(e=>e=e.fields)
+                response.medias.forEach(e=>e.fields["id"]=e.pk);
+                this.medias=response.medias.map(e=>e=e.fields);
+                this.adsCampus=response.adsCampus.map(e=>e=e.fields);
+                response.ads.forEach(e=>e.fields["id"]=e.pk);
+                this.list=response.ads.map(e=>e=e.fields)
+                this.list.forEach(e=>e['category']=this.categories.filter(i=>i.id==e.id)[0].categoryName)
+                 console.log(this.medias)
+                 console.log(response)
+                 this.filterdList=this.list
+                 this.filterdList=this.filterdList.sort(function(a, b){return b.id-a.id});
+                 console.log(this.filterdList)
+            
+        })
+      } catch (e) {
+        this.error = "Une erreur est survenue!";
+      }
+  },methods:{
+      getMedia(adId){
+      return this.medias.filter(e=>e.ad==adId)[0] ? this.medias.filter(e=>e.ad==adId)[0].url: "testici"   
+  }
   }
 }
 </script>
 
 <style scoped src="../assets/css/home.css"></style>
+<style >
+#carousel {
+ 
+  width: 800px !important;
+  height: 1094px !important;
+  margin: auto !important;
+}
+</style>
