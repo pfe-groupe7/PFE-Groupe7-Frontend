@@ -22,11 +22,11 @@
 							<div v-if="idUserConnected==idUserProfil">
 								<div class="col-md-12 mt-3">
 									<label class="labels">Campus</label>
-									<select class="form-select" aria-label="Default select example">
+									<select class="form-select"  v-model="campus" aria-label="Default select example">
 										<option selected>{{ campus }}</option>
-										<option value="1">Woluwe</option>
-										<option value="2">Ixelles</option>
-										<option value="3">Louvain-La-Neuve</option>
+										<option value="Woluwe">Woluwe</option>
+										<option value="Ixelles">Ixelles</option>
+										<option value="Louvain-La-Neuve">Louvain-La-Neuve</option>
 									</select>
 								</div>
 								<div class="row mt-3">
@@ -157,12 +157,12 @@ voirAnnonces(){
           setTimeout(() => (this.notifDel = false), 3000);
           return;
         }
-        await fetch("http://localhost:8000/profile", {
-          method: "POST",
+        await fetch("http://localhost:8000/users/update/"+this.idUserProfil, {
+          method: "PUT",
           body: JSON.stringify({
             email: this.email,
             password: this.password,
-            compus: this.compus,
+            campus: this.campus,
           }),
         }).then(() => {
           this.notif = true;
