@@ -188,7 +188,7 @@ export default {
       }
     },
     async handleSubmitLogin() {
-    
+      try{
         await fetch("http://localhost:8000/login", {
           method: "POST",
           body: JSON.stringify({
