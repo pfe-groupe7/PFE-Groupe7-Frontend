@@ -11,7 +11,13 @@
               <div v-for="ad in list" v-bind:key="ad.id" class="annonce">
                 <div class="card-2">
                     <div class="row">
-                              
+                      <b-carousel id="carousel-1" v-model="slide"  controls   indicators >
+                        <b-carousel-slide v-for="(ad,i) in medias" v-bind:key="i"  >
+                        <template #img>
+                          <img   class="photo" :src="ad.photo.url" alt="image slot">
+                        </template>            
+                      </b-carousel-slide>                  
+                      </b-carousel>                  
                       <div class="image" v-if="ad.photo" :style="{ backgroundImage: 'url(' + ad.photo.url + ')' }">
                       <div class="col-2">  
                         <label class="labels">Titre</label><input type="text" v-model="ad.title" class="form-control" readonly />
@@ -40,7 +46,7 @@
                       </button>
                     </div>
                     <div class="col-md-6 mt-5 text-center">
-                      <button :id="ad.id"  v-on:click="handleSubmit"  class="btnSave"  type="button" > Accepter </button>
+                      <button :id="ad.id"  v-on:click="handleSubmit"  class="btnSave"  type="button" > Valider </button>
                     </div>
                   </div>
                   <div v-show="notif" class="row mt-3 notif" style="position: fixed; top: 8%; left: 58%">
