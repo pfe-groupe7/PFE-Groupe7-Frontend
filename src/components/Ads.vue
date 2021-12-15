@@ -71,7 +71,7 @@
             </p>
           </div>
           <div class="card-footer btn-actions">
-            <div class="card-footer-item">
+            <div v-if="token"  class="card-footer-item">
                 <a class="btn" href="/detailAd">Voir détail</a>
             </div>
           </div>
@@ -85,6 +85,9 @@
 
 <script>
 // import $ from 'jquery'
+let userId = localStorage.getItem('user')
+let token = localStorage.getItem('token')
+
 export default {
   name: "Ads",
   components: {},
@@ -96,7 +99,9 @@ export default {
       location: "Alma",
     });
     return {
+      userId : userId,
       error: null,
+      token:token,
       byCampus:"Campus",
       loading: false,
       addToCartLabel: "Add to cart",
@@ -118,6 +123,7 @@ export default {
    },
   async mounted() {
      console.log(this.annonces)
+     
     //   let id=this.$store.getters.getUserId;
             try {
         await fetch("http://localhost:8000/ads", {
@@ -137,7 +143,7 @@ export default {
                  console.log(this.medias)
                  console.log(response)
                  this.filterdList=this.list
-               
+                 
                 // this.list=response(e=>e.seller_id==this.annonces.id);
         });
       } catch (e) {

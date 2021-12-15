@@ -37,13 +37,17 @@
           <b-carousel
                         id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
 
- <b-carousel-slide v-for="ad in filterdList" v-bind:key="ad.id"
+ <b-carousel-slide  v-for="ad in filterdList" v-bind:key="ad.id"
         :caption="ad.title"
         :text="ad.price"
         img-width=100
         img-height=100
         :img-src="getMedia(ad.id)"
-      ><a :href="'/detailAd/'+ad.id" class="btn mt-5">Voir Puls</a></b-carousel-slide>
+      >
+      <div v-if="token" >
+      <a :href="'/detailAd/'+ad.id" class="btn mt-5">Voir Puls</a>
+      </div>
+      </b-carousel-slide>
          
                  </b-carousel>
         
@@ -57,11 +61,14 @@
 
 <script>
 import { mapGetters } from "vuex"
-
+let userId = localStorage.getItem('user')
+let token = localStorage.getItem('token')
 export default {
   name: "Home",
   data(){
     return {
+      userId : userId,
+      token : token,
       list: [],
       annonces:this.$store.getters.annonces,
       categories:[],
@@ -76,7 +83,7 @@ export default {
   computed:{
     ...mapGetters(['user'])
   },  async mounted() {
-  
+  console.log("User id : "+userId)
     //   let id=this.$store.getters.getUserId;
             try {
         await fetch("http://localhost:8000/ads", {

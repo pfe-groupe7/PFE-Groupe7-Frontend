@@ -58,7 +58,7 @@
                 <div class="card-back">
                   <div class="center-wrap">
                     <div class="section text-center">
-                      <form @submit.prevent="handleSubmitRegister">
+                      <form @submit="handleSubmitRegister">
                         <error v-if="error" :error="error" />
                         <h4 class="mb-4 pb-3">Inscription</h4>
                         <div class="form-group">
@@ -174,7 +174,8 @@ export default {
             moderator: "False",
           }),
         }).then( 
-           this.$router.push("/")
+           this.$router.go("/"),
+           
           );
        
       } catch (e) {
@@ -198,7 +199,8 @@ export default {
            // this.$parent.children[0].update()
            console.log(this.$parent.$children[0].user=response.user)
            console.log(this.$parent.$children[0])
-             this.$router.push("/");
+           this.$router.go("/");
+           
 
         });
       } catch (e) {

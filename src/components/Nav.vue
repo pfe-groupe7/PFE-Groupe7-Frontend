@@ -20,9 +20,11 @@
           </div>
         </div>
       </form>
+      <div v-if="token">
         <router-link to="/createAd"><a class="btn mt-1">
           Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
         </router-link>
+      </div>
         <ul class="navbar-nav ml-auto" v-if="!user">
           <li class="nav-item">
             <router-link to="/login" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
@@ -52,11 +54,14 @@
 
 
 export default {
+  
   name: 'Nav',
   data () {
     let user=this.$store.getters.user
+    let token = localStorage.getItem('token')
     return {
       user:user,
+      token:token,
       title:"",
       catgroy:"Catégorie",
       categories:[]
@@ -68,6 +73,7 @@ export default {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
                 console.log(response)         
+                console.log("The token")
                 response.forEach(e=>e.fields["id"]=e.pk);
                 this.categories=response.map(e=>e=e.fields)})
                 }catch (e) {
@@ -92,7 +98,8 @@ export default {
        localStorage.removeItem('token');
        this.$store.dispatch('user',null);
        this.user=null;
-      this.$router.push("/")
+       this.$router.go("/")
+      
      },
      profile(){
        this.$router.push("/profile")
