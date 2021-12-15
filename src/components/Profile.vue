@@ -54,7 +54,7 @@
 								<button v-on:click="contacterVendeur" class="btnSave" type="button"> Contacter vendeur </button>
 							</div>
 					
-							<div class="col-md-8 mt-3 text-center" v-if="moderator">
+							<div class="col-md-6 mt-3 text-center" v-if="moderator">
 								<button v-on:click="deleteUser" class="btn-danger" type="button"> Bannir ce vendeur </button>
 							</div>
 							
