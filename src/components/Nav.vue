@@ -27,12 +27,12 @@
       </div>
         <ul class="navbar-nav ml-auto" v-if="!user">
           <li class="nav-item">
-            <router-link to="/login" class="nav-link"><i id="userIcon" class="fa fa-user" aria-hidden="true"></i></router-link>
+            <router-link to="/login" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
           </li>
         </ul>
         
         <ul class="mt-2 pb-2 nav-link  dropdown fa-10x" v-else  id="profile">
-           <i class="dropbtn fa fa-user-circle " > {{user.firstname}}</i>
+           <i class="dropbtn fa fa-user-circle " >{{user.firstname}}</i>
            
           <div class="dropdown-content" >
             
