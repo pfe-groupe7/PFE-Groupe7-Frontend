@@ -30,10 +30,23 @@
       </div>
 
     </div>
+ 
+
     <div class="row">
       <div id="carousel">
         <h3>Annonces <b>récentes</b></h3>
+          <b-carousel id="carousel-1" v-model="slide" :interval="300000"  controls   indicators  :value=0 style="text-shadow: 1px 1px 2px #333;" >
+            <b-carousel-slide class="card" v-for="ad in filterdList" v-bind:key="ad.id">
+            <p class="captionTitre"> {{ ad.title }} </p>
+            <img class="d-block rounded" :src="getMedia(ad.id)">
+            <p class="prix"><strong>{{ ad.price }} €</strong></p>
+            <a :href="'/detailAd/'+ad.id" class="btnDetail">Voir détail</a>
+            </b-carousel-slide>
 
+<<<<<<< HEAD
+          </b-carousel>
+      </div>
+=======
           <b-carousel
                         id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
 
@@ -53,6 +66,7 @@
         
     
     </div>
+>>>>>>> 58891fff6c3bf6fb06af72f79f31bbc581d354d0
 
     </div>
   </div>
