@@ -11,14 +11,14 @@
               <div v-for="ad in list" v-bind:key="ad.id" class="annonce">
                 <div class="card-2">
                     <div class="row">
-                      <b-carousel id="carousel-1" v-model="slide"  controls   indicators >
-                        <b-carousel-slide v-for="(ad,i) in medias" v-bind:key="i"  >
-                        <template #img>
-                          <img   class="photo" :src="ad.photo.url" alt="image slot">
-                        </template>            
-                      </b-carousel-slide>                  
-                      </b-carousel>                  
-                      <div class="image" v-if="ad.photo" :style="{ backgroundImage: 'url(' + ad.photo.url + ')' }">
+                  <b-carousel id="carousel-1" v-model="slide"  controls   indicators  :value=0  >
+                  <b-carousel-slide v-for="(ad,i) in medias" v-bind:key="i"  >
+                  <template #img>
+                    <img class="d-block" :src="ad.url" alt="image slot">
+                  </template>            
+
+                  </b-carousel-slide>                  
+                  </b-carousel>                  
                       <div class="col-2">  
                         <label class="labels">Titre</label><input type="text" v-model="ad.title" class="form-control" readonly />
                         <label class="labels">Description</label><input type="text" v-model="ad.description" class="form-control" readonly/>
@@ -70,7 +70,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
           </form>
         </div>
       </div>
