@@ -2,18 +2,19 @@ figure {
   margin: 20px 10px 20px 40px;
 }
 
-  #map {
-    height: 100%;
-  }
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-.carousel{
+#map {
+  height: 100%;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.carousel {
   height: 74% !important;
-    width: 91% !important;
-    position: relative;
+  width: 91% !important;
+  position: relative;
 }
 h2 {
   text-align: center;
@@ -40,13 +41,15 @@ span {
 .d-block {
   display: block !important;
 }
-img {
-  height: 500px;
-  width: 100%;
-}
+
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+.d-block {
+  display: block !important;
+  width: 100% !important;
+  margin-bottom: 80px;
 }
 .ajout {
   margin-left: 100px;

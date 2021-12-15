@@ -10,8 +10,7 @@
 
             <b-carousel-slide v-for="(a,i) in medias" v-bind:key="i"  >
                 <template #img>
-          <img   class="d-block img-fluid w-100" width="500px"  height="480px" :src="a.url" alt="image slot"
-          >
+          <img   class="d-block img-fluid w-100" :src="a.url" alt="image slot">
         </template>
             </b-carousel-slide>
 
