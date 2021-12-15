@@ -4,6 +4,7 @@
           <h2 style="font-size:40px;">Mes annonces</h2>
       </div>
 		<div class="container" style="max-height: 600px; display: flex;">
+
             <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
               <div  class="col-md-5 col-lg-1 col-xxl-3 offset-2">                        
                 <div  id="product" class="single-product rounded border ">
@@ -62,6 +63,8 @@ export default {
   }, async mounted() {
     if(this.$route.params.id)
     this.user=this.$route.params.id;
+    else
+    this.user=this.user.id;
      console.log(this.user)
     //   let id=this.$store.getters.getUserId;
             try {
@@ -69,6 +72,7 @@ export default {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
           console.log(response)
+          console.log(this.user)
           let ads=response.ads
           this.medias= response.medias.map(e=>e=e.fields);
           this.list=ads.filter(e=>e.fields.seller==this.user);
