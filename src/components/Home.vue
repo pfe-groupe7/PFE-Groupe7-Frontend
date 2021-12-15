@@ -40,7 +40,7 @@
             <p class="captionTitre"> {{ ad.title }} </p>
             <img class="d-block rounded" :src="getMedia(ad.id)">
             <p class="prix"><strong>{{ ad.price }} €</strong></p>
-            <a :href="'/detailAd/'+ad.id" class="btnDetail">Voir détail</a>
+            <a :href="'/detailAd/'+ad.id" class="btnDetail">Voir détails</a>
             </b-carousel-slide>
 
           </b-carousel>
