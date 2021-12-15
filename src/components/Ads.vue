@@ -143,7 +143,7 @@ export default {
                  console.log(this.medias)
                  console.log(response)
                  this.filterdList=this.list
-                 
+                 this.filterdList= this.filterdList.filter(e=>e.state.includes("publié"))
                 // this.list=response(e=>e.seller_id==this.annonces.id);
         });
       } catch (e) {

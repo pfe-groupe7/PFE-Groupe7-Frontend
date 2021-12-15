@@ -1,7 +1,7 @@
 <template>
     <section class="section-products" >
       <div class="header">
-										<h2>Mes annonces</h2>
+										<h2>Les annonces </h2>
 								</div>
 		<div class="container" style="max-height: 600px; display: flex;">
 				<div class="row justify-content-center text-center">
@@ -86,7 +86,7 @@ export default {
           console.log(response)
           let ads=response.ads
           this.medias= response.medias.map(e=>e=e.fields);
-          this.list=ads.filter(e=>e.fields.seller==this.user.id);
+          this.list=ads.filter(e=>e.fields.seller==this.user);
           this.list.map(ad=>ad['photo']=this.medias.filter(e=>e.ad==ad.pk)[0])
           console.log(this.list)
                 

@@ -28,7 +28,7 @@
             </div>
 
         <div class="card-content__price is-pulled-left">
-            <div class="ajout"><p>Ajouté par <a href="#"> {{seller.firstname}} </a> </p></div> 
+            <div class="ajout"><p>Ajouté par <a :href="'/profile/'+seller.id"> {{seller.firstname}} </a> </p></div> 
             <button class="btn">Contactez ce vendeur</button> 
         </div>
 
