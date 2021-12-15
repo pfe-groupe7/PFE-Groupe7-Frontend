@@ -75,6 +75,8 @@ export default {
 
     }
   }, async mounted() {
+    if(this.$route.params.id)
+    this.user=this.$route.params.id;
      console.log(this.user)
     //   let id=this.$store.getters.getUserId;
             try {

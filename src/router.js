@@ -23,7 +23,8 @@ export default new Router({
     { path: "/ads/:title?/:cat?", component: Ads },
     { path: "/forgot", component: Forgot },
     {path:"/reset/:token",component:Reset},
-    { path: "/profile", component: Profile },
+    { path: "/profile/:id", component: Profile },
     { path: "/myads", component: MyAds },
+    { path: "/userAds/:id", component: MyAds },
   ],
 });
