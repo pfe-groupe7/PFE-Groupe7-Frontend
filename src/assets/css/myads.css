@@ -22,14 +22,14 @@ a:hover {
 
 .section-products .single-product .part-1 {
     position: relative;
-    height: 290px;
+    /* height: 290px; */
     max-height: 290px;
     margin-bottom: 20px;
     overflow: hidden;
 }
 
 .section-products .single-product .part-1::before {
-		position: absolute;
+		
 		content: "";
 		top: 0;
 		left: 0;
@@ -46,7 +46,7 @@ a:hover {
 
 .section-products .single-product .part-1 .rejected .valid .closed .pending,
 .section-products .single-product .part-1 .valid .closed  .pending{
-    position: absolute;
+    
     top: 15px;
     left: 20px;
     color: #ffffff ;
@@ -66,6 +66,11 @@ a:hover {
   max-width:  1000%;
   margin-right: 59px
 ;
+}
+.state{
+    position: absolute;
+    top: -1px;
+    right: 25px;
 }
 .section-products #product  {
     background-repeat: no-repeat;
@@ -95,7 +100,7 @@ a:hover {
     opacity: 0.8;
 }
 .section-products .single-product .part-1 ul {
-    position: absolute;
+   
     bottom: -41px;
     left: 20px;
     margin: 0;
