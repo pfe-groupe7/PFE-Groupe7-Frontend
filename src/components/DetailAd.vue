@@ -1,5 +1,5 @@
 <template>
-    <div class="card is-clearfix columns">
+    <div v-if="token" class="card is-clearfix columns">
         <div class="card-content__title mt-4">
             <h2 class="title is-4">{{list.title}}</h2>
         </div> 
@@ -34,6 +34,7 @@
         </div>
 
     </div>
+    <div v-else>Veuillez vous connecter pour voir cette page</div>
 
 </template>
 
@@ -42,8 +43,10 @@
 <script>
 import { mapGetters } from "vuex"
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
-
 import Map from './Map.vue'
+
+let token = localStorage.getItem('token')
+
 export default {
   name: "DetailAd",
   components: {
@@ -52,6 +55,7 @@ export default {
   },
   data(){
     return {
+      token:token,
       ad: [],
       category:[],
       campus:[],
