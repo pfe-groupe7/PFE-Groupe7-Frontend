@@ -67,10 +67,10 @@ video {
 .btn,
 .btnDetail {
   border-radius: 4px;
-  height: 60px;
+  height: 80px;
   width: 40%;
   font-size: 25px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   padding: 0 20px;
   letter-spacing: 1px;
@@ -99,6 +99,7 @@ video {
   background-color: #ffeba7;
   color: #3a5749;
   font-size: 30px;
+  font-weight: 600;
   height: 80px;
   width: 300px;
   text-align: center;

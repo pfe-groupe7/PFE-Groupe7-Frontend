@@ -39,7 +39,7 @@
             <b-carousel-slide class="card" v-for="ad in filterdList" v-bind:key="ad.id">
             <p class="captionTitre"> {{ ad.title }} </p>
             <img class="d-block rounded" :src="getMedia(ad.id)">
-            <p class="prix"><span v-if="ad.price== 0" > <strong> Gratuit </strong></span>
+            <p class="prix"><span v-if="ad.price== 0" > <strong> À donner </strong></span>
               <span v-else> <strong> {{ ad.price }} € </strong></span></p>
             <a :href="'/detailAd/'+ad.id" class="btnDetail">Voir détails</a>
             </b-carousel-slide>
