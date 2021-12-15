@@ -1,148 +1,151 @@
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css");
 
 a,
 a:hover {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
-
+#product {
+  margin-right: 120px;
+}
+.titre {
+  margin-top: -30px;
+  margin-right: 20px;
+}
+.header {
+  text-align: center;
+}
 .section-products {
-    padding: 80px 0 54px;
-    margin-top: auto;
+  padding: 80px 0 54px;
+  margin-top: auto;
 }
 
 .section-products .header {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
-
 .section-products .single-product {
-    margin-bottom: 26px;
+  margin-bottom: 26px;
 }
 
 .section-products .single-product .part-1 {
-    position: relative;
-    /* height: 290px; */
-    max-height: 290px;
-    margin-bottom: 20px;
-    overflow: hidden;
+  position: relative;
+  /* height: 290px; */
+  max-height: 290px;
+  margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .section-products .single-product .part-1::before {
-		
-		content: "";
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		transition: all 0.3s;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.3s;
 }
 
 .section-products .single-product:hover .part-1::before {
-		transform: scale(1.2,1.2) rotate(5deg);
+  transform: scale(1.2, 1.2) rotate(5deg);
 }
-
 
 .section-products .single-product .part-1 .rejected .valid .closed .pending,
-.section-products .single-product .part-1 .valid .closed  .pending{
-    
-    top: 15px;
-    left: 20px;
-    color: #ffffff ;
-    background-color: #fe302f;
-    padding: 2px 8px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
+.section-products .single-product .part-1 .valid .closed .pending {
+  top: 15px;
+  left: 20px;
+  color: #ffffff;
+  background-color: #fe302f;
+  padding: 2px 8px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
 .closed {
-    left: 0;
-    color: #ffffff ;
-    padding: 2px 8px;
-    background-color: rgba(13, 10, 214, 0.767);
+  left: 0;
+  color: #ffffff;
+  padding: 2px 8px;
+  background-color: rgba(13, 10, 214, 0.767);
 }
-.list{
-    display: inline-block; /* the default for span */
-  max-width:  1000%;
-  margin-right: 59px
-;
+.list {
+  display: inline-block; /* the default for span */
+  max-width: 1000%;
+  margin-right: 59px;
 }
-.state{
-    position: absolute;
-    top: -1px;
-    right: 25px;
+.state {
+  position: absolute;
+  top: -1px;
+  right: 25px;
 }
-.section-products #product  {
-    background-repeat: no-repeat;
-    width: 200px;
-    height: 200px;
+.section-products #product {
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 200px;
 }
-.pending{
-    left: 0;
-    padding: 2px 8px;
-    color: #ffffff ;
-    background-color: rgba(211, 177, 28, 0.767);
+.pending {
+  left: 0;
+  padding: 2px 8px;
+  color: #ffffff;
+  background-color: rgba(211, 177, 28, 0.767);
 }
-.rejected{
-    left: 0;
-    padding: 2px 8px;
-    color: #ffffff ;
-    background-color: #fe302f;
+.rejected {
+  left: 0;
+  padding: 2px 8px;
+  color: #ffffff;
+  background-color: #fe302f;
 }
 
 .section-products .single-product .part-1 .valid {
-    color: #ffffff ;
-    left: 0;
-    background-color: #28b90b;
-    padding: 2px 8px;
+  color: #ffffff;
+  left: 0;
+  background-color: #28b90b;
+  padding: 2px 8px;
 }
-.notif{
-    opacity: 0.8;
+.notif {
+  opacity: 0.8;
 }
 .section-products .single-product .part-1 ul {
-   
-    bottom: -41px;
-    left: 20px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    opacity: 0;
-    transition: bottom 0.5s, opacity 0.5s;
+  bottom: -41px;
+  left: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  opacity: 0;
+  transition: bottom 0.5s, opacity 0.5s;
 }
 
 .section-products .single-product:hover .part-1 ul {
-    bottom: 30px;
-    opacity: 1;
+  bottom: 30px;
+  opacity: 1;
 }
 
 .section-products .single-product .part-1 ul li {
-    display: inline-block;
-    margin-right: 4px;
+  display: inline-block;
+  margin-right: 4px;
 }
 
 .section-products .single-product .part-1 ul li a {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    background-color: #ffffff;
-    color: #444444;
-    text-align: center;
-    box-shadow: 0 2px 20px rgb(50 50 50 / 10%);
-    transition: color 0.2s;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background-color: #ffffff;
+  color: #444444;
+  text-align: center;
+  box-shadow: 0 2px 20px rgb(50 50 50 / 10%);
+  transition: color 0.2s;
 }
 
 .section-products .single-product .part-1 ul li a:hover {
-    color: #fe302f;
+  color: #fe302f;
 }
 
 .section-products .single-product .part-2 .product-title {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .section-products .single-product .part-2 h4 {
-    display: inline-block;
-    font-size: 1rem;
+  display: inline-block;
+  font-size: 1rem;
 }
 
 @import url(https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
@@ -151,27 +154,25 @@ a:hover {
   display: table;
   position: relative;
   margin: 40px auto 0;
-  width: 500px;
-  background-color: #27AE60;
+  width: 800px;
+  background-color: #27ae60;
   color: #fff;
   transition: all 0.2s ease;
 }
 .Message--orange {
-    background-color: #FCA624;
-  }
+  background-color: #fca624;
+}
 .Message--green {
-    background-color: #27AE60;
+  background-color: #27ae60;
 }
 .Message-icon {
-    display: table-cell;
-    vertical-align: middle;
-    width: 60px;
-    padding: 30px;
-    text-align: center;
-    background-color: rgba(black, 0.25);
-  }
+  display: table-cell;
+  vertical-align: middle;
+  width: 60px;
+  padding: 30px;
+  text-align: center;
+  background-color: rgba(black, 0.25);
+}
 .Message-body {
-    display: table-cell;
-    vertical-align: middle;
-    padding: 30px 20px 30px 10px;
-  }
+  padding: 30px 20px 30px 10px;
+}

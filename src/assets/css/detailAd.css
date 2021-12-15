@@ -2,9 +2,6 @@ figure {
   margin: 20px 10px 20px 40px;
 }
 
-#map {
-  height: 100%;
-}
 html,
 body {
   height: 100%;
@@ -12,9 +9,14 @@ body {
   padding: 0;
 }
 .carousel {
-  height: 78% !important;
+  height: 18% !important;
   width: 91% !important;
   position: relative;
+  padding: 30px;
+}
+.map {
+  margin-bottom: 40px;
+  margin-right: 20px;
 }
 h2 {
   text-align: center;
@@ -23,6 +25,7 @@ h2 {
   margin-bottom: 40px;
 }
 span {
+  color: #ffeba7;
   padding-top: 200px;
 }
 
@@ -41,7 +44,7 @@ span {
   width: 100% !important;
 }
 .d-block {
-  margin-left: 160px;
+  margin-left: 60px;
   display: block !important;
 }
 
@@ -55,7 +58,7 @@ span {
   margin-bottom: 80px;
 }
 .ajout {
-  margin-top: -60px;
+  margin-top: 150px;
   margin-left: 10%;
   font-size: 25px;
 }
@@ -78,10 +81,10 @@ a:hover {
 .btn {
   border-radius: 4px;
   height: 70px;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 0 20px;
+  padding: 50px;
   letter-spacing: 1px;
   display: inline-flex;
   align-items: center;
@@ -95,10 +98,10 @@ a:hover {
   box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
 }
 p {
-  font-size: 40px;
+  font-size: 35px;
 }
 span {
-  font-size: 50px;
+  font-size: 30px;
 }
 .slider {
   padding-top: 200px;

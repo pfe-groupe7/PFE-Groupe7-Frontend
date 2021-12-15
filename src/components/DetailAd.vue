@@ -9,21 +9,23 @@
                 <b-carousel-slide v-for="(a,i) in medias" v-bind:key="i"  >
                   <template #img>
                     <img   class="d-block img-fluid w-100" :src="a.url" alt="image slot">
-                  </template>
-                </b-carousel-slide>
-              </b-carousel>
+                  </template>            
+
+                </b-carousel-slide>                  
+              </b-carousel>                
+              <div class="ajout"><p>Ajouté par <a href="#"> {{seller.firstname}} </a> </p></div> 
+
             </div>
             <div class="col-5">
                 <div class="card-content__text"><p class="description">Description</p><p>{{list.description}}</p></div> 
                 <span class="title is-3"><strong v-if="list.price==0"> Gratuit</strong>
                 <strong v-else>{{list.price}} € </strong></span>
                 <div class="card-content__text"><p>Lieu <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                </p><Map :srcMap="location" /></div> 
+                </p><div class="map"><Map :srcMap="location" /></div></div> 
               </div>
           </div>
 
         <div class="card-content__price is-pulled-left">
-            <div class="ajout"><p>Ajouté par <a href="#"> {{seller.firstname}} </a> </p></div> 
             <button class="btn">Contactez ce vendeur</button> 
         </div>
 

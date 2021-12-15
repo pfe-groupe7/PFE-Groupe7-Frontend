@@ -1,55 +1,40 @@
 <template>
     <section class="section-products" >
       <div class="header">
-										<h2>Mes annonces</h2>
-								</div>
+          <h2 style="font-size:40px;">Mes annonces</h2>
+      </div>
 		<div class="container" style="max-height: 600px; display: flex;">
-				<div class="row justify-content-center text-center">
-						<div class="col-md-8 col-lg-6">
-								
-                
-						</div>
-				</div>
-                <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
-                           
-                            <!-- Single Product -->
-                            <div  class="col-md-5 col-lg-1 col-xxl-3">
-                             
-
-                             
-                                    <div  id="product" class="single-product rounded border ">
-                                                                                      <a :href="'/detailAd/'+ad.pk" style="   width: 200px;position: absolute; height: 175px !important;"></a>
-                                            <img  class="center rounded" :src="ad.photo.url" style="width: 196px;height: 198px;">
-                                            <div class="part-1">
-                                                <span  v-if="ad.fields.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
-                                                <span  v-else-if="ad.fields.state=='fermé' " class="closed rounded">{{ad.fields.state}}</span>
-                                                <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
-                                                <span  v-else-if="ad.fields.state=='publié'" class="valid rounded">{{ad.fields.state}}</span>
-                                                    <ul >
-                                                            <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
-                                                    </ul>		
-
-                                            </div>
-                                          <div class="">
-                                                    <h3 class="product-title">{{ad.fields.title}}</h3>
-                                            </div> 
-                                    </div>
-                            </div>
-                                           
-                    <!-- </div> -->
-                </div>    
-        </div>    
-        <div v-show="notif"  class="row mt-3 notif" style="position: fixed; top: 8%; left: 58%;">
-                    <div class="col-md-6 Message Message--green">
-                            <div class="Message-icon">
-                            <i class="fa fa-exclamation"></i>
-                            </div>
-                            <div class="Message-body">
-                            <p>{{message}} </p>
-                            </div>
-
+            <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
+              <div  class="col-md-5 col-lg-1 col-xxl-3 offset-2">                        
+                <div  id="product" class="single-product rounded border ">
+                    <a :href="'/detailAd/'+ad.pk" style="   width: 200px;position: absolute; height: 175px !important;"></a>
+                        <img  class="center rounded" :src="ad.photo.url" style="width: 296px;height: 298px;">
+                        <div class="part-1">
+                            <span  v-if="ad.fields.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
+                            <span  v-else-if="ad.fields.state=='fermé' " class="closed rounded">{{ad.fields.state}}</span>
+                            <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
+                            <span  v-else-if="ad.fields.state=='publié'" class="valid rounded">{{ad.fields.state}}</span>
+                            <ul >
+                                    <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
+                            </ul>		
                         </div>
-        </div>
+                      <div class="titre">
+                                <h3 class="product-title">{{ad.fields.title}}</h3>
+                        </div> 
+                </div>
+              </div>
+          </div>    
+        </div>    
+        <div v-show="notif"  class="row mt-3 notif">
+          <div class="col-md-6 Message Message--green">
+              <div class="Message-icon">
+                <i class="fa fa-exclamation"></i>
+              </div>
+              <div class="Message-body">
+                <p>{{message}} </p>
+              </div>
+          </div>
+      </div>
 </section>
 
 </template>
@@ -103,7 +88,7 @@ export default {
         await fetch("http://localhost:8000/ads/delete/"+e.target.id, {
           method: "GET"
         }).then(response => response.json()).then(()=>{
-            this.message = "votre annonce a  été bien suprrimé ";
+            this.message = "Votre annonce a été bien supprimée";
             this.notif=true;
            setTimeout(() => this.$router.go(),2000);
             
