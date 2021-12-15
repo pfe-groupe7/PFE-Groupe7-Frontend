@@ -66,7 +66,6 @@
                     <div class="section text-center">
                       <form @submit.prevent="handleSubmitRegister">
                         <error v-if="error" :error="error" />
-                         <error v-if="error1" :error="error1" />
                         <h4 class="mb-4 pb-3">Inscription</h4>
                         <div class="form-group">
                           <input
@@ -97,6 +96,8 @@
                             name="email"
                             class="form-style"
                             placeholder="Adresse e-mail"
+                            pattern="/^([a-zA-Z0-9]+.?[a-zA-Z0-9]+)@((student.)?vinci.be)/"
+                            title="Veuillez entrer un email valide. EX :student.vinci.be Ou sans student. "
                             v-model="emailRegister"
                           />
                           <i class="input-icon fa fa-envelope"></i>
@@ -159,7 +160,6 @@ export default {
       campusRegister: "",
       emailLogin: "",
       error: "",
-      error1:"",
       mdpLogin: "",
     };
   },
@@ -167,12 +167,6 @@ export default {
     
     async handleSubmitRegister() {
       try {
-
-        var reg = "/^([a-zA-Z0-9]+.?[a-zA-Z0-9]+)@((student.)?vinci.be)/";
-        if(!reg.test(this.emailRegister))
-         this.error1="Veuillez entrer un email valide. EX :student.vinci.be Ou sans student. ";
-         console.log("hrln");
-  
         await fetch("http://localhost:8000/register", {
           method: "POST",
           body: JSON.stringify({

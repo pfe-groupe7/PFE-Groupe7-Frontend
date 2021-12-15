@@ -4,6 +4,7 @@
         
             <form>
             <div class="p-3 py-5">
+              <div v-if="user"> {{user}}
                 <div class="d-flex  justify-content-between align-items-center mb-3">
                     <h4 class="text-right p-2">Mon profil</h4>
                 </div>
@@ -50,6 +51,55 @@
                             </div>
 
                         </div>
+                </div>
+                </div>
+                <div v-else-if="!user"> {{user}}
+                <div class="d-flex  justify-content-between align-items-center mb-3">
+                    <h4 class="text-right p-2">profil{{user.nom}}</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Nom</label><input type="text" v-model="nom" class="form-control"   readonly></div>
+                    <div class="col-md-6"><label class="labels">Prénom</label><input type="text" v-model="prenom" class="form-control"  readonly ></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" v-model="email" class="form-control"   readonly></div>
+                    <div class="col-md-12 mt-3"><label class="labels">Campus</label>
+                        <select class="form-select" aria-label="Default select example">
+                        <option selected>{{campus}}</option>
+                        <option value="1">Woluwe</option>
+                        <option value="2">Ixelles</option>
+                        <option value="3">Louvain-La-Neuve</option>
+                        </select>     
+                    </div>
+                </div>
+                <div class="row mt-4">
+                <div class="col-md-5 mt-5 text-center"><button v-on:click="voirAnnonce" class="btn btn-danger profile-button" type="button">Voir les annonces</button></div>
+                <div class="col-md-6 mt-5 text-center">  <button v-on:click="contacterVendeur" class="btnSave" type="button">Contacter vendeur</button></div>
+                </div>
+                </div>
+                  <div v-else-if="moderator"> {{moderator}}
+                <div class="d-flex  justify-content-between align-items-center mb-3">
+                    <h4 class="text-right p-2">profil{{moderator.nom}}</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Nom</label><input type="text" v-model="nom" class="form-control"   readonly></div>
+                    <div class="col-md-6"><label class="labels">Prénom</label><input type="text" v-model="prenom" class="form-control"  readonly ></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">Email</label><input type="text" v-model="email" class="form-control"   readonly></div>
+                    <div class="col-md-12 mt-3"><label class="labels">Campus</label>
+                        <select class="form-select" aria-label="Default select example">
+                        <option selected>{{campus}}</option>
+                        <option value="1">Woluwe</option>
+                        <option value="2">Ixelles</option>
+                        <option value="3">Louvain-La-Neuve</option>
+                        </select>     
+                    </div>
+                </div>
+                <div class="row mt-4">
+                <div class="col-md-5 mt-5 text-center"><button v-on:click="voirAnnonce" class="btn btn-danger profile-button" type="button">Voir les annonces</button></div>
+                <div class="col-md-6 mt-5 text-center">  <button v-on:click="contacterVendeur" class="btnSave" type="button">Bannir ce vendeur</button></div>
+                </div>
                 </div>
             </div>
             </form>
