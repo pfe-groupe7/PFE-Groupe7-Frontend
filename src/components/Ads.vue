@@ -72,7 +72,7 @@
           </div>
           <div class="card-footer btn-actions">
             <div v-if="token"  class="card-footer-item">
-                <a class="btn" :href="'/detailAd/'+ad.id">Voir détail</a>
+                <a class="btn" :href="'/detailAd/'+ad.id">Voir détails</a>
             </div>
           </div>
         </div>

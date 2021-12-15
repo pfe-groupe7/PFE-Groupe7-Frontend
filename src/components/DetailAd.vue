@@ -5,30 +5,27 @@
         </div> 
         <div class="row">
             <div class="col-7">
-                <b-carousel
-                        id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
+              <b-carousel id="carousel-1" v-model="slide"  controls   indicators  :value=0   style="text-shadow: 1px 1px 2px #333;" >
+                <b-carousel-slide v-for="(a,i) in medias" v-bind:key="i"  >
+                  <template #img>
+                    <img   class="d-block img-fluid w-100" :src="a.url" alt="image slot">
+                  </template>            
 
-            <b-carousel-slide v-for="(a,i) in medias" v-bind:key="i"  >
-                <template #img>
-          <img   class="d-block img-fluid w-100" :src="a.url" alt="image slot">
-        </template>
-            </b-carousel-slide>
+                </b-carousel-slide>                  
+              </b-carousel>                
+              <div class="ajout"><p>Ajouté par <a href="#"> {{seller.firstname}} </a> </p></div> 
 
-                 </b-carousel>
             </div>
             <div class="col-5">
-
-                
-                <div class="card-content__text"><p>{{list.description}}</p></div> 
+                <div class="card-content__text"><p class="description">Description</p><p>{{list.description}}</p></div> 
                 <span class="title is-3"><strong v-if="list.price==0"> Gratuit</strong>
-                <strong v-else>{{list.price}}€ </strong></span>
-                <div class="card-content__text"><p>Lieu</p><Map :srcMap="location" /></div> 
-
-                </div>
-            </div>
+                <strong v-else>{{list.price}} € </strong></span>
+                <div class="card-content__text"><p>Lieu <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                </p><div class="map"><Map :srcMap="location" /></div></div> 
+              </div>
+          </div>
 
         <div class="card-content__price is-pulled-left">
-            <div class="ajout"><p>Ajouté par <a :href="'/profile/'+seller.id"> {{seller.firstname}} </a> </p></div> 
             <button class="btn">Contactez ce vendeur</button> 
         </div>
 
