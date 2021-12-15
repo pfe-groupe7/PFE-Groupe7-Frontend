@@ -1,8 +1,13 @@
 <template>
     <section class="section-products" >
       <div class="header">
+<<<<<<< HEAD
           <h2 style="font-size:40px;">Mes annonces</h2>
       </div>
+=======
+										<h2>Les annonces </h2>
+								</div>
+>>>>>>> 3505f5269f6cccee532e4de9381db6c147a88778
 		<div class="container" style="max-height: 600px; display: flex;">
             <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
               <div  class="col-md-5 col-lg-1 col-xxl-3 offset-2">                        
@@ -71,7 +76,7 @@ export default {
           console.log(response)
           let ads=response.ads
           this.medias= response.medias.map(e=>e=e.fields);
-          this.list=ads.filter(e=>e.fields.seller==this.user.id);
+          this.list=ads.filter(e=>e.fields.seller==this.user);
           this.list.map(ad=>ad['photo']=this.medias.filter(e=>e.ad==ad.pk)[0])
           console.log(this.list)
                 

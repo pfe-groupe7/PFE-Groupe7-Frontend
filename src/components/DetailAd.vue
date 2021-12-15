@@ -26,6 +26,10 @@
           </div>
 
         <div class="card-content__price is-pulled-left">
+<<<<<<< HEAD
+=======
+            <div class="ajout"><p>Ajouté par <a :href="'/profile/'+seller.id"> {{seller.firstname}} </a> </p></div> 
+>>>>>>> 3505f5269f6cccee532e4de9381db6c147a88778
             <button class="btn">Contactez ce vendeur</button> 
         </div>
 
