@@ -19,7 +19,7 @@
                              
                                     <div  id="product" class="single-product rounded border ">
                                                                                       <a :href="'/detailAd/'+ad.pk" style="   width: 200px;position: absolute; height: 175px !important;"></a>
-                                            <img  class="center rounded" :src="ad.photo.url" style="width: 196px;height: 198px;">
+                                            <img  class="center rounded"  v-if="ad.photo" :src="ad.photo.url" style="width: 196px;height: 198px;">
                                             <div class="part-1">
                                                 <span  v-if="ad.fields.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
                                                 <span  v-else-if="ad.fields.state=='fermé' " class="closed rounded">{{ad.fields.state}}</span>
@@ -77,6 +77,8 @@ export default {
   }, async mounted() {
     if(this.$route.params.id)
     this.user=this.$route.params.id;
+    else
+    this.user=this.user.id
      console.log(this.user)
     //   let id=this.$store.getters.getUserId;
             try {
@@ -84,6 +86,7 @@ export default {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
           console.log(response)
+          console.log(this.user)
           let ads=response.ads
           this.medias= response.medias.map(e=>e=e.fields);
           this.list=ads.filter(e=>e.fields.seller==this.user);

@@ -38,7 +38,7 @@
             
             <a href="javascript:void(0)" @click="myAds"   class="dropdown-item">Mes annonces</a>                   
             <a href="javascript:void(0)" @click="profile"   class="dropdown-item">Éditer mon profil</a>
-     
+             <a href="javascript:void(0)" v-if="moderator" @click="modPage"   class="dropdown-item">Valider annonces</a>
             <a href="javascript:void(0)" @click="handleClick" class="dropdown-item">Déconnexion</a>
 
           </div>
@@ -64,15 +64,23 @@ export default {
       token:token,
       title:"",
       catgroy:"Catégorie",
-      categories:[]
+      categories:[],
+      moderator:""
 
 }
   },async mounted(){
+    await fetch("http://localhost:8000/users/" + this.user.id, {
+        method: "GET",
+      }).then((response) => response.json())
+            .then((response) => {
+              console.log(response);
+              this.moderator = response[0].fields.moderator;
+            })
       try{
         await fetch("http://localhost:8000/categories", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
-                console.log(response)         
+                console.log(this.user)         
                 console.log("The token")
                 response.forEach(e=>e.fields["id"]=e.pk);
                 this.categories=response.map(e=>e=e.fields)})
@@ -108,6 +116,8 @@ export default {
      myAds(){
       this.$router.push("/myads")
        
+     },modPage(){
+       this.$router.push("/modPage")
      }
      
      
