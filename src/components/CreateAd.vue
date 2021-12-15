@@ -1,5 +1,5 @@
-<template>
-  <div class="wrapper wrapper--w820 mt-5">
+<template >
+  <div v-if='token' class="wrapper wrapper--w820 mt-5">
     <div class="card card-1">
       <div class="card-heading">
         <h2 class="title mb-4 pb-3">Ajoutez votre annonce</h2>
@@ -378,17 +378,19 @@
       </div>
     </div>
   </div>
+  <div v-else>Veillez vous connecter pour voir cette page</div>
 </template>
 
 <script>
 let userId=localStorage.getItem("user");
-
+let token = localStorage.getItem('token')
 export default {
   name: "CreateAd",
   components: {},
   
   data() {
     return {
+      token:token,
       step: 1,
       selectedLocation: 1,
       show: 0,

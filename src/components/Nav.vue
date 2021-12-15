@@ -98,6 +98,7 @@ export default {
        localStorage.removeItem('token');
        this.$store.dispatch('user',null);
        this.user=null;
+       this.$router.push("/")
        this.$router.go(0)
       
      },

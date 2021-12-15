@@ -199,6 +199,7 @@ export default {
            // this.$parent.children[0].update()
            console.log(this.$parent.$children[0].user=response.user)
            console.log(this.$parent.$children[0])
+           this.$router.push("/")
            this.$router.go(0);
            
 
