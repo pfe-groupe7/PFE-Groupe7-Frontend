@@ -38,11 +38,15 @@
   box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
 .btnSave {
-  background-color: #3a5749;
+  background-color: #577e6b;
   color: #ffeba7;
 }
 .btnSave:hover {
-  background-color: #76aa91;
+  background-color: #3a5749;
+}
+.col-2 {
+  margin-left: 30px;
+  font-size: 25px;
 }
 #image {
   background-repeat: no-repeat;
@@ -50,7 +54,7 @@
 
 .d-block {
   display: block !important;
-  width: 20% !important;
+  width: 15% !important;
   margin-bottom: 80px;
 }
 
@@ -85,5 +89,30 @@ h2 {
 #cardAdd {
   margin-top: 5%;
 }
-.card-body {
+
+.Message {
+  display: table;
+  position: relative;
+  margin: 40px auto 0;
+  width: 800px;
+  background-color: #27ae60;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.Message--orange {
+  background-color: #fca624;
+}
+.Message--green {
+  background-color: #27ae60;
+}
+.Message-icon {
+  display: table-cell;
+  vertical-align: middle;
+  width: 60px;
+  padding: 30px;
+  text-align: center;
+  background-color: rgba(black, 0.25);
+}
+.Message-body {
+  padding: 30px 20px 30px 10px;
 }
