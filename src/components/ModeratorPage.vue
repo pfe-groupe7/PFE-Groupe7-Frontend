@@ -1,82 +1,32 @@
 <template>
   <section class="section-products">
-    <div class="wrapper wrapper--w820 mt-5">
+    <div class="wrapper wrapper--w800">
       <div class="card card-1">
         <div class="card-heading">
-          <h2 class="title mb-4 pb-3">Annonces à accepter/réfuser</h2>
+          <h2 class="title mb-4 pb-3">Annonces à valider/refuser</h2>
         </div>
         <div class="card-body">
-          <form
-            method="GET"
-            action="#"
-            id="js-wizard-form"
-            @submit.prevent="handleSubmit"
-          >
+          <form method="GET" action="#" id="js-wizard-form" @submit.prevent="handleSubmit">
             <error v-if="error" :error="error" />
-            <ul class="tab-list">
-              <div v-for="ad in list" v-bind:key="ad.id" class="list">
-                <div class="col-md-5 col-lg-1 col-xxl-3">
-                  <div
-                    id="product" v-if="ad.photo"
-                    class="single-product rounded"
-                    :style="{ backgroundImage: 'url(' + ad.photo.url + ')' }"
-                  >
-                    <div class="row mt-2">
-                      <div class="col-md-6">
-                        <label class="labels">Titre</label
-                        ><input
-                          type="text"
-                          v-model="ad.title"
-                          class="form-control"
-                          readonly
-                        />
+              <div v-for="ad in list" v-bind:key="ad.id" class="annonce">
+                <div class="card-2">
+                    <div class="row">
+                              
+                      <div class="image" v-if="ad.photo" :style="{ backgroundImage: 'url(' + ad.photo.url + ')' }">
+                      <div class="col-2">  
+                        <label class="labels">Titre</label><input type="text" v-model="ad.title" class="form-control" readonly />
+                        <label class="labels">Description</label><input type="text" v-model="ad.description" class="form-control" readonly/>
                       </div>
-                      <div class="col-md-6">
-                        <label class="labels">Description</label
-                        ><input
-                          type="text"
-                          v-model="ad.description"
-                          class="form-control"
-                          readonly
-                        />
+                      <div class="col-2">
+                        <label class="labels">Lieu</label><input type="text" :value="getLocation(ad.id)" class="form-control" readonly />
+                        <label class="labels">Membre</label><input  type="text" :value="getUser(ad.seller)" class="form-control" readonly />
                       </div>
-                      <div class="col-md-6">
-                        <label class="labels">Lieu</label
-                        ><input
-                          type="text"
-                            :value="getLocation(ad.id)"
-                          class="form-control"
-                          readonly
-                        />
-                      </div>
-                      <div class="col-md-6">
-                        <label class="labels">Membre</label
-                        ><input
-                          type="text"
-                         :value="getUser(ad.seller)"
-                          class="form-control"
-                          readonly
-                        />
-                      </div>
-                      <div class="col-md-6">
-                        <label class="labels">Prix</label
-                        ><input
-                          type="text"
-                          v-model="ad.price"
-                          class="form-control"
-                          readonly
-                        />
-                      </div>
-                      <div class="col-md-6">
-                        <label class="labels">Categorie</label
-                        ><input
-                          type="text"
-                          v-model="ad.category"
-                          class="form-control"
-                          readonly
-                        />
+                       <div class="col-2">
+                        <label class="labels">Prix</label><input  type="text" v-model="ad.price" class="form-control" readonly />
+                        <label class="labels">Categorie</label><input type="text" v-model="ad.category"  class="form-control" readonly />
                       </div>
                     </div>
+
                   </div>
                   <div class="row mt-4">
                     <div class="col-md-5 mt-5 text-center">
@@ -90,27 +40,16 @@
                       </button>
                     </div>
                     <div class="col-md-6 mt-5 text-center">
-                      <button
-                      :id="ad.id"
-                        v-on:click="handleSubmit"
-                        class="btnSave"
-                        type="button"
-                      >
-                        Accepter
-                      </button>
+                      <button :id="ad.id"  v-on:click="handleSubmit"  class="btnSave"  type="button" > Accepter </button>
                     </div>
                   </div>
-                  <div
-                    v-show="notif"
-                    class="row mt-3 notif"
-                    style="position: fixed; top: 8%; left: 58%"
-                  >
+                  <div v-show="notif" class="row mt-3 notif" style="position: fixed; top: 8%; left: 58%">
                     <div class="col-md-6 Message Message--green">
                       <div class="Message-icon">
                         <i class="fa fa-exclamation"></i>
                       </div>
                       <div class="Message-body">
-                        <p>Annonce bien acceptée</p>
+                        <p>Annonce validée</p>
                       </div>
                     </div>
                   </div>
@@ -125,10 +64,7 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- </div> -->
               </div>
-            </ul>
           </form>
         </div>
       </div>
@@ -247,5 +183,5 @@ export default {
 };
 </script>
 
-<style scoped src="../assets/css/createAd.css"></style>
+<style scoped src="../assets/css/moderateur.css"></style>
 

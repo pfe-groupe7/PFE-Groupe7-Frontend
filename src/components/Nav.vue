@@ -38,7 +38,7 @@
             
             <a href="javascript:void(0)" @click="myAds"   class="dropdown-item">Mes annonces</a>                   
             <a href="javascript:void(0)" @click="profile"   class="dropdown-item">Éditer mon profil</a>
-             <a href="javascript:void(0)" v-if="moderator" @click="modPage"   class="dropdown-item">Valider annonces</a>
+             <a href="javascript:void(0)" v-if="moderator" @click="modPage"   class="dropdown-item">Annonces à valider</a>
             <a href="javascript:void(0)" @click="handleClick" class="dropdown-item">Déconnexion</a>
 
           </div>
