@@ -5,26 +5,26 @@
       <img src="../assets/images/vincilogo.png" height="100" alt="vinci market logo">
     </a>
       
-       <select name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
+
+       <select @change="search" v-model="catgroy" name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
           <option selected disabled>Catégorie</option>
-          <option value="1">Maison et jardin</option>
-          <option value="2">Famille</option>
-          <option value="3">Vêtements et accessoires</option>
-          <option value="4">Loisirs - hobbys</option>
+          <option  v-for="category in categories"  v-bind:key="category.pk" :value="category.id">{{category.categoryName}}</option>
       </select>
      
       <form class="form-inline">
         <div class="flexbox">
           <div class="search">
             <div>
-              <input type="text" placeholder="Recherche...">
+              <input @change="search" v-model="title" type="text" placeholder="Recherche par titre...">
             </div>
           </div>
         </div>
       </form>
+      <div v-if="token">
         <router-link to="/createAd"><a class="btn mt-1">
           Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
         </router-link>
+      </div>
         <ul class="navbar-nav ml-auto" v-if="!user">
           <li class="nav-item">
             <router-link to="/login" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
@@ -54,21 +54,53 @@
 
 
 export default {
+  
   name: 'Nav',
   data () {
     let user=this.$store.getters.user
+    let token = localStorage.getItem('token')
     return {
-      user:user
+      user:user,
+      token:token,
+      title:"",
+      catgroy:"Catégorie",
+      categories:[]
 
 }
-  },
+  },async mounted(){
+      try{
+        await fetch("http://localhost:8000/categories", {
+          method: "GET"
+        }).then(response => response.json()).then((response)=>{
+                console.log(response)         
+                console.log("The token")
+                response.forEach(e=>e.fields["id"]=e.pk);
+                this.categories=response.map(e=>e=e.fields)})
+                }catch (e) {
+                this.error = "Une erreur est survenue!";
+      }
+                
+            
+  },  
   methods:{
+    search(){
+       if(this.title=="")
+      this.title="Tous";
+       console.log(this.$router)
+      //  this.$router.pop()
+      
+      this.$router.replace("/ads/"+this.title+"/"+this.catgroy+"")
+    //  this.$router.replcae({ name: 'ads', params: {"this.title""this.catgroy" } })
+      
+    },
      handleClick(){
        console.log(this.user)
        localStorage.removeItem('token');
        this.$store.dispatch('user',null);
        this.user=null;
-      this.$router.push("/")
+       this.$router.push("/")
+       this.$router.go(0)
+      
      },
      profile(){
        this.$router.push("/profile/"+this.user.id)

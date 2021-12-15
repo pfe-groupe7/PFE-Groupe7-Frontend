@@ -46,11 +46,8 @@
                           <i class="input-icon fa fa-lock"></i>
                         </div>
                         <div class="form-group mt-4">
-                          <input
-                            class="btn mt-4"
-                            type="submit"
-                            value="Envoyer"
-                          />
+
+                          <input class="btn mt-4" type="submit" value="Se connecter">
                         </div>
                         <p class="mb-5 mt-5 text-center">
                           <a class="link" href="/forgot"
@@ -65,7 +62,7 @@
                 <div class="card-back">
                   <div class="center-wrap">
                     <div class="section text-center">
-                      <form @submit.prevent="handleSubmitRegister">
+                      <form @submit="handleSubmitRegister">
                         <error v-if="error" :error="error" />
                         <h4 class="mb-4 pb-3">Inscription</h4>
                         <div class="form-group">
@@ -129,7 +126,9 @@
                           </select>
                           <i class="input-icon fa fa-map-marker"></i>
                         </div>
-                        <input class="btn mt-4" type="submit" value="Envoyer"   />
+
+                          <input class="btn mt-4" type="submit" value="S'inscrire">
+
                       </form>
                     </div>
                   </div>
@@ -178,7 +177,11 @@ export default {
             campus: this.campusRegister,
             moderator: "False",
           }),
-          }).then(this.$router.push("/"))
+
+        }).then( 
+           this.$router.go("/"),
+           
+          );
 
       } catch (e) {
         this.error = "Une erreur est survenue!";
@@ -199,15 +202,18 @@ export default {
             localStorage.setItem("token", response.token);
             localStorage.setItem("user", response.user.id);
             this.$store.dispatch("user", response.user);
-            // this.$parent.children[0].update()
-            console.log((this.$parent.$children[0].user = response.user));
-            console.log(this.$parent.$children[0]);
-            this.$router.push("/")
-          }).catch(()=>{
-              this.error = "Une erreur est survenue!";
-              console.log(this)
-            });
-      
+
+           // this.$parent.children[0].update()
+           console.log(this.$parent.$children[0].user=response.user)
+           console.log(this.$parent.$children[0])
+           this.$router.push("/")
+           this.$router.go(0);
+           
+
+        });
+      } catch (e) {
+        this.error = "Une erreur est survenue!";
+      }
     },
   },
 };

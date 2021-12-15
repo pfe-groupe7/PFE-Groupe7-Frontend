@@ -1,8 +1,5 @@
-# Can't return to previous page from photo upload if photo is loaded
-# photo upload glitches if no info is provided beforehand 
-
-<template>
-  <div class="wrapper wrapper--w820 mt-5">
+<template >
+  <div v-if='token' class="wrapper wrapper--w820 mt-5">
     <div class="card card-1">
       <div class="card-heading">
         <h2 class="title mb-4 pb-3">Ajoutez votre annonce</h2>
@@ -12,16 +9,18 @@
           method="POST"
           action="#"
           id="js-wizard-form"
+          enctype="multipart/form-data"
           @submit.prevent="handleSubmit"
         >
           <error v-if="error" :error="error" />
+
+          <!-- upper buttons for moving across sections @click REMOVED temp -->
           <ul class="tab-list">
             <li class="tab-list__item active">
               <button
                 class="tab-list__link"
                 href="#tab1"
                 data-toggle="tab"
-                @click="activatePanel(1)"
               >
                 <v-stepper-content step="1">
                   <span class="step">1</span>
@@ -34,7 +33,6 @@
                 class="tab-list__link"
                 href="#tab2"
                 data-toggle="tab"
-                @click="activatePanel(2)"
               >
                 <v-stepper-content step="2">
                   <span class="step">2</span>
@@ -47,7 +45,6 @@
                 class="tab-list__link"
                 href="#tab3"
                 data-toggle="tab"
-                @click="activatePanel(3)"
               >
                 <v-stepper-content step="3">
                   <span class="step">3</span>
@@ -56,7 +53,9 @@
               </button>
             </li>
           </ul>
+
           <div class="tab-content">
+             <!--- main info and category-->
             <div v-if="step === 1" class="Panel-Content" id="tab1">
               <div class="form">
                 <div class="row align-items-center">
@@ -75,7 +74,7 @@
                       type="text"
                       v-model="titre"
                       placeholder="Titre de l'annonce"
-                      required="required"
+                      required
                     />
                   </div>
                   <div class="col-4" style="margin-bottom: 30px">
@@ -97,61 +96,61 @@
                       v-model="categorie"
                     >
                       <optgroup label="Maison et Jardin">
-                        <option value=1>Outils</option>
-                        <option value=2>Meubles</option>
-                        <option value=3>Pour la maison</option>
-                        <option value=4>Jardin</option>
-                        <option value=5>Electroménager</option>
+                        <option value=2>Outils</option>
+                        <option value=3>Meubles</option>
+                        <option value=4>Pour la maison</option>
+                        <option value=5>Jardin</option>
+                        <option value=6>Electroménager</option>
                       </optgroup>
                       <optgroup label="Famille">
-                        <option value=6>Santé et beauté</option>
-                        <option value=7>
+                        <option value=8>Santé et beauté</option>
+                        <option value=9>
                           Fournitures pour animaux
                         </option>
-                        <option value=8>
+                        <option value=10>
                           Puériculture et enfants
                         </option>
-                        <option value=9>Jouets et jeux</option>
+                        <option value=11>Jouets et jeux</option>
                       </optgroup>
                       <optgroup label="Vêtements et accessoires">
-                        <option value=10>
+                        <option value=13>
                           Vêtements et chaussures femmes
                         </option>
-                        <option value=11>
+                        <option value=14>
                           Vêtements et chaussures hommes
                         </option>
-                        <option value=12>
+                        <option value=15>
                           Bijoux et accessoires
                         </option>
-                        <option value=13>
+                        <option value=16>
                           Sacs et bagages
                         </option>
                       </optgroup>
                       <optgroup label="Loisirs - hobbys">
-                        <option value="21">Vélos</option>
-                        <option value=14>
+                        <option value="25">Vélos</option>
+                        <option value=18>
                           Loisirs créatifs
                         </option>
-                        <option value=15>Pièces auto</option>
-                        <option value=16>
+                        <option value=19>Pièces auto</option>
+                        <option value=20>
                           Sports et activités d’extérieures
                         </option>
-                        <option value=17>Jeux vidéo</option>
-                        <option value=18>
+                        <option value=21>Jeux vidéo</option>
+                        <option value=22>
                           Livres, films et musique
                         </option>
-                        <option value=19>
+                        <option value=23>
                           Instruments de musique
                         </option>
-                        <option value=20>
+                        <option value=24>
                           Antiquité et objets de collection
                         </option>
                       </optgroup>
                       <optiongroup>
-                        <option value=22>
+                        <option value=27>
                           Electronique et ordinateurs
                         </option>  
-                        <option value=23>
+                        <option value=28>
                           Téléphones mobiles
                         </option>  
                       </optiongroup>
@@ -181,6 +180,7 @@
               </div>
             </div>
           </div>
+          <!--status and capmus-->
           <div v-if="step === 2" class="Panel-Content" id="tab2">
             <div class="form">
               <div class="wrapper">
@@ -326,9 +326,11 @@
             </div>
           </div>
 
+          <!-- photos BUG HERE DO NOT CLICK-->
           <div v-if="step === 3" class="Panel-Content" id="tab3">
+            
             <div class="row text-center">
-              <h1>Upload images</h1>
+              <h1>Télécharger une ou plusieurs image(s)</h1>
               <div class="dropbox">
                 <div class="custom-file">
                   <input
@@ -338,7 +340,7 @@
                     multiple
                   />
                   <label class="custom-file-label" for="customFile"
-                    >Choisir photo</label
+                    >Choisir une photo ou une vidéo</label
                   >
                 </div>
                 <div v-for="(image, key) in imagepreview" :key="key">
@@ -353,6 +355,8 @@
               </div>
             </div>
           </div>
+
+          <!-- buttons -->
           <div id="boutons">
             <div class="form-group mt-4">
               <button v-if="step > 1" @click="step -= 1" class="btn mb-2">
@@ -374,21 +378,19 @@
       </div>
     </div>
   </div>
+  <div v-else>Veillez vous connecter pour voir cette page</div>
 </template>
 
 <script>
-import { upload } from "./file-upload.service";
 let userId=localStorage.getItem("user");
-const STATUS_INITIAL = 0,
-  STATUS_SAVING = 1,
-  STATUS_SUCCESS = 2,
-  STATUS_FAILED = 3;
+let token = localStorage.getItem('token')
 export default {
   name: "CreateAd",
   components: {},
-
+  
   data() {
     return {
+      token:token,
       step: 1,
       selectedLocation: 1,
       show: 0,
@@ -404,57 +406,78 @@ export default {
       prix: "",
       campus: "",
       location: "",
+      nbrPhoto:0,
       error: "",
     };
   },
 
-  computed: {
-    isInitial() {
-      return this.currentStatus === STATUS_INITIAL;
-    },
-    isSaving() {
-      return this.currentStatus === STATUS_SAVING;
-    },
-    isSuccess() {
-      return this.currentStatus === STATUS_SUCCESS;
-    },
-    isFailed() {
-      return this.currentStatus === STATUS_FAILED;
-    },
-  },
-  methods: {
-    async handleSubmit() {
-     // console.log(this.image);
-      console.log(this.titre)
-      console.log(this.categorie)
-      console.log(this.description)
-      console.log(this.prix)
-      console.log(this.campus)
-      console.log(this.location)
-      console.log(this.image)
-     // console.log(this.uploadedFiles)
 
-      try {
-        await fetch("http://localhost:8000/ad", {
+  methods: {
+    handleSubmit() {
+    try {
+        fetch("http://localhost:8000/ad", {
           method: "POST",
           body: JSON.stringify({
-            userId: userId,
-            title: this.titre,
-            category: this.categorie,
-            description: this.description,
-            price: this.prix,
-            status:this.status,
-            campus: this.campus,
-            location:this.location,
-            uploadedFiles: this.image,
-            uploadFieldName: this.uploadFieldName,
-          }),
-        });
-        this.$router.push("/");
+          userId: userId,
+          title: this.titre,
+          category: this.categorie,
+          description: this.description,
+          price: this.prix,
+          status:this.status,
+          campus: this.campus,
+          location:this.location,
+        }),
+      }).then(()=>this.UploadToImgbb());
+        console.log('uploadToImgbb called')
+     
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
     },
+
+  async UploadToImgbb() {
+    var files = document.querySelector('input[type=file]').files;
+
+    this.nbrPhoto = files.length;
+    console.log('files '+files);
+    console.log('nb photos'+ files.length)
+
+    if (files) {
+        for (var i = 0; i < files.length; i++) {
+            const formData = new FormData();
+            formData.append('image',files[i])
+            formData.set('key','1d6b2917ce19a4d0e4fc1acb17d393ca')
+            
+            fetch('https://api.imgbb.com/1/upload', {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                return response.json();
+            }).then((data) => this.saveUrl(data));
+        }
+    }
+},
+
+  async saveUrl(data){
+    console.log(data['data']['display_url'])
+    console.log(this.nbrPhoto)
+    this.nbrPhoto--;
+
+     fetch('http://localhost:8000/media',{
+        method:'POST',
+        body:JSON.stringify({
+            url:data['data']['display_url'],
+          }
+        ),
+      })
+
+      //redirection
+      if(this.nbrPhoto===0){
+        window.alert('Votre annonce à été bien enregistrée.')
+        this.$router.go("")
+      } 
+  },
+
 
     imageSelected(e) {
       this.image = e.target.files;
@@ -469,10 +492,11 @@ export default {
           reader.readAsDataURL(this.imagepreview[i]);
 
         }
-        },
+    },
 
     activatePanel(stepIndex) {
       this.step = stepIndex;
+      console.log(this.step)
     },
     showSelect(event) {
       this.selectedLocation = parseInt(event.target.value)
@@ -480,62 +504,7 @@ export default {
     showPrice(showIndex) {
       this.show = showIndex;
     },
-    addFiles() {
-      this.$refs.files.click();
-    },
-    submitFiles() {
-      let formData = new FormData();
-      for (var i = 0; i < this.files.length; i++) {
-        let file = this.files[i];
 
-        formData.append("files[" + i + "]", file);
-      }
-    },
-
-    handleFilesUpload() {
-      let uploadedFiles = this.$refs.files.files;
-      for (var i = 0; i < uploadedFiles.length; i++) {
-        this.files.push(uploadedFiles[i]);
-      }
-    },
-    removeFile(key) {
-      this.files.splice(key, 1);
-    },
-    reset() {
-      // reset form to initial state
-      this.currentStatus = STATUS_INITIAL;
-      this.uploadedFiles = [];
-      this.uploadError = null;
-    },
-    save(formData) {
-      // upload data to the server
-      this.currentStatus = STATUS_SAVING;
-
-      upload(formData)
-        .then((x) => {
-          this.uploadedFiles = [].concat(x);
-          this.currentStatus = STATUS_SUCCESS;
-        })
-        .catch((err) => {
-          this.uploadError = err.response;
-          this.currentStatus = STATUS_FAILED;
-        });
-    },
-
-    filesChange(fieldName, fileList) {
-      // handle file changes
-      const formData = new FormData();
-
-      if (!fileList.length) return;
-
-      // append the files to FormData
-      Array.from(Array(fileList.length).keys()).map((x) => {
-        formData.append(fieldName, fileList[x], fileList[x].name);
-      });
-
-      // save it
-      this.save(formData);
-    },
   },
   mounted() {
     this.reset();

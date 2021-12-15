@@ -1,117 +1,93 @@
 <template>
-<div>
-  <div style="margin-top:18%;width: 27%;float: left;">
-      <div class="form-check">
- <select @change="filter()" v-model="byCategory" name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
+<div class="row">
+  <div class="col-2" >
+      <div class="categorie pb-2 mb-2">
+        <select @change="filter()" v-model="byCategory" name="categorie" id="subject" class="btn2 dropdown-toggle"  required value="Catégorie">
           <option selected >{{byCategory}}</option>
           <option  v-for="category in categories"  v-bind:key="category.pk" :value="category.categoryName">{{category.categoryName}}</option>
-      </select>
+        </select>
       </div>
-<label for="customRange2"   class="form-label">Price</label>
-<input type="range" @change="filter"  class="form-range" min="0" v-model="byPrice" max="5000" step="10"  id="customRange2">
-  <p>{{byPrice}}</p>
-  <div class="form-check">
-  <input type="radio" id="css" @change="filter"  name="fav_language" value="à donner"  v-model="state">
-  <label class="form-check-label" for="defaultCheck1">
-   à donner
-  </label>
-</div>
-    <div class="form-check">
-<input type="radio" id="css" @change="filter"  name="fav_language" value="à vendre"  v-model="state">
-  <label class="form-check-label" for="defaultCheck1">
-   à vendre
-  </label>
-</div>
-<a @click="sortASC()">
-<i class="fa fa-sort-asc fa-3x" aria-hidden="true"></i></a>
-<a @click="sortDESC()">
-<i  class="fa fa-sort-desc fa-3x" aria-hidden="true"></i></a>
-<select name="campus" id="subject" @change="filter"  class="form-style" required="required"  v-model="byCampus">
-      <option selected >{{byCampus}}</option>
-      <option value="2" >Woluwe</option>
-      <option value="1" >Ixelles</option>
-      <option value="3" >Louvain-La-Neuve</option>
-</select> 
-  </div>  
-    
+      <div class="radioButton">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" id="radio" @change="filter"  name="fav_language" value="à donner"  v-model="state">
+          <label class="form-check-label" for="defaultCheck1">
+          A donner
+          </label>
+        </div>
+        <div class="form-check">
+        <input class="form-check-input" type="radio" id="radio" @change="filter"  name="fav_language" value="à vendre"  v-model="state">
+          <label class="form-check-label" for="defaultCheck1">
+          A vendre
+          </label>
+        </div>
+      </div>
 
-  <div class="post" style="overflow-y: scroll;width: 72%;height: 600px;    float: right;">
-    <div class="loading" v-if="loading">Chargement...</div>
-    <div class="error" v-if="error">{{ error }}</div>
-    <div v-for="ad in filterdList" v-bind:key="ad.id" class="list">
-      <div class="card-image">
-        <div
-          id="product"
-          class="single-product rounded"
-        ><img  id="product"
-          class="single-product rounded" :src="getMedia(ad.id)"/></div>
+      <div class="prixCursor">
+        <label for="customRange2"   class="form-label">Prix</label>
+        <input type="range" @change="filter"  class="form-range" min="0" v-model="byPrice" max="5000" step="10"  id="customRange2">
+        <p class="">{{byPrice}}</p>
       </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="title is-4">{{ ad.title }}</p>
-          </div>
-          <div>
-            <!-- <button
-              class="button is-small"
-              :title="removeFromFavouriteLabel"
-              v-show="ad.isFavourite"
-              @click="removeFromFavourite(ad.id)"
-            >
-              <span class="icon is-small">
-                <i class="fas fa-heart"></i>
-              </span>
-            </button> -->
-            <!-- <button
-              class="button is-small"
-              :title="addToFavouriteLabel"
-              v-show="!ad.isFavourite"
-              @click="saveToFavorite(ad.id)"
-            >
-              <span class="icon is-small">
-                <i class="far fa-heart"></i>
-              </span>
-            </button> -->
+      
+      <select name="campus" id="subject" @change="filter"  class="btn2" required="required"  v-model="byCampus">
+          <option selected >{{byCampus}}</option>
+          <option value="2" >Woluwe</option>
+          <option value="1" >Ixelles</option>
+          <option value="3" >Louvain-La-Neuve</option>
+      </select> 
+  </div>  
+  <div class="col-10">
+    <div class="triControl">
+      <div class="triText">Trier par</div>
+      <div class="selectPrix"><select class="mp-Select-input">
+        <option @click="sortASC()">Prix bas à élevé </option>
+        <option @click="sortDESC()">Prix élevé à bas</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="error" v-if="error">{{ error }}</div>
+      <div class="card col-3" id="annonce" v-for="ad in filterdList" v-bind:key="ad.id" >
+        <div class="card-image">
+          <div id="product" class="single-product rounded">
+            <img class="d-block w-100 rounded" :src="getMedia(ad.id)">
           </div>
         </div>
-        <div class="content is-clearfix">
-          <p>{{ ad.description }}</p>
-          <p class="is-pulled-right">
-            <span class="title is-4"
-              ><strong>&euro; {{ ad.price }}</strong></span
-            >
-          </p>
-        </div>
-        <div class="card-footer btn-actions">
-          <div class="card-footer-item field is-grouped">
-            <div class="buttons">
-              <button class="button is-text">Contactez le vendeur</button>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title">{{ ad.title }}</p>
+            </div>
+            <div>
+            
+            </div>
+          </div>
+          <div class="content is-clearfix">
+            <p>{{ ad.description }}</p>
+            <p class="is-pulled-right">
+              <span class="prix"
+                ><strong>{{ ad.price }} &euro; </strong></span
+              >
+            </p>
+          </div>
+          <div class="card-footer btn-actions">
+            <div v-if="token"  class="card-footer-item">
+                <a class="btn" :href="'/detailAd/'+ad.id">Voir détail</a>
             </div>
           </div>
         </div>
       </div>
-      <!-- <nuxt-link
-        class="details"
-        :to="{
-          name: 'Ads',
-          params: {
-            id: ad.id,
-            title: ad.title,
-            price: ad.price,
-            description: ad.description,
-            location: ad.location,
-          },
-        }"
-      >
-      </nuxt-link> -->
     </div>
-  </div>
-  
-  </div>
+  </div> 
+</div>
+
 </template>
 
 <script>
 // import $ from 'jquery'
+let userId = localStorage.getItem('user')
+let token = localStorage.getItem('token')
+
 export default {
   name: "Ads",
   components: {},
@@ -123,13 +99,15 @@ export default {
       location: "Alma",
     });
     return {
+      userId : userId,
       error: null,
-      byCampus:"Tous",
+      token:token,
+      byCampus:"Campus",
       loading: false,
       addToCartLabel: "Add to cart",
       viewDetailsLabel: "Details",
       byPrice:"100",
-      byCategory:"Tous",
+      byCategory:"Toutes les catégories",
       state:"à vendre",
       list: [],
       annonces:this.$store.getters.annonces,
@@ -145,6 +123,7 @@ export default {
    },
   async mounted() {
      console.log(this.annonces)
+     
     //   let id=this.$store.getters.getUserId;
             try {
         await fetch("http://localhost:8000/ads", {
@@ -164,7 +143,7 @@ export default {
                  console.log(this.medias)
                  console.log(response)
                  this.filterdList=this.list
-               
+                 
                 // this.list=response(e=>e.seller_id==this.annonces.id);
         });
       } catch (e) {
@@ -210,29 +189,5 @@ export default {
 };
 </script>
 
-<style >
-.details {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 90%;
-  height: 100%;
-  z-index: 1;
-}
-.button,
-.select {
-  z-index: 2;
-}
-.select {
-  position: absolute;
-  right: 15px;
-  bottom: 35px;
-}
-.card-content {
-  padding: 0;
-}
-.buttons {
-  margin: 0;
-}
-</style>
+<style scoped src="../assets/css/ads.css"></style>
+

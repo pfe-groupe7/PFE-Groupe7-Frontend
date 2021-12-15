@@ -1,0 +1,100 @@
+figure {
+  margin: 20px 10px 20px 40px;
+}
+
+#map {
+  height: 100%;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.carousel {
+  height: 74% !important;
+  width: 91% !important;
+  position: relative;
+}
+h2 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 50px;
+}
+span {
+  padding-top: 200px;
+}
+.card {
+  border-radius: 50px;
+  box-shadow: 0 8px 8px 8px rgba(21, 21, 21, 0.2);
+  margin: 50px 300px 50px 200px;
+  padding-bottom: 100px;
+  background-color: #84a796;
+}
+.card-content__text {
+  margin-top: 50px;
+  font-size: 25px;
+}
+.w-100 {
+  width: 100% !important;
+}
+.d-block {
+  display: block !important;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+.d-block {
+  display: block !important;
+  width: 100% !important;
+  margin-bottom: 80px;
+}
+.ajout {
+  margin-left: 100px;
+  font-size: 25px;
+}
+a {
+  color: #ffeba7;
+}
+a:hover {
+  color: #3a5749;
+}
+.carousel-control-next-icon {
+  border-radius: 50%;
+  border: black;
+  background-color: black;
+}
+.btn {
+  border-radius: 4px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0 20px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 50px;
+  margin-left: 55%;
+  background-color: #ffeba7;
+  color: #3a5749;
+  box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
+}
+.slider {
+  padding-top: 200px;
+}
+.btn:active,
+.btn:focus {
+  background-color: #ffeba7;
+  color: #3a5749;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+.btn:hover {
+  background-color: #3a5749;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}

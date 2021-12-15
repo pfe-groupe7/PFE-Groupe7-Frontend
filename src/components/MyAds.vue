@@ -1,11 +1,12 @@
 <template>
     <section class="section-products" >
-		<div class="container" style="max-height: 600px;">
-				<div class="row justify-content-center text-center">
-						<div class="col-md-8 col-lg-6">
-								<div class="header">
+      <div class="header">
 										<h2>Mes annonces</h2>
 								</div>
+		<div class="container" style="max-height: 600px; display: flex;">
+				<div class="row justify-content-center text-center">
+						<div class="col-md-8 col-lg-6">
+								
                 
 						</div>
 				</div>
@@ -16,14 +17,14 @@
                              
 
                              
-                                    <div  id="product" class="single-product rounded" :style="{ backgroundImage : 'url(' + ad.photo[0].fields.url + ')' }">
-                                     
+                                    <div  id="product" class="single-product rounded border ">
+                                                                                      <a :href="'/detailAd/'+ad.pk" style="   width: 200px;position: absolute; height: 175px !important;"></a>
+                                            <img  class="center rounded" :src="ad.photo.url" style="width: 196px;height: 198px;">
                                             <div class="part-1">
-                                                <span  v-if="ad.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
+                                                <span  v-if="ad.fields.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
                                                 <span  v-else-if="ad.fields.state=='fermé' " class="closed rounded">{{ad.fields.state}}</span>
                                                 <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
                                                 <span  v-else-if="ad.fields.state=='publié'" class="valid rounded">{{ad.fields.state}}</span>
-                                                <a :href="'ads/'+ad.fields.pk" style=" left: -18px;   width: 241px;position: absolute; height: 175px !important;"></a>
                                                     <ul >
                                                             <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
                                                     </ul>		
@@ -52,7 +53,7 @@
 </section>
 
 </template>
-<style scoped src="../assets/css/myads.css"></style>
+<style  src="../assets/css/myads.css"></style>
 <script>
 export default {
   name: "Profile",
@@ -82,10 +83,11 @@ export default {
         await fetch("http://localhost:8000/ads", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
+          console.log(response)
           let ads=response.ads
-          this.medias= response
+          this.medias= response.medias.map(e=>e=e.fields);
           this.list=ads.filter(e=>e.fields.seller==this.user.id);
-          this.list.map(ad=>ad['photo']=this.medias[`${ad.pk}`])
+          this.list.map(ad=>ad['photo']=this.medias.filter(e=>e.ad==ad.pk)[0])
           console.log(this.list)
                 
         });
