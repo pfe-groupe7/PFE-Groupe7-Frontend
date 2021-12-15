@@ -19,7 +19,7 @@ export default new Router({
     { path: "/login", component: Login },
     { path: "/register", component: Login },
     { path: "/createAd", component: CreateAd },
-    { path: "/detailAd", component: DetailAd },
+    { path: "/detailAd/:id", component: DetailAd },
     { path: "/ads/:title?/:cat?", component: Ads },
     { path: "/forgot", component: Forgot },
     {path:"/reset/:token",component:Reset},

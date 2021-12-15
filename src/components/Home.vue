@@ -1,7 +1,5 @@
 <template>   
-
   <div>
-
     <div class="video-background">
       <div class="video-wrap">
         <div id="video">
@@ -12,8 +10,7 @@
       </div>
     </div>  
     <div id="categories">
-
-      <h2>Catégories</h2>
+      <h3>Catégories</h3>
       <div class="row mt-4">
           
           <div class="col-3">
@@ -33,6 +30,27 @@
       </div>
 
     </div>
+    <div class="row">
+      <div id="carousel">
+        <h3>Annonces <b>récentes</b></h3>
+
+          <b-carousel
+                        id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
+
+ <b-carousel-slide v-for="ad in filterdList" v-bind:key="ad.id"
+        :caption="ad.title"
+        :text="ad.price"
+        img-width=100
+        img-height=100
+        :img-src="getMedia(ad.id)"
+      ><a :href="'/detailAd/'+ad.id" class="btn mt-5">Voir Puls</a></b-carousel-slide>
+         
+                 </b-carousel>
+        
+    
+    </div>
+
+    </div>
   </div>
 </template>
 
@@ -42,11 +60,63 @@ import { mapGetters } from "vuex"
 
 export default {
   name: "Home",
+  data(){
+    return {
+      list: [],
+      annonces:this.$store.getters.annonces,
+      categories:[],
+      campus:[],
+      medias:[],
+      adsCampus:[],
+      filterdList:[]
+      ,a:""}
+
+  },
 
   computed:{
     ...mapGetters(['user'])
+  },  async mounted() {
+  
+    //   let id=this.$store.getters.getUserId;
+            try {
+        await fetch("http://localhost:8000/ads", {
+          method: "GET"
+        }).then(response => response.json()).then((response)=>{
+                console.log(response)
+                response.campus.forEach(e=>e.fields["id"]=e.pk);
+                this.campus= response.campus.map(e=>e.fields);
+                response.categories.forEach(e=>e.fields["id"]=e.pk);
+                this.categories=response.categories.map(e=>e=e.fields)
+                response.medias.forEach(e=>e.fields["id"]=e.pk);
+                this.medias=response.medias.map(e=>e=e.fields);
+                this.adsCampus=response.adsCampus.map(e=>e=e.fields);
+                response.ads.forEach(e=>e.fields["id"]=e.pk);
+                this.list=response.ads.map(e=>e=e.fields)
+                this.list.forEach(e=>e['category']=this.categories.filter(i=>i.id==e.id)[0].categoryName)
+                 console.log(this.medias)
+                 console.log(response)
+                 this.filterdList=this.list
+                 this.filterdList=this.filterdList.sort(function(a, b){return b.id-a.id});
+                 console.log(this.filterdList)
+            
+        })
+      } catch (e) {
+        this.error = "Une erreur est survenue!";
+      }
+  },methods:{
+      getMedia(adId){
+      return this.medias.filter(e=>e.ad==adId)[0] ? this.medias.filter(e=>e.ad==adId)[0].url: "testici"   
+  }
   }
 }
 </script>
 
 <style scoped src="../assets/css/home.css"></style>
+<style >
+#carousel {
+ 
+  width: 800px !important;
+  height: 1094px !important;
+  margin: auto !important;
+}
+</style>

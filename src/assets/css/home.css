@@ -12,6 +12,42 @@ h2 {
   color: #3a5749;
 }
 
+h3 {
+  color: #3a5749;
+  font-size: 50px;
+  font-weight: 1000;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  margin: 30px 0 80px;
+}
+h3 b {
+  color: #3a5749;
+}
+h3::after {
+  content: "";
+  width: 100px;
+  position: absolute;
+  margin: 0 auto;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  left: 0;
+  right: 0;
+  bottom: -20px;
+}
+.col-md-12 {
+  flex: 0 0 auto;
+  width: 800 px;
+  height: 1094px;
+  margin: auto;
+}
+.star-rating li {
+  padding: 0;
+}
+.star-rating i {
+  font-size: 14px;
+  color: #ffc000;
+}
 video {
   min-width: 100vh;
   width: 100%;

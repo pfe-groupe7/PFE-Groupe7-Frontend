@@ -5,10 +5,10 @@
       <img src="../assets/images/vincilogo.png" height="100" alt="vinci market logo">
     </a>
       
+
        <select @change="search" v-model="catgroy" name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
           <option selected disabled>Catégorie</option>
           <option  v-for="category in categories"  v-bind:key="category.pk" :value="category.id">{{category.categoryName}}</option>
-
       </select>
      
       <form class="form-inline">
