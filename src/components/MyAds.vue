@@ -92,7 +92,7 @@ export default {
         await fetch("http://localhost:8000/ads/delete/"+e.target.id, {
           method: "GET"
         }).then(response => response.json()).then(()=>{
-            this.message = "Votre annonce a été bien supprimée";
+            this.message = "Votre annonce a bien été supprimée";
             this.notif=true;
            setTimeout(() => this.$router.go(),2000);
             
