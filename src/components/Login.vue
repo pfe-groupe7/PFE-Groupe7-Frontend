@@ -19,8 +19,9 @@
                 <div class="card-front">
                   <div class="center-wrap">
                     <div class="section text-center">
+                      <error  :error="error" />
                       <form @submit.prevent="handleSubmitLogin">
-                        <error v-if="error" :error="error" />
+                        
                         <h4 class="mb-4 pb-4">Connexion</h4>
                         <div class="form-group">
                           <input
@@ -89,14 +90,14 @@
                           />
                           <i class="input-icon fa fa-user"></i>
                         </div>
-
+ <!-- pattern="/^([a-zA-Z0-9]+\.?[a-zA-Z0-9]+)[a-z0-9._%+-]+@((student\.)?vinci\.be)/" -->
                         <div class="form-group mt-3">
                           <input
                             type="email"
                             name="email"
                             class="form-style"
                             placeholder="Adresse e-mail"
-                            pattern="/^([a-zA-Z0-9]+\.?[a-zA-Z0-9]+)[a-z0-9._%+-]+@((student\.)?vinci\.be)/"
+                            pattern="/^[a-zA-Z]+@(student\.)?vinci\.be)/"
                             title="Veuillez entrer un email valide. EX :student.vinci.be Ou sans student. "
                             v-model="emailRegister"
                           />
@@ -184,7 +185,7 @@ export default {
       }
     },
     async handleSubmitLogin() {
-      try {
+    
         await fetch("http://localhost:8000/login", {
           method: "POST",
           body: JSON.stringify({
@@ -201,11 +202,12 @@ export default {
             // this.$parent.children[0].update()
             console.log((this.$parent.$children[0].user = response.user));
             console.log(this.$parent.$children[0]);
-            this.$router.push("/");
-          });
-      } catch (e) {
-        this.error = "Une erreur est survenue!";
-      }
+            this.$router.push("/")
+          }).catch(()=>{
+              this.error = "Une erreur est survenue!";
+              console.log(this)
+            });
+      
     },
   },
 };

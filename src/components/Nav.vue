@@ -71,7 +71,7 @@ export default {
       this.$router.push("/")
      },
      profile(){
-       this.$router.push("/profile")
+       this.$router.push("/profile/"+this.user.id)
      },
      myAds(){
       this.$router.push("/myads")

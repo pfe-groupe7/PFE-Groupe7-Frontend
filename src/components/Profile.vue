@@ -3,159 +3,78 @@
 		<div class="card card-1 mt-5">
 			<form>
 				<div class="p-3 py-5">
-					<div >
+					<div>
 						<div class="d-flex justify-content-between align-items-center mb-3">
-							<h4 class="text-right p-2">Mon profil</h4>
-						</div>
+							<h4 class="text-right p-2">Mon profil</h4> </div>
 						<div class="row mt-2">
 							<div class="col-md-6">
 								<label class="labels">Nom</label>
-								<input type="text" v-model="nom" class="form-control" readonly/>
-							</div>
+								<input type="text" v-model="nom" class="form-control" readonly/> </div>
 							<div class="col-md-6">
 								<label class="labels">Prénom</label>
-								<input type="text" v-model="prenom" class="form-control" readonly/>
-							</div>
+								<input type="text" v-model="prenom" class="form-control" readonly/> </div>
 						</div>
 						<div class="row mt-3">
 							<div class="col-md-12">
 								<label class="labels">Email</label>
-								<input type="text" v-model="email" class="form-control" readonly/>
+								<input type="text" v-model="email" class="form-control" readonly/> 
 							</div>
-         <div v-if="idUserConnected==idUserProfil">   
-							<div class="col-md-12 mt-3">
-								<label class="labels">Campus</label>
-								<select class="form-select" aria-label="Default select example">
-									<option selected>{{ campus }}</option>
-									<option value="1">Woluwe</option>
-									<option value="2">Ixelles</option>
-									<option value="3">Louvain-La-Neuve</option>
-								</select>
+							<div v-if="idUserConnected==idUserProfil">
+								<div class="col-md-12 mt-3">
+									<label class="labels">Campus</label>
+									<select class="form-select" aria-label="Default select example">
+										<option selected>{{ campus }}</option>
+										<option value="1">Woluwe</option>
+										<option value="2">Ixelles</option>
+										<option value="3">Louvain-La-Neuve</option>
+									</select>
+								</div>
+								<div class="row mt-3">
+									<div class="col-md-6">
+										<label class="labels">Mot de passe</label>
+										<input id="password" type="password" class="form-control" v-model="password" /> </div>
+									<div class="col-md-6">
+										<label class="labels">Confirmer le mot de passe</label>
+										<input type="password" v-model="confirmed_password" class="form-control" /> </div>
+								</div>
+								<div class="row mt-4">
+									<div class="col-md-5 mt-5 text-center">
+										<button v-on:click="deleteUser" class="btn btn-danger profile-button" type="button"> Supprimer mon compte </button>
+									</div>
+									<div class="col-md-6 mt-5 text-center">
+										<button v-on:click="handleSubmit" class="btnSave" type="button">Enregistrer les modifications</button>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-md-6">
-								<label class="labels">Mot de passe</label>
-								<input id="password" type="password" class="form-control" v-model="password"/>
+					<div v-if="idUserConnected!=idUserProfil">		
+							<div class="col-md-6 mt-3 text-center" >
+								<button v-on:click="voirAnnonces" class="btn btnSave profile-button" type="button"> Voir les annonces </button>
 							</div>
-							<div class="col-md-6">
-								<label class="labels">Confirmer le mot de passe</label>
-								<input type="password" v-model="confirmed_password" class="form-control"/>
+							<div class="col-md-6 mt-3 text-center" >
+								<button v-on:click="contacterVendeur" class="btnSave" type="button"> Contacter vendeur </button>
 							</div>
-						</div>
-						<div class="row mt-4">
-							<div class="col-md-5 mt-5 text-center">
-								<button v-on:click="deleteUser" class="btn btn-danger profile-button" type="button">
-									Supprimer mon compte
-								</button>
+					
+							<div class="col-md-8 mt-3 text-center" v-if="moderator">
+								<button v-on:click="deleteUser" class="btn-danger" type="button"> Bannir ce vendeur </button>
 							</div>
 							
-            <div class="col-md-5 mt-5 text-center" v-if="user&&idUserConected!=idUserProfil"> 
-								<button v-on:click="voirAnnonce" class="btn btn-danger profile-button" type="button">
-									Voir les annonces
-								</button>
-							</div>
-              <div class="col-md-6 mt-5 text-center" v-else>
-								<button v-on:click="handleSubmit" class="btnSave" type="button">Enregistrer les modifications</button>
-							</div>
+					</div>	
+						
 						</div>
-            </div>  
 						<div v-show="notif" class="row mt-3">
 							<div class="col-md-6 Message Message--green">
-								<div class="Message-icon">
-									<i class="fa fa-check"></i>
-								</div>
+								<div class="Message-icon"> <i class="fa fa-check"></i> </div>
 								<div class="Message-body">
-									<p>
-										Votre profil a bien été modifié
-									</p>
+									<p> Votre profil a bien été modifié </p>
 								</div>
 							</div>
 						</div>
 						<div v-show="notifDel" class="row mt-3">
 							<div class="col-md-6 Message Message--orange">
-								<div class="Message-icon">
-									<i class="fa fa-exclamation"></i>
-								</div>
+								<div class="Message-icon"> <i class="fa fa-exclamation"></i> </div>
 								<div class="Message-body">
-									<p>
-										{{ message }}
-									</p>
+									<p> {{ message }} </p>
 								</div>
-							</div>
-						</div>
-					</div>
-					<div v-if="!user">
-						<div class="d-flex justify-content-between align-items-center mb-3">
-							<h4 class="text-right p-2">profil{{ user.firstname }}</h4>
-						</div>
-						<div class="row mt-2">
-							<div class="col-md-6">
-								<label class="labels">Nom</label>
-								<input type="text" v-model="nom" class="form-control" readonly/>
-							</div>
-							<div class="col-md-6">
-								<label class="labels">Prénom</label>
-								<input type="text" v-model="prenom" class="form-control" readonly/>
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-md-12">
-								<label class="labels">Email</label>
-								<input type="text" v-model="email" class="form-control" readonly/>
-							</div>
-							<div class="col-md-12 mt-3">
-								<label class="labels">Campus</label>
-								<input type="text" v-model="campus" class="form-control" readonly/>
-							</div>
-						</div>
-						<div class="row mt-4">
-							<div class="col-md-5 mt-5 text-center">
-								<button v-on:click="voirAnnonce" class="btn btn-danger profile-button" type="button">
-									Voir les annonces
-								</button>
-							</div>
-							<div class="col-md-6 mt-5 text-center">
-								<button v-on:click="contacterVendeur" class="btnSave" type="button">
-									Contacter vendeur
-								</button>
-							</div>
-						</div>
-					</div>
-					<div v-if="moderator">
-						<div class="d-flex justify-content-between align-items-center mb-3">
-							<h4 class="text-right p-2">profil{{ user.firstname }}</h4>
-						</div>
-						<div class="row mt-2">
-							<div class="col-md-6">
-								<label class="labels">Nom</label>
-								<input type="text" v-model="nom" class="form-control" readonly/>
-							</div>
-							<div class="col-md-6">
-								<label class="labels">Prénom</label>
-								<input type="text" v-model="prenom" class="form-control" readonly/>
-							</div>
-						</div>
-						<div class="row mt-3">
-							<div class="col-md-12">
-								<label class="labels">Email</label>
-								<input type="text" v-model="email" class="form-control" readonly/>
-							</div>
-							<div class="col-md-12 mt-3">
-								<label class="labels">Campus</label>
-								<input type="text" v-model="campus" class="form-control" readonly/>
-							</div>
-						</div>
-						<div class="row mt-4">
-							<div class="col-md-5 mt-5 text-center">
-								<button v-on:click="voirAnnonce" class="btn btn-danger profile-button" type="button">
-									Voir les annonces
-								</button>
-							</div>
-							<div class="col-md-6 mt-5 text-center">
-								<button v-on:click="contacterVendeur" class="btnSave" type="button">
-									Bannir ce vendeur
-								</button>
 							</div>
 						</div>
 					</div>
@@ -185,22 +104,30 @@ export default {
       user: "",
       moderator: "",
       idUserProfil:"",
-    };
+	idUserConnected:"",};
   },
   async mounted() {
     // console.log(this.$store.getters.getUserId)
-    let idUserConected = localStorage.getItem("user");
+    this.idUserConnected = localStorage.getItem("user");
     let id = this.$route.params.id;
     this.idUserProfil = id;
-    this.user =localStorage.getItem("user");
+    // this.user =localStorage.getItem("user");
 
     console.log(id);
     console.log(localStorage.getItem("user"));
     try {
-      await fetch("http://localhost:8000/users/" + id, {
+      await fetch("http://localhost:8000/users/" + this.idUserConnected, {
         method: "GET",
-      })
-        .then((response) => response.json())
+      }).then((response) => response.json())
+            .then((response) => {
+              console.log(response);
+              this.moderator = response[0].fields.moderator;
+            })
+       
+        .then(async () => {
+          await fetch("http://localhost:8000/users/" +id, {
+            method: "GET",
+          }) .then((response) => response.json())
         .then((response) => {
           console.log(response);
 
@@ -209,23 +136,18 @@ export default {
           this.email = response[0].fields.email;
           this.password = response[0].fields.password;
           this.confirmed_password = response[0].fields.password;
-          this.campus = response[0].campusName;
-        })
-        .then(async () => {
-          await fetch("http://localhost:8000/users/" + idUserConected, {
-            method: "GET",
-          })
-            .then((response) => response.json())
-            .then((response) => {
-              console.log(response);
-              this.moderator = response[0].fields.moderator;
-            });
+          this.campus = response[0].campusName;console.log(this);})
+            
         });
     } catch (e) {
       this.error = "Une erreur est survenue!";
     }
   },
   methods: {
+	contacterVendeur(){},
+voirAnnonces(){
+	this.$router.push('/userAds/'+this.idUserProfil)
+},
     async handleSubmit() {
       try {
         if (this.password !== this.confirmed_password) {
@@ -260,8 +182,8 @@ export default {
         )
       ) {
         try {
-          await fetch("http://localhost:8000/users/delete", {
-            method: "POST",
+          await fetch("http://localhost:8000/users/delete/"+this.idUserProfil, {
+            method: "DELETE",
             body: JSON.stringify({
               email: this.email,
             }),

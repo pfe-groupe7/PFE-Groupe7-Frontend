@@ -25,5 +25,6 @@ export default new Router({
     {path:"/reset/:token",component:Reset},
     { path: "/profile/:id", component: Profile },
     { path: "/myads", component: MyAds },
+    { path: "/userAds/:id", component: MyAds },
   ],
 });
