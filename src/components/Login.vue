@@ -148,7 +148,11 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+
+import { mapGetters } from 'vuex'
+
+import {URL} from "../config.js";
+
 export default {
   name: "Login",
 
@@ -170,7 +174,7 @@ export default {
   methods: {
     async handleSubmitRegister() {
       try {
-        await fetch("http://localhost:8000/register", {
+        await fetch(URL+"register", {
           method: "POST",
           body: JSON.stringify({
             firstname: this.prenomRegister,
@@ -200,7 +204,8 @@ export default {
     },
     async handleSubmitLogin() {
       try {
-        await fetch("http://localhost:8000/login", {
+        console.log(URL)
+        await fetch(URL+"login", {
           method: "POST",
           body: JSON.stringify({
             email: this.emailLogin,
@@ -213,12 +218,12 @@ export default {
             localStorage.setItem("token", response.token);
             localStorage.setItem("user", response.user.id);
             this.$store.dispatch("user", response.user);
+           // this.$parent.children[0].update()
+           console.log(this.$parent.$children[0].user=response.user)
+           console.log(this.$parent.$children[0])
+            //  this.$router.push("/");
+            window.location.href = '/';
 
-            // this.$parent.children[0].update()
-            console.log((this.$parent.$children[0].user = response.user));
-            console.log(this.$parent.$children[0]);
-            this.$router.push("/");
-            this.$router.go(0);
           });
       } catch (e) {
         this.error = "Une erreur est survenue!";

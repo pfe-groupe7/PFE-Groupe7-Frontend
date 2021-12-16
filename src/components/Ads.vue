@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import{URL}from '../config'
 // import $ from 'jquery'
 let userId = localStorage.getItem('user')
 let token = localStorage.getItem('token')
@@ -123,7 +124,7 @@ export default {
      
     //   let id=this.$store.getters.getUserId;
             try {
-        await fetch("http://localhost:8000/ads", {
+        await fetch(URL+"ads", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
                 console.log(response)

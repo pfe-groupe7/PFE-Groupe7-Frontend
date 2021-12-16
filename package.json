@@ -23,6 +23,7 @@
     "maplibre-gl": "^1.15.2",
     "primeicons": "^5.0.0",
     "primevue": "^3.10.0",
+    "pubnub-vue": "^1.0.1",
     "sass-loader": "^12.4.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.3",

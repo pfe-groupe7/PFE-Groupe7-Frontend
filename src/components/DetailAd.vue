@@ -39,6 +39,7 @@
 
 
 <script>
+import{URL}from '../config'
 import { mapGetters } from "vuex"
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
 import Map from './Map.vue'
@@ -77,7 +78,7 @@ export default {
 
       let id=this.$route.params.id;
             try {
-        await fetch("http://localhost:8000/ads/"+id, {
+        await fetch(URL+"ads/"+id, {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
                 console.log(response)

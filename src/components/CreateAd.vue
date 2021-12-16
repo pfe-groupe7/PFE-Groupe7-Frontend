@@ -362,8 +362,10 @@
 </template>
 
 <script>
+
 let userId = localStorage.getItem("user");
 let token = localStorage.getItem("token");
+import{URL}from '../config'
 export default {
   name: "CreateAd",
   components: {},
@@ -402,8 +404,9 @@ export default {
   },
 
   methods: {
-    handleSubmit() {
-      fetch("http://localhost:8000/ad", {
+
+   async handleSubmit() {
+      fetch(URL+"ad", {
         method: "POST",
         body: JSON.stringify({
           userId: userId,
@@ -427,6 +430,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+
         });
     },
 
@@ -460,7 +464,7 @@ export default {
       console.log(this.nbrPhoto);
       this.nbrPhoto--;
 
-      fetch("http://localhost:8000/media", {
+      fetch(URL+"media", {
         method: "POST",
         body: JSON.stringify({
           url: data["data"]["display_url"],
