@@ -50,6 +50,10 @@ export default {
 async mounted(){
   // console.log(this.user)
   //  this.user=this.$store.getters.user
+  console.log(this.$route.path!='/')
+  if(!localStorage.getItem("user")&& this.$route.path!='/'){
+     this.$router.push('/login');
+  }
   console.log("1")
   await fetch(URL+"users/"+localStorage.getItem("user") , {
         method: "GET"

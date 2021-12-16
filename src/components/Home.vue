@@ -84,23 +84,23 @@ export default {
         await fetch(URL+"ads", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
-                console.log(response)
+                
                 response.campus.forEach(e=>e.fields["id"]=e.pk);
                 this.campus= response.campus.map(e=>e.fields);
-                console.log(response)
+                
                 response.categories.forEach(e=>e.fields["id"]=e.pk);
                 this.categories=response.categories.map(e=>e=e.fields)
-                console.log(response)
+                
                 response.medias.forEach(e=>e.fields["id"]=e.pk);
                 this.medias=response.medias.map(e=>e=e.fields);
-                console.log(response)
+                
                 this.adsCampus=response.adsCampus.map(e=>e=e.fields);
                 response.ads.forEach(e=>e.fields["id"]=e.pk);
-                console.log(response)
+                
                 this.list=response.ads.map(e=>e=e.fields)
                 this.list.forEach(e=>e['category']=this.categories.filter(i=>i.id==e.category)[0].categoryName)
                  console.log(this.medias)
-                 console.log(response)
+                 
                  this.filterdList=this.list.filter(e=>e.state.includes("validé"))
                  this.filterdList=this.filterdList.sort(function(a, b){return b.id-a.id});
                  console.log(this.filterdList)
