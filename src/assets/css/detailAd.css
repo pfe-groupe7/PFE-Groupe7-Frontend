@@ -17,6 +17,7 @@ body {
 .map {
   margin-bottom: 40px;
   margin-right: 20px;
+  margin-left: -30px;
 }
 h2 {
   text-align: center;
@@ -58,7 +59,7 @@ span {
   margin-bottom: 80px;
 }
 .ajout {
-  margin-top: 150px;
+  margin-top: 50%;
   margin-left: 10%;
   font-size: 25px;
 }
