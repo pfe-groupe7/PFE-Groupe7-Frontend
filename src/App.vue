@@ -6,7 +6,7 @@
       <router-view :user="user"/>
         </div>
     </div>
-    <Chats v-if="user"/>
+    <Chats  :user="user"/>
     <Footer />
   </div>
 </template>
@@ -32,8 +32,8 @@ export default {
     }
   },
 
-  async created() {
-    this.user=this.$store.getters.user
+   created() {
+    // this.user=this.$store.getters.user
     // const response = await axios.get("user");
     //  this.$store.dispatch('user',response.data);
     //  console.log("1")
@@ -48,7 +48,8 @@ export default {
      
 },
 async mounted(){
-  // this.user=this.$store.getters.user
+  // console.log(this.user)
+  //  this.user=this.$store.getters.user
   console.log("1")
   await fetch(URL+"users/"+localStorage.getItem("user") , {
         method: "GET"

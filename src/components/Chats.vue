@@ -1,10 +1,11 @@
 <template>
-<div id="body">
+<div id="body" v-if="user">
     <div id="body"> 
   
 <div id="chat-circle" class="btn btn-raised">
         <div id="chat-overlay"></div>
-<i class="fa fa-phone fa-2x" style='left: 23px;position: absolute;' aria-hidden="true"><span id="notif" class="badge bg-secondary" style="border-radius: 165px;position: absolute;background-color: red !important;top: -48px;">New</span></i>
+       
+ <i class="fa fa-newspaper-o fa-2x" style='left: 23px;position: absolute;' aria-hidden="true"><span id="notif" class="badge bg-secondary" style="border-radius: 165px;left: -22px; position: absolute;background-color: red !important;top: -48px;">New</span></i>
 	</div>
   
   <div class="chat-box">
@@ -19,7 +20,7 @@
     </div>
     <div class="chat-input">      
       <form>
-        <message-input></message-input>
+        <message-input v-if="moderator"></message-input>
       </form>      
     </div>
   </div>
@@ -64,15 +65,19 @@ import $ from 'jquery'
     name: 'chat-container',
     components: {
       ChatLog,
+     
       MessageInput,
     },
-    data() {
-      return {
+    data() { 
+        let user=this.$store.getters.user
+    return {
+      user:user,
+      moderator:"",
         title: 'Contact-Support',
+        
       };
     },
-    mounted() {
-       
+   async mounted() {
         $("#chat-circle").click(function() {
         $("#chat-circle").toggle('scale');
         $(".chat-box").toggle('scale');
@@ -82,12 +87,32 @@ import $ from 'jquery'
           $("#notif").hide();
         $("#chat-circle").toggle('scale');
         $(".chat-box").toggle('scale');
+
+            
 })
       // Subscribe to PubNub
       this.$pnSubscribe({
          channels: ['vueChat'],
       });
       this.$nextTick(fetchHistory(this.$store));
+       await fetch("http://localhost:8000/users/" + this.user.id, {
+        method: "GET",
+      }).then((response) => response.json())
+            .then((response) => {
+              console.log(response);
+              this.moderator = response[0].fields.moderator;
+            })
+      try{
+        await fetch("http://localhost:8000/categories", {
+          method: "GET"
+        }).then(response => response.json()).then((response)=>{
+                console.log(this.user)         
+                console.log("The token")
+                response.forEach(e=>e.fields["id"]=e.pk);
+                this.categories=response.map(e=>e=e.fields)})
+                }catch (e) {
+                this.error = "Une erreur est survenue!";
+      }
     },
     computed: {
     ...mapGetters({

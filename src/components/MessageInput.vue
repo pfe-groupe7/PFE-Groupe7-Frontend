@@ -1,5 +1,5 @@
 <template>
-  <div class="message-input">
+  <div class="message-input form-control-plaintext">
     <textarea
       ref="messageInput"
       placeholder="message..."

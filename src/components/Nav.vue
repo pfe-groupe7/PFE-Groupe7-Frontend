@@ -64,11 +64,15 @@ export default {
   },
   methods:{
      handleClick(){
-       console.log(this.user)
+       
        localStorage.removeItem('token');
+       localStorage.removeItem('user');
+       this.$store.dispatch('user',null);
        this.$store.dispatch('user',null);
        this.user=null;
-      this.$router.push("/")
+       localStorage.clear();
+       sessionStorage.clear();
+      window.location.href = '/';
      },
      profile(){
        this.$router.push("/profile")
