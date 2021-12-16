@@ -5,12 +5,6 @@
       <img src="../assets/images/vincilogo.png" height="100" alt="vinci market logo">
     </a>
       
-
-       <select @change="search" v-model="catgroy" name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
-          <option selected disabled>Catégorie</option>
-          <option  v-for="category in categories"  v-bind:key="category.pk" :value="category.id">{{category.categoryName}}</option>
-      </select>
-     
       <form class="form-inline">
         <div class="flexbox">
           <div class="search">
@@ -20,9 +14,16 @@
           </div>
         </div>
       </form>
+      <div v-if="user">
         <router-link to="/createAd"><a class="btn mt-1">
           Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
         </router-link>
+      </div>
+      <div v-else>
+        <router-link to="/login"><a class="btn mt-1">
+          Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+        </router-link>
+      </div>
         <ul class="navbar-nav ml-auto" v-if="!user">
           <li class="nav-item">
             <router-link to="/login" class="nav-link"><i id="userIcon" class="fa fa-user-circle" aria-hidden="true"></i></router-link>
@@ -36,7 +37,7 @@
             
             <a href="javascript:void(0)" @click="myAds"   class="dropdown-item">Mes annonces</a>                   
             <a href="javascript:void(0)" @click="profile"   class="dropdown-item">Éditer mon profil</a>
-     
+             <a href="javascript:void(0)" v-if="moderator" @click="modPage"   class="dropdown-item">Annonces à valider</a>
             <a href="javascript:void(0)" @click="handleClick" class="dropdown-item">Déconnexion</a>
 
           </div>
@@ -52,22 +53,34 @@
 
 
 export default {
+  
   name: 'Nav',
   data () {
     let user=this.$store.getters.user
+    let token = localStorage.getItem('token')
     return {
       user:user,
+      token:token,
       title:"",
       catgroy:"Catégorie",
-      categories:[]
+      categories:[],
+      moderator:""
 
 }
   },async mounted(){
+    await fetch("http://localhost:8000/users/" + this.user.id, {
+        method: "GET",
+      }).then((response) => response.json())
+            .then((response) => {
+              console.log(response);
+              this.moderator = response[0].fields.moderator;
+            })
       try{
         await fetch("http://localhost:8000/categories", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
-                console.log(response)         
+                console.log(this.user)         
+                console.log("The token")
                 response.forEach(e=>e.fields["id"]=e.pk);
                 this.categories=response.map(e=>e=e.fields)})
                 }catch (e) {
@@ -92,14 +105,18 @@ export default {
        localStorage.removeItem('token');
        this.$store.dispatch('user',null);
        this.user=null;
-      this.$router.push("/")
+       this.$router.push("/")
+       this.$router.go(0)
+      
      },
      profile(){
-       this.$router.push("/profile")
+       this.$router.push("/profile/"+this.user.id)
      },
      myAds(){
       this.$router.push("/myads")
        
+     },modPage(){
+       this.$router.push("/modPage")
      }
      
      

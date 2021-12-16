@@ -75,6 +75,13 @@ async mounted(){
 
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans:400.500.600.700.800");
 
+body{
+ background-image: url("./assets/images/backrou.png");
+ background-size: cover ;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+}
 * {
   box-sizing: border-box;
 }

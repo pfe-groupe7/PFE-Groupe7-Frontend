@@ -1,40 +1,37 @@
 <template>
-    <div class="card is-clearfix columns">
+    <div v-if="token" class="card is-clearfix columns">
         <div class="card-content__title mt-4">
             <h2 class="title is-4">{{list.title}}</h2>
         </div> 
         <div class="row">
             <div class="col-7">
-                <b-carousel
-                        id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
+              <b-carousel id="carousel-1" v-model="slide"  controls   indicators  :value=0   style="text-shadow: 1px 1px 2px #333;" >
+                <b-carousel-slide v-for="(a,i) in medias" v-bind:key="i"  >
+                  <template #img>
+                    <img   class="d-block img-fluid w-100" :src="a.url" alt="image slot">
+                  </template>            
 
-            <b-carousel-slide v-for="(a,i) in medias" v-bind:key="i"  >
-                <template #img>
-          <img   class="d-block img-fluid w-100" width="500px"  height="480px" :src="a.url" alt="image slot"
-          >
-        </template>
-            </b-carousel-slide>
+                </b-carousel-slide>                  
+              </b-carousel>                
+              <div class="ajout"><p>Ajouté par <a href="#"> {{seller.firstname}} </a> </p></div> 
 
-                 </b-carousel>
             </div>
             <div class="col-5">
-
-                
-                <div class="card-content__text"><p>{{list.description}}</p></div> 
+                <div class="card-content__text"><p class="description">Description</p><p>{{list.description}}</p></div> 
                 <span class="title is-3"><strong v-if="list.price==0"> Gratuit</strong>
-                <strong v-else>{{list.price}}€ </strong></span>
-                <div class="card-content__text"><p>Lieu</p><Map :srcMap="location" /></div> 
-
-                </div>
-            </div>
+                <strong v-else>{{list.price}} € </strong></span>
+                <div class="card-content__text"><p>Lieu <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                </p><div class="map"><Map :srcMap="location" /></div></div> 
+              </div>
+          </div>
 
         <div class="card-content__price is-pulled-left">
-            <div class="ajout"><p>Ajouté par <a href="#"> {{seller.firstname}} </a> </p></div> 
-            <router-link to="/contactSeller"><a class="btn mt-1">
-          Contactez ce vendeur &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
-        </router-link>
+            <div class="card-content__price is-pulled-left">
+                <a :href="'mailto:'+seller.email+'?subject='+list.title+'&body=Bonjour '+seller.firstname+', \n\n'">
+                <button class="btn" type="submit">Contactez ce vendeur</button>
+                </a>    
+            </div>
         </div>
-
     </div>
 
 </template>
@@ -44,8 +41,9 @@
 <script>
 import { mapGetters } from "vuex"
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
-
 import Map from './Map.vue'
+let token = localStorage.getItem('token')
+
 export default {
   name: "DetailAd",
   components: {
@@ -54,6 +52,7 @@ export default {
   },
   data(){
     return {
+      token:token,
       ad: [],
       category:[],
       campus:[],
@@ -71,7 +70,9 @@ export default {
   },
 
   computed:{
+   
     ...mapGetters(['user'])
+     
   },  async mounted() {
 
       let id=this.$route.params.id;
@@ -94,7 +95,8 @@ export default {
                 this.seller=response.seller.map(e=>e=e.fields);
                  console.log(this)
                 this.list=this.list[0]
-                this.seller=this.seller[0]
+                console.log(this)
+                this.seller=this.seller.filter(e=>e.id==this.list.seller)[0]
                 this.location=response.location
                 this.medias=this.getMedia(1)
                  
@@ -103,7 +105,8 @@ export default {
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
-  },methods:{
+  },
+   methods:{
  
      onSlideStart(slide) {
          console.log(slide)

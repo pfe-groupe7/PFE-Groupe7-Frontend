@@ -19,6 +19,7 @@
     "express": "^4.17.1",
     "jquery": "^3.6.0",
     "json-server": "^0.17.0",
+    "mailtoui": "^1.0.3",
     "maplibre-gl": "^1.15.2",
     "primeicons": "^5.0.0",
     "primevue": "^3.10.0",

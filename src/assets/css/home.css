@@ -12,6 +12,17 @@ h2 {
   color: #3a5749;
 }
 
+/* The colour of the indicators */
+.blog .carousel-indicators li {
+  background: #a3a3a3;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+}
+
+.blog .carousel-indicators .active {
+  background: #707070;
+}
 h3 {
   color: #3a5749;
   font-size: 50px;
@@ -41,13 +52,7 @@ h3::after {
   height: 1094px;
   margin: auto;
 }
-.star-rating li {
-  padding: 0;
-}
-.star-rating i {
-  font-size: 14px;
-  color: #ffc000;
-}
+
 video {
   min-width: 100vh;
   width: 100%;
@@ -59,12 +64,13 @@ video {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.btn {
+.btn,
+.btnDetail {
   border-radius: 4px;
-  height: 60px;
+  height: 80px;
   width: 40%;
   font-size: 25px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   padding: 0 20px;
   letter-spacing: 1px;
@@ -88,4 +94,48 @@ video {
   background-color: #e4dfd0;
   color: #3a5749;
   box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+.btnDetail {
+  background-color: #ffeba7;
+  color: #3a5749;
+  font-size: 30px;
+  font-weight: 600;
+  height: 80px;
+  width: 300px;
+  text-align: center;
+  text-decoration: none;
+  margin-left: 0%;
+  margin-top: 20px;
+}
+.btnDetail:hover {
+  color: #ffeba7;
+  background-color: #648a77;
+}
+.card {
+  background-color: #3a5749;
+  width: 100%;
+  height: 1000px;
+  padding: 100px 100px 250px 100px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.d-block {
+  display: block !important;
+  width: 100% !important;
+  margin-bottom: 80px;
+}
+.prix {
+  font-size: 40px;
+  text-align: center;
+  margin-left: 4%;
+  margin-top: -25px;
+}
+.captionTitre {
+  font-weight: 800;
+  margin-bottom: 20px;
+  font-size: 60px;
+}
+img {
+  height: 520px;
+  width: 100%;
 }

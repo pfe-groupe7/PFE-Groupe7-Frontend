@@ -14,41 +14,38 @@
       <div class="row mt-4">
           
           <div class="col-3">
-            <a href="#"> <img src="../assets/images/maison.png" class="rounded" alt="Maison et Jardin" style="width:90%; height:auto"></a>
+            <a href="/ads/Tous/1"> <img src="../assets/images/maison.png" class="rounded" alt="Maison et Jardin" style="width:90%; height:auto"></a>
           </div>
           <div class="col-3">
-            <a href="#"><img src="../assets/images/quotidien.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
+            <a href="/ads/Tous/7"><img src="../assets/images/quotidien.png" class="rounded" alt="Famille" style="width:90%; height:auto"></a>
           </div>
           <div class="col-3">
-            <a href="#"><img src="../assets/images/vetements.png" class="rounded" alt="Vetements" style="width:90%; height:auto"></a>
+            <a href="/ads/Tous/12"><img src="../assets/images/vetements.png" class="rounded" alt="Vetements" style="width:90%; height:auto"></a>
           </div>
           <div class="col-3">
-            <a href="#"><img src="../assets/images/loisirs.png" class="rounded" alt="Loisirs" style="width:90%; height:auto"></a>
+            <a href="/ads/Tous/17"><img src="../assets/images/loisirs.png" class="rounded" alt="Loisirs" style="width:90%; height:auto"></a>
           </div>      
           <a href="/ads" class="btn mt-5" type="submit">Voir toutes les annonces</a>
 
       </div>
 
     </div>
+ 
+
     <div class="row">
       <div id="carousel">
         <h3>Annonces <b>récentes</b></h3>
+          <b-carousel id="carousel-1" v-model="slide" :interval="3000"  controls   indicators  :value=0 style="text-shadow: 1px 1px 2px #333;" >
+            <b-carousel-slide class="card" v-for="ad in filterdList" v-bind:key="ad.id">
+            <p class="captionTitre"> {{ ad.title }} </p>
+            <img class="d-block rounded" :src="getMedia(ad.id)">
+            <p class="prix"><span v-if="ad.price== 0" > <strong> À donner </strong></span>
+              <span v-else> <strong> {{ ad.price }} € </strong></span></p>
+            <a :href="'/detailAd/'+ad.id" class="btnDetail">Voir détails</a>
+            </b-carousel-slide>
 
-          <b-carousel
-                        id="carousel-1" v-model="slide" :interval="4000"  controls   indicators  :value=0 background="#ababab"  img-width="600" img-height="480"   style="text-shadow: 1px 1px 2px #333;" >
-
- <b-carousel-slide v-for="ad in filterdList" v-bind:key="ad.id"
-        :caption="ad.title"
-        :text="ad.price"
-        img-width=100
-        img-height=100
-        :img-src="getMedia(ad.id)"
-      ><a :href="'/detailAd/'+ad.id" class="btn mt-5">Voir Puls</a></b-carousel-slide>
-         
-                 </b-carousel>
-        
-    
-    </div>
+          </b-carousel>
+      </div>
 
     </div>
   </div>
@@ -57,11 +54,14 @@
 
 <script>
 import { mapGetters } from "vuex"
-
+let userId = localStorage.getItem('user')
+let token = localStorage.getItem('token')
 export default {
   name: "Home",
   data(){
     return {
+      userId : userId,
+      token : token,
       list: [],
       annonces:this.$store.getters.annonces,
       categories:[],
@@ -76,7 +76,7 @@ export default {
   computed:{
     ...mapGetters(['user'])
   },  async mounted() {
-  
+  console.log("User id : "+userId)
     //   let id=this.$store.getters.getUserId;
             try {
         await fetch("http://localhost:8000/ads", {
