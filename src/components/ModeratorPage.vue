@@ -1,170 +1,86 @@
 <template>
   <section class="section-products">
     <div class="wrapper wrapper--w800">
-      <div class="card card-1">
-        <div class="card-heading">
-          <h2 class="title mb-4 pb-3">Annonces à valider/refuser</h2>
-        </div>
-        <div class="card-body">
-          <form
-            method="GET"
-            action="#"
-            id="js-wizard-form"
-            @submit.prevent="handleSubmit"
-          >
-            <error v-if="error" :error="error" />
+        <div class="card card-1">
+            <div class="card-heading">
+                <h2 class="title mb-4 pb-3">Annonces à valider/refuser</h2>
+            </div>
+            <div class="card-body">
+                <form method="GET" action="#" id="js-wizard-form" @submit.prevent="handleSubmit">
+                    <error v-if="error" :error="error" />
 
-            <div v-for="ad in list" v-bind:key="ad.id" class="annonce">
-              <div class="card-2">
-                <div class="row">
-                  <b-carousel
-                    id="carousel-1"
-                    v-model="slide"
-                    controls
-                    indicators
-                    :value="0"
-                  >
-                    <b-carousel-slide v-for="(ad, i) in medias" v-bind:key="i">
-                      <template #img>
-                        <img class="d-block" :src="ad.url" alt="image slot" />
-                      </template>
-                    </b-carousel-slide>
-                  </b-carousel>
-                  <div class="col-2">
-                    <label class="labels">Titre</label
-                    ><input
-                      type="text"
-                      v-model="ad.title"
-                      class="form-control"
-                      readonly
-                    />
-                    <label class="labels">Description</label
-                    ><input
-                      type="text"
-                      v-model="ad.description"
-                      class="form-control"
-                      readonly
-                    />
-                  </div>
-                  <div class="col-2">
-                    <label class="labels">Lieu</label
-                    ><input
-                      type="text"
-                      :value="getLocation(ad.id)"
-                      class="form-control"
-                      readonly
-                    />
-                    <label class="labels">Membre</label
-                    ><input
-                      type="text"
-                      :value="getUser(ad.seller)"
-                      class="form-control"
-                      readonly
-                    />
+                    <div v-for="ad in list" v-bind:key="ad.id" class="annonce">
+                        <div class="card-2">
+                            <div class="row">
+                                <b-carousel id="carousel-1" v-model="slide" controls indicators :value="0">
+                                    <b-carousel-slide v-for="(photo, i) in ad.photo" v-bind:key="i">
+                                        <template #img>
+                                            <img class="d-block" :src="photo.url" alt="image slot" style=" margin-left: 39%;" />
+                                        </template>
+                                    </b-carousel-slide>
+                                </b-carousel>
+                                <div class="col-2">
+                                    <label class="labels">Titre</label><input type="text" v-model="ad.title" class="form-control" readonly />
+                                    <label class="labels">Description</label><input type="text" v-model="ad.description" class="form-control" readonly />
+                                </div>
+                                <div class="col-2">
+                                    <label class="labels">Lieu</label><input type="text" :value="getLocation(ad.id)" class="form-control" readonly />
+                                    <label class="labels">Membre</label><input type="text" :value="getUser(ad.seller)" class="form-control" readonly />
 
-                  </div>
-                  <div class="col-2">
-                    <label class="labels">Prix</label
-                    ><input
-                      type="text"
-                      v-model="ad.price"
-                      class="form-control"
-                      readonly
-                    />
-                    <label class="labels">Categorie</label
-                    ><input
-                      type="text"
-                      v-model="ad.category"
-                      class="form-control"
-                      readonly
-                    />
-                  </div>
-                </div>
-                <div class="col-2">
-                  <label class="labels">Lieu</label
-                  ><input
-                    type="text"
-                    :value="getLocation(ad.id)"
-                    class="form-control"
-                    readonly
-                  />
-                  <label class="labels">Membre</label
-                  ><input
-                    type="text"
-                    :value="getUser(ad.seller)"
-                    class="form-control"
-                    readonly
-                  />
-                </div>
-                <div class="col-2">
-                  <label class="labels">Prix</label
-                  ><input
-                    type="text"
-                    v-model="ad.price"
-                    class="form-control"
-                    readonly
-                  />
-                  <label class="labels">Categorie</label
-                  ><input
-                    type="text"
-                    v-model="ad.category"
-                    class="form-control"
-                    readonly
-                  />
-                </div>
-              </div>
+                                </div>
+                                <div class="col-2">
+                                    <label class="labels">Prix</label><input type="text" v-model="ad.price" class="form-control" readonly />
+                                    <label class="labels">Categorie</label><input type="text" v-model="ad.category" class="form-control" readonly />
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <label class="labels">Lieu</label><input type="text" :value="getLocation(ad.id)" class="form-control" readonly />
+                                <label class="labels">Membre</label><input type="text" :value="getUser(ad.seller)" class="form-control" readonly />
+                            </div>
+                            <div class="col-2">
+                                <label class="labels">Prix</label><input type="text" v-model="ad.price" class="form-control" readonly />
+                                <label class="labels">Categorie</label><input type="text" v-model="ad.category" class="form-control" readonly />
+                            </div>
+                        </div>
+                          <div class="row mt-4">
+                        <div class="col-md-5 mt-5 text-center">
+                            <button :id="ad.id" v-on:click="deleteAnnonce" class="btn btn-danger profile-button" type="button">
+                                Refuser
+                            </button>
+                        </div>
+                        <div class="col-md-6 mt-5 text-center">
+                            <button :id="ad.id" v-on:click="handleSubmit" class="btnSave" type="button">
+                                Valider
+                            </button>
+                        </div>
+                    </div>
+                    </div>
+                  
+                    <div v-show="notif" class="row mt-3 notif" style="position: fixed; top: 8%; left: 58%">
+                        <div class="col-md-6 Message Message--green">
+                            <div class="Message-icon">
+                                <i class="fa fa-exclamation"></i>
+                            </div>
+                            <div class="Message-body">
+                                <p>Annonce validée</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-show="notifDel" class="row mt-3">
+                        <div class="col-md-6 Message Message--orange">
+                            <div class="Message-icon">
+                                <i class="fa fa-exclamation"></i>
+                            </div>
+                            <div class="Message-body">
+                                <p>{{ message }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="row mt-4">
-              <div class="col-md-5 mt-5 text-center">
-                <button
-                  :id="ad.id"
-                  v-on:click="deleteAnnonce"
-                  class="btn btn-danger profile-button"
-                  type="button"
-                >
-                  Refuser
-                </button>
-              </div>
-              <div class="col-md-6 mt-5 text-center">
-                <button
-                  :id="ad.id"
-                  v-on:click="handleSubmit"
-                  class="btnSave"
-                  type="button"
-                >
-                  Valider
-                </button>
-              </div>
-            </div>
-            <div
-              v-show="notif"
-              class="row mt-3 notif"
-              style="position: fixed; top: 8%; left: 58%"
-            >
-              <div class="col-md-6 Message Message--green">
-                <div class="Message-icon">
-                  <i class="fa fa-exclamation"></i>
-                </div>
-                <div class="Message-body">
-                  <p>Annonce validée</p>
-                </div>
-              </div>
-            </div>
-            <div v-show="notifDel" class="row mt-3">
-              <div class="col-md-6 Message Message--orange">
-                <div class="Message-icon">
-                  <i class="fa fa-exclamation"></i>
-                </div>
-                <div class="Message-body">
-                  <p>{{ message }}</p>
-                </div>
-              </div>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-  </section>
+</section>
 </template>
 
 <script>
@@ -186,6 +102,8 @@ export default {
       categorie: "",
       message: "",
       error: "",
+      slide:"",
+      ad:""
     };
   },
   async mounted() {
@@ -213,7 +131,7 @@ export default {
           response.ads.forEach((e) => (e.fields["id"] = e.pk));
           this.list = response.ads.map((e) => (e = e.fields));
           this.list.map(
-            (ad) => (ad["photo"] = this.medias.filter((e) => e.ad == ad.id)[0])
+            (ad) => (ad["photo"] = this.medias.filter((e) => e.ad == ad.id))
           );
           this.list.forEach(
             (e) =>
@@ -232,9 +150,17 @@ export default {
     }
   },
   methods: {
+       onSlideStart(slide) {
+         console.log(slide)
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+          console.log(slide)
+        this.sliding = false
+      },
     async handleSubmit(e) {
       try {
-        console.log(e.target);
+        console.log(e.target.id);
         await fetch("http://localhost:8000/ads/update/" + e.target.id, {
           method: "PUT",
           body: JSON.stringify({
