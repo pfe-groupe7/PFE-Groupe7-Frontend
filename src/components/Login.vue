@@ -53,7 +53,7 @@
                         </div>
                         <p class="mb-5 mt-5 text-center">
                           <a class="link" href="/forgot"
-                            >Mot de passe oublié?</a
+                            >Mot de passe oublié ?</a
                           >
                         </p>
                       </form>
