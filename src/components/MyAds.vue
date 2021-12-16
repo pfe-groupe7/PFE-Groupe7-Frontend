@@ -11,10 +11,10 @@
                     <a :href="'/detailAd/'+ad.pk" style="   width: 200px;position: absolute; height: 175px !important;"></a>
                         <img  class="center rounded" :src="ad.photo.url" style="width: 296px;height: 298px;">
                         <div class="part-1">
-                            <span  v-if="ad.fields.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
-                            <span  v-else-if="ad.fields.state=='fermé' " class="closed rounded">{{ad.fields.state}}</span>
+                            <span  v-if="ad.fields.state=='refusée' " class="rejected rounded">{{ad.fields.state}}</span>
+                            <span  v-else-if="ad.fields.state=='clôturée' " class="closed rounded">{{ad.fields.state}}</span>
                             <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
-                            <span  v-else-if="ad.fields.state=='publié'" class="valid rounded">{{ad.fields.state}}</span>
+                            <span  v-else-if="ad.fields.state=='validée'" class="valid rounded">{{ad.fields.state}}</span>
                             <ul >
                                     <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
                             </ul>		
