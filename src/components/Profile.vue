@@ -5,7 +5,7 @@
 				<div class="p-3 py-5">
 					<div>
 						<div class="d-flex justify-content-between align-items-center mb-3">
-							<h4 class="text-right p-2">Mon profil</h4> </div>
+							<h4 class="text-right p-2">Profil de {{prenom}}</h4> </div>
 						<div class="row mt-2">
 							<div class="col-md-6">
 								<label class="labels">Nom</label>
@@ -51,7 +51,9 @@
 								<button v-on:click="voirAnnonces" class="btn btnSave profile-button" type="button"> Voir les annonces </button>
 							</div>
 							<div class="col-md-6 mt-3 text-center" >
+							 <a :href="'mailto:'+seller.email+'?subject='+list.title+'&body=Bonjour '+seller.firstname+', \n\n'">
 								<button v-on:click="contacterVendeur" class="btnSave" type="button"> Contacter vendeur </button>
+								</a>
 							</div>
 					
 							<div class="col-md-6 mt-3 text-center" v-if="moderator">
