@@ -107,16 +107,16 @@
                         <option value="16">Sacs et bagages</option>
                       </optgroup>
                       <optgroup label="Loisirs - hobbys">
-                        <option value="25">Vélos</option>
-                        <option value="18">Loisirs créatifs</option>
-                        <option value="19">Pièces auto</option>
-                        <option value="20">
+                        <option value="18">Vélos</option>
+                        <option value="19">Loisirs créatifs</option>
+                        <option value="20">Pièces auto</option>
+                        <option value="21">
                           Sports et activités d’extérieures
                         </option>
-                        <option value="21">Jeux vidéo</option>
-                        <option value="22">Livres, films et musique</option>
-                        <option value="23">Instruments de musique</option>
-                        <option value="24">
+                        <option value="22">Jeux vidéo</option>
+                        <option value="23">Livres, films et musique</option>
+                        <option value="24">Instruments de musique</option>
+                        <option value="25">
                           Antiquité et objets de collection
                         </option>
                       </optgroup>
