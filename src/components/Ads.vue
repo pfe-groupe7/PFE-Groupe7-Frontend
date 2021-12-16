@@ -4,6 +4,7 @@
       <div class="categorie pb-2 mb-2">
         <select @change="filter()" v-model="byCategory" name="categorie" id="subject" class="btn2 dropdown-toggle"  required value="Catégorie">
           <option selected >{{byCategory}}</option>
+          <option>Toutes les catégories</option>
           <option  v-for="category in categories"  v-bind:key="category.pk" :value="category.categoryName">{{category.categoryName}}</option>
         </select>
       </div>
@@ -24,6 +25,7 @@
       
       <select name="campus" id="subject" @change="filter"  class="btn2" required="required"  v-model="byCampus">
           <option selected >{{byCampus}}</option>
+          <option>Tous les Campus</option>
           <option value="Woluwe" >Woluwe</option>
           <option value="Ixelles" >Ixelles</option>
           <option value="Louvain-La-Neuve" >Louvain-La-Neuve</option>
@@ -180,8 +182,10 @@ export default {
 
     }
     else if(this.byCategory!="Toutes les catégories"&&this.byCampus=="Tous les Campus"){
- 
-          filterdList=filterdList.filter(e=>(e.category==this.byCategory)&&(e.status==this.state)&&(this.byPrice>=e.price));
+          let idCategoryParent=this.categories.filter(e=>e.categoryName==this.byCategory)[0].id
+          let  listCategoryEnfants=this.categories.filter(e=>e.parent==idCategoryParent)
+          listCategoryEnfants=listCategoryEnfants.map(e=>e.categoryName)
+          filterdList=filterdList.filter(e=>((e.category==this.byCategory)||listCategoryEnfants.includes(e.category))&&(e.status==this.state)&&(this.byPrice>=e.price));
     }
     else
     {
