@@ -79,6 +79,11 @@ async mounted(){
 
 @import url("https://fonts.googleapis.com/css?family=Fira+Sans:400.500.600.700.800");
 
+@font-face {
+  font-family: "Lobster";
+  src: url("./assets/css/Lobster-Regular.ttf");
+}
+
 body{
  background-image: url("./assets/images/backrou.png");
  background-size: cover ;
@@ -91,7 +96,7 @@ body{
 }
 body {
   font-weight: 400;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Lobster", sans-serif;
 }
 h1,
 h2,
@@ -102,7 +107,7 @@ h6,
 label,
 span {
   font-weight: 500;
-  font-family: "Fira Sans", sans-serif;
+  font-family: "Lobster", sans-serif;
 }
 body,
 html,
