@@ -13,19 +13,17 @@
           @submit.prevent="handleSubmit"
         >
           <error v-if="error" :error="error" />
-
-          <!-- upper buttons for moving across sections @click REMOVED temp -->
           <ul class="tab-list">
-            <li class="tab-list__item active">
-              <button class="tab-list__link" href="#tab1" data-toggle="tab">
-                <v-stepper-content step="1">
+            <li class="tab-list__item active" >
+              <button class="tab-list__link" href="#tab1" data-toggle="tab" :style="panelStyle1">
+                <v-stepper-content step="1" >
                   <span class="step">1</span>
                   <span class="desc">Informations</span>
                 </v-stepper-content>
               </button>
             </li>
-            <li class="tab-list__item">
-              <button class="tab-list__link" href="#tab2" data-toggle="tab">
+            <li class="tab-list__item" >
+              <button class="tab-list__link" href="#tab2" data-toggle="tab" :style="panelStyle2" >
                 <v-stepper-content step="2">
                   <span class="step">2</span>
                   <span class="desc">Détails</span>
@@ -33,7 +31,7 @@
               </button>
             </li>
             <li class="tab-list__item">
-              <button class="tab-list__link" href="#tab3" data-toggle="tab">
+              <button class="tab-list__link" href="#tab3" data-toggle="tab" :style="panelStyle3" >
                 <v-stepper-content step="3">
                   <span class="step">3</span>
                   <span class="desc">Photos</span>
@@ -138,9 +136,10 @@
                       "
                       >Description</label
                     >
-                    <input
+                    <textarea
                       class="input--style-1"
                       type="text"
+                      rows="1"
                       v-model="description"
                       placeholder="Description de l'annonce"
                       required="required"
@@ -151,7 +150,7 @@
             </div>
           </div>
           <!--status and capmus-->
-          <div v-if="step === 2" class="Panel-Content" id="tab2">
+          <div v-if="step === 2" class="Panel-Content" id="tab2" >
             <div class="form">
               <div class="wrapper">
                 <input
@@ -193,7 +192,7 @@
                     class="input--style-1"
                     type="number>0"
                     v-model="prix"
-                    placeholder="Prix"
+                    placeholder="Prix €"
                     required="required"
                   />
                 </div>
@@ -211,7 +210,7 @@
                     name="campus"
                     id="subject"
                     class="form-style"
-                    required="required"
+                    required
                     v-model="campus"
                     @change="showSelect($event)"
                   >
@@ -286,8 +285,8 @@
           </div>
 
           <!-- photos BUG HERE DO NOT CLICK-->
-          <div v-if="step === 3" class="Panel-Content" id="tab3">
-            <div class="row text-center">
+          <div v-if="step === 3" class="Panel-Content" id="tab3" >
+            <div class="row text-center" id="upload">
               <h1>Télécharger une ou plusieurs image(s)</h1>
               <div class="dropbox">
                 <div class="custom-file">
@@ -317,12 +316,12 @@
           <!-- buttons -->
           <div id="boutons">
             <div class="form-group mt-4">
-              <button v-if="step > 1" @click="step -= 1" class="btn mb-2">
+              <button v-if="step > 1" @click="step -= 1, activatePanel(step)" class="btn mb-2">
                 <i class="fa fa-arrow-left"></i> &nbsp;Précédent
               </button>
             </div>
             <div class="form-group mt-4">
-              <button class="btn mb-2" v-if="step < 3" @click="step += 1">
+              <button class="btn mb-2" v-if="step < 3" @click="step += 1, activatePanel(step)" >
                 Suivant &nbsp;<i class="fa fa-arrow-right"></i>
               </button>
             </div>
@@ -348,6 +347,16 @@ export default {
 
   data() {
     return {
+      isActive : true,
+      panelStyle1: {
+        background : "#84A796"
+      },
+      panelStyle2: {
+        background : "#3a5749"
+      },
+      panelStyle3: {
+        background : "#3a5749"
+      },
       token: token,
       step: 1,
       selectedLocation: 1,
@@ -458,6 +467,29 @@ export default {
 
     activatePanel(stepIndex) {
       this.step = stepIndex;
+      if(this.step===1){
+        this.isActive = true;
+        this.panelStyle1.background = "#84A796";
+        this.panelStyle2.background = "#3a5749";
+        this.panelStyle3.background = "#3a5749";
+
+      }
+       else if(this.step===2){
+        this.isActive=true;
+         this.panelStyle1.background = "#3a5749";
+        this.panelStyle2.background = "#84A796";
+        this.panelStyle3.background = "#3a5749";
+
+
+      }  
+      else if(this.step===3){
+        this.isActive=true;
+        this.panelStyle1.background = "#3a5749";
+        this.panelStyle2.background = "#3a5749";
+        this.panelStyle3.background = "#84A796";
+
+
+      }
       console.log(this.step);
     },
     showSelect(event) {
