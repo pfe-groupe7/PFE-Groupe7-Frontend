@@ -14,16 +14,26 @@
         >
           <error v-if="error" :error="error" />
           <ul class="tab-list">
-            <li class="tab-list__item active" >
-              <button class="tab-list__link" href="#tab1" data-toggle="tab" :style="panelStyle1">
-                <v-stepper-content step="1" >
+            <li class="tab-list__item active">
+              <button
+                class="tab-list__link"
+                href="#tab1"
+                data-toggle="tab"
+                :style="panelStyle1"
+              >
+                <v-stepper-content step="1">
                   <span class="step">1</span>
                   <span class="desc">Informations</span>
                 </v-stepper-content>
               </button>
             </li>
-            <li class="tab-list__item" >
-              <button class="tab-list__link" href="#tab2" data-toggle="tab" :style="panelStyle2" >
+            <li class="tab-list__item">
+              <button
+                class="tab-list__link"
+                href="#tab2"
+                data-toggle="tab"
+                :style="panelStyle2"
+              >
                 <v-stepper-content step="2">
                   <span class="step">2</span>
                   <span class="desc">Détails</span>
@@ -31,7 +41,12 @@
               </button>
             </li>
             <li class="tab-list__item">
-              <button class="tab-list__link" href="#tab3" data-toggle="tab" :style="panelStyle3" >
+              <button
+                class="tab-list__link"
+                href="#tab3"
+                data-toggle="tab"
+                :style="panelStyle3"
+              >
                 <v-stepper-content step="3">
                   <span class="step">3</span>
                   <span class="desc">Photos</span>
@@ -118,7 +133,7 @@
                           Antiquité et objets de collection
                         </option>
                       </optgroup>
-                      <optiongroup>
+                      <optiongroup label="Electronique">
                         <option value="27">Electronique et ordinateurs</option>
                         <option value="28">Téléphones mobiles</option>
                       </optiongroup>
@@ -150,7 +165,7 @@
             </div>
           </div>
           <!--status and capmus-->
-          <div v-if="step === 2" class="Panel-Content" id="tab2" >
+          <div v-if="step === 2" class="Panel-Content" id="tab2">
             <div class="form">
               <div class="wrapper">
                 <input
@@ -285,7 +300,7 @@
           </div>
 
           <!-- photos BUG HERE DO NOT CLICK-->
-          <div v-if="step === 3" class="Panel-Content" id="tab3" >
+          <div v-if="step === 3" class="Panel-Content" id="tab3">
             <div class="row text-center" id="upload">
               <h1>Télécharger une ou plusieurs image(s)</h1>
               <div class="dropbox">
@@ -316,12 +331,20 @@
           <!-- buttons -->
           <div id="boutons">
             <div class="form-group mt-4">
-              <button v-if="step > 1" @click="step -= 1, activatePanel(step)" class="btn mb-2">
+              <button
+                v-if="step > 1"
+                @click="(step -= 1), activatePanel(step)"
+                class="btn mb-2"
+              >
                 <i class="fa fa-arrow-left"></i> &nbsp;Précédent
               </button>
             </div>
             <div class="form-group mt-4">
-              <button class="btn mb-2" v-if="step < 3" @click="step += 1, activatePanel(step)" >
+              <button
+                class="btn mb-2"
+                v-if="step < 3"
+                @click="(step += 1), activatePanel(step)"
+              >
                 Suivant &nbsp;<i class="fa fa-arrow-right"></i>
               </button>
             </div>
@@ -347,15 +370,15 @@ export default {
 
   data() {
     return {
-      isActive : true,
+      isActive: true,
       panelStyle1: {
-        background : "#84A796"
+        background: "#84A796",
       },
       panelStyle2: {
-        background : "#3a5749"
+        background: "#3a5749",
       },
       panelStyle3: {
-        background : "#3a5749"
+        background: "#3a5749",
       },
       token: token,
       step: 1,
@@ -467,28 +490,21 @@ export default {
 
     activatePanel(stepIndex) {
       this.step = stepIndex;
-      if(this.step===1){
+      if (this.step === 1) {
         this.isActive = true;
         this.panelStyle1.background = "#84A796";
         this.panelStyle2.background = "#3a5749";
         this.panelStyle3.background = "#3a5749";
-
-      }
-       else if(this.step===2){
-        this.isActive=true;
-         this.panelStyle1.background = "#3a5749";
+      } else if (this.step === 2) {
+        this.isActive = true;
+        this.panelStyle1.background = "#3a5749";
         this.panelStyle2.background = "#84A796";
         this.panelStyle3.background = "#3a5749";
-
-
-      }  
-      else if(this.step===3){
-        this.isActive=true;
+      } else if (this.step === 3) {
+        this.isActive = true;
         this.panelStyle1.background = "#3a5749";
         this.panelStyle2.background = "#3a5749";
         this.panelStyle3.background = "#84A796";
-
-
       }
       console.log(this.step);
     },
