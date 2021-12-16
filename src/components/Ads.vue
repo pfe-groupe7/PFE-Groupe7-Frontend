@@ -45,9 +45,9 @@
       <div class="error" v-if="error">{{ error }}</div>
       <div class="card col-3" id="annonce" v-for="ad in filterdList" v-bind:key="ad.id" >
         <div class="card-image">
-          <div id="product" class="single-product rounded">
+          <div class="single-product rounded">
             <a>
-            <img class="d-block w-100 rounded" :src="getMedia(ad.id)">
+            <img class=" d-block w-100" :src="getMedia(ad.id)">
             </a>
           </div>
         </div>
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="content is-clearfix">
-            <p>{{ ad.description }}</p>
+            <p class="description">{{ ad.description }}</p>
             <p class="is-pulled-right">
               <span class="prix"
                 ><strong>{{ ad.price }} &euro; </strong></span
