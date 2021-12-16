@@ -5,12 +5,6 @@
       <img src="../assets/images/vincilogo.png" height="100" alt="vinci market logo">
     </a>
       
-
-       <select @change="search" v-model="catgroy" name="categorie" id="subject" class=" btn mt-1 nav-link dropdown-toggle"  required value="Catégorie">
-          <option selected disabled>Catégorie</option>
-          <option  v-for="category in categories"  v-bind:key="category.pk" :value="category.id">{{category.categoryName}}</option>
-      </select>
-     
       <form class="form-inline">
         <div class="flexbox">
           <div class="search">
@@ -20,8 +14,13 @@
           </div>
         </div>
       </form>
-      <div v-if="token">
+      <div v-if="user">
         <router-link to="/createAd"><a class="btn mt-1">
+          Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+        </router-link>
+      </div>
+      <div v-else>
+        <router-link to="/login"><a class="btn mt-1">
           Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
         </router-link>
       </div>
