@@ -521,7 +521,9 @@ label.error {
   text-transform: capitalize;
   display: inline-block;
 }
-
+#tab2 {
+  margin-top: 25px;
+}
 .tab-content > .Panel-Content {
   display: none;
   padding: 35px 0;
