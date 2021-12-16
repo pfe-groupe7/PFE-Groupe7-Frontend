@@ -192,7 +192,6 @@ a {
 .wrapper--w820 {
   margin-top: -100px;
   width: 116%;
-
 }
 
 /* ==========================================================================
@@ -553,6 +552,7 @@ label.error {
 }
 
 .card-1 {
+  padding: 0;
   background: transparent;
 }
 #cardAdd {
@@ -579,7 +579,7 @@ label.error {
 .wrapper {
   justify-content: space-evenly;
   border-radius: 5px;
-  padding-top: 5%;
+  padding-right: 200px;
 }
 
 .wrapper .option {

@@ -30,7 +30,7 @@
 									</select>
 								</div>
 								<div class="row mt-3">
-									<div class="col-md-6">
+									<div class="col-md-6 mt-4">
 										<label class="labels">Mot de passe</label>
 										<input id="password" type="password" class="form-control" v-model="password" /> </div>
 									<div class="col-md-6">
