@@ -1,16 +1,18 @@
 <template>
     <section class="section-products" >
       <div class="header">
-          <h2 style="font-size:40px;">Mes annonces</h2>
+          <h2 style="font-size:40px;">Annonces de {{prenom}}</h2>
       </div>
 		<div class="container" style="max-height: 600px; display: flex;">
 
-            <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
-              <div  class="col-md-5 col-lg-1 col-xxl-3 offset-2">                        
+            <div v-for="ad in list"  v-bind:key="ad.pk" class="list" >
+
+              <div v-if="(ad.fields.seller==idUserConnected)||(idUserConnected!=ad.fields.seller&&ad.fields.state=='validée')" class="col-md-5 col-lg-1 col-xxl-3 offset-2">                        
+
                 <div   id="product" class="single-product rounded border ">
                     <a :href="'/detailAd/'+ad.pk" style="   width: 200px;position: absolute; height: 175px !important;"></a>
                         <img  class="center rounded" :src="ad.photo.url" style="width: 296px;height: 298px;">
-                        <div class="part-1">
+                        <div v-if="idUserConnected==ad.fields.seller" class="part-1">
                             <span  v-if="ad.fields.state=='refusée' " class="rejected rounded">{{ad.fields.state}}</span>
                             <span  v-else-if="ad.fields.state=='clôturée' " class="closed rounded">{{ad.fields.state}}</span>
                             <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
@@ -19,7 +21,8 @@
                                 <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
                             </ul>		
                         </div>
-                      <div class="titre">
+                        <!-- <div v-else class="part-1"></div> -->
+                      <div class="titre" style="margin-top: 21%;">
                                 <h3 class="product-title">{{ad.fields.title}}</h3>
                         </div> 
                 </div>
@@ -62,6 +65,21 @@ export default {
       notif:false
 
     }
+  }, async created(){
+    if(this.$route.params.id)
+    this.user=this.$route.params.id;
+    else
+    this.user=this.user.id;
+     console.log(this.user)
+     this.idUserConnected = localStorage.getItem("user");
+     await fetch(URL+"users/" +this.user, {
+            method: "GET",
+          }) .then((response) => response.json())
+        .then((response) => {
+          console.log(response);
+
+          this.prenom = response[0].fields.firstname;
+          })
   }, async mounted() {
     if(this.$route.params.id)
     this.user=this.$route.params.id;

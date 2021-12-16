@@ -112,7 +112,12 @@ export default {
       moderator: "",
       idUserProfil:"",
 	idUserConnected:"",};
+  },created(){
+     this.idUserConnected = localStorage.getItem("user");
+    let id = this.$route.params.id;
+    this.idUserProfil = id;
   },
+
   async mounted() {
     // console.log(this.$store.getters.getUserId)
     this.idUserConnected = localStorage.getItem("user");
@@ -183,14 +188,13 @@ voirAnnonces(){
       }
     },
 
-    async deleteUser() {
-      if (
+     deleteUser() {
         this.$confirm(
-          "Êtes-vous sûr de vouloir supprimer votre compte ?",
-          "Supprimer votre compte",
+          "Êtes-vous sûr de vouloir supprimer ce compte ?",
+          "Supprimer ce compte",
           "error"
-        )
-      ) {
+        ).then(
+      async()=> {
         try {
           await fetch(URL+"users/delete/"+this.idUserProfil, {
             method: "DELETE",
@@ -200,16 +204,16 @@ voirAnnonces(){
           })
             .then((response) => response.json())
             .then(() => {
-              this.message = "Votre compte a  été bien suprrimé ";
+              this.message = "Ce compte a  été bien suprrimé ";
               this.notifDel = true;
               localStorage.removeItem("token");
               this.$store.dispatch("user", null);
-              setTimeout(() => this.$router.push("/"), 2000);
+              setTimeout(() => window.location.href="/", 2000);
             });
         } catch (e) {
           this.error = "Une erreur est survenue!";
         }
-      }
+      })
     },
   },
 };
