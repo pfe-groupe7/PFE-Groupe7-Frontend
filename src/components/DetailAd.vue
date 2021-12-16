@@ -13,7 +13,7 @@
 
                 </b-carousel-slide>                  
               </b-carousel>                
-              <div class="ajout"><p>Ajouté par <a href="#"> {{seller.firstname}} </a> </p></div> 
+              <div class="ajout"><p>Ajouté par <a :href="'/profile/'+seller.id"> {{seller.firstname}} </a> </p></div> 
 
             </div>
             <div class="col-5">

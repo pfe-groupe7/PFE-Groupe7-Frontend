@@ -95,7 +95,7 @@ import $ from 'jquery'
          channels: ['vueChat'],
       });
       this.$nextTick(fetchHistory(this.$store));
-       await fetch("http://localhost:8000/users/" + this.user.id, {
+       await fetch(URL+"users/" + this.user.id, {
         method: "GET",
       }).then((response) => response.json())
             .then((response) => {
@@ -103,7 +103,7 @@ import $ from 'jquery'
               this.moderator = response[0].fields.moderator;
             })
       try{
-        await fetch("http://localhost:8000/categories", {
+        await fetch(URL+"categories", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
                 console.log(this.user)         
