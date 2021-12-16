@@ -19,10 +19,10 @@
                                     <div  id="product" class="single-product rounded" :style="{ backgroundImage : 'url(' + ad.photo[0].fields.url + ')' }">
                                      
                                             <div class="part-1">
-                                                <span  v-if="ad.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
-                                                <span  v-else-if="ad.fields.state=='fermé' " class="closed rounded">{{ad.fields.state}}</span>
+                                                <span  v-if="ad.state=='rejetée' " class="rejected rounded">{{ad.fields.state}}</span>
+                                                <span  v-else-if="ad.fields.state=='clôturée' " class="closed rounded">{{ad.fields.state}}</span>
                                                 <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
-                                                <span  v-else-if="ad.fields.state=='publié'" class="valid rounded">{{ad.fields.state}}</span>
+                                                <span  v-else-if="ad.fields.state=='publiée'" class="valid rounded">{{ad.fields.state}}</span>
                                                 <a :href="'ads/'+ad.fields.pk" style=" left: -18px;   width: 241px;position: absolute; height: 175px !important;"></a>
                                                     <ul >
                                                             <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									

@@ -30,7 +30,9 @@
 
         <div class="card-content__price is-pulled-left">
             <div class="ajout"><p>Ajouté par <a href="#"> {{seller.firstname}} </a> </p></div> 
-            <button class="btn">Contactez ce vendeur</button> 
+            <router-link to="/contactSeller"><a class="btn mt-1">
+          Contactez ce vendeur &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+        </router-link>
         </div>
 
     </div>

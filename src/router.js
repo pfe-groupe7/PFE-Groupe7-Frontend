@@ -11,6 +11,7 @@ import DetailAd from './components/DetailAd.vue'
 import Profile from './components/Profile.vue'
 import MyAds from './components/MyAds.vue'
 import Ads from './components/Ads.vue'
+import ContactForm from './components/ContactForm.vue'
 
 export default new Router({
   mode: "history",
@@ -25,5 +26,7 @@ export default new Router({
     {path:"/reset/:token",component:Reset},
     { path: "/profile", component: Profile },
     { path: "/myads", component: MyAds },
+    { path: "/contactSeller", component: ContactForm },
+
   ],
 });

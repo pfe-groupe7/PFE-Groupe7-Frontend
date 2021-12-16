@@ -24,21 +24,21 @@
             },
             messages: {
                 username: {
-                    required: "Enter username"
+                    required: "Entrez votre nom et prénom"
                 },
     
                 email: {
-                    required: "Enter your email",
+                    required: "Entrez votre adresse mail",
     
                 },
                 password: {
-                    required: "Enter password",
-                    minlength: "Password must be >= 8 character"
+                    required: "Entrez votre mot de passe",
+                    minlength: "Le mot de passe doit contenir au moins 8 caractères"
                 },
                 re_password: {
-                    required: "Please confirm your password",
-                    minlength: "Password must has >= 8 character",
-                    equalTo: "Password doesn't equal to the previous one"
+                    required: "Confirmez votre mot de passe",
+                    minlength: "Le mot de passe doit contenir au moins 8 caractères",
+                    equalTo: "Le mot de passe ne correspond pas"
                 }
             }
         });
