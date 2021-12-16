@@ -1,0 +1,149 @@
+.details {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  z-index: 1;
+}
+.button,
+.select {
+  z-index: 2;
+}
+.w-100 {
+  width: 100% !important;
+}
+.d-block {
+  display: block !important;
+}
+
+img {
+  margin-left: 55px;
+  margin-top: 30px;
+  height: 250px;
+  width: 100%;
+}
+
+.title {
+  font-size: 35px;
+}
+.btn,
+.btnContact {
+  margin-top: 2%;
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0 40px;
+  letter-spacing: 1px;
+  align-items: center;
+  text-align: center;
+  border: none;
+  background-color: #ffeba7;
+  color: #3a5749;
+  box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
+}
+.btn {
+  padding-top: 4%;
+}
+.col-4 {
+  margin-left: 100px;
+}
+
+.col-3 {
+  margin-left: 120px;
+}
+
+.btn:active,
+.btn:focus {
+  background-color: #3a5749;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+.btn:hover {
+  background-color: #27332d;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+.row {
+  margin-top: 50px;
+  margin-left: 100px;
+}
+.col-10 {
+  text-align: center;
+  align-items: center;
+}
+#subject {
+  width: 90%;
+}
+.triText {
+  font-weight: 300;
+  font-size: 18px;
+  margin-left: 20%;
+  color: rgb(0, 24, 54);
+  margin-bottom: -30px;
+}
+.triControl {
+  margin-left: 20%;
+}
+.mp-Select-input {
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #fff4d1;
+  margin-left: 50%;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  width: 180px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+#annonce {
+  box-shadow: 2px 4px 8px 0 rgba(21, 21, 21, 0.2);
+  margin: 10px 40px 100px 50px;
+  border-radius: 10%;
+  width: 370px;
+  color: white;
+  font-size: 20px;
+  background-color: #456857;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.prixCursor {
+  margin: 50px 10px 50px 0px;
+  width: 90%;
+}
+.radioButton {
+  font-size: 20px;
+}
+.form-check {
+  margin-top: 20px;
+}
+#radio {
+  margin-right: 10px;
+}
+.categorie {
+  margin-top: 150px;
+}
+.card-footer {
+  background-color: transparent;
+  margin-top: 7%;
+  margin-bottom: 5%;
+}
+.card-content {
+  padding: 0;
+}
+
+.btn2 {
+  border-radius: 5px;
+  background-color: #fff4d1;
+  height: 45px;
+  width: 180px;
+  margin-top: 20px;
+}

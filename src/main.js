@@ -7,6 +7,7 @@ import VueStepWizard from 'vue-step-wizard'
 import 'vue-step-wizard/dist/vue-step-wizard.css'
 import VueSimpleAlert from "vue-simple-alert";
 
+
 import PubNubVue from 'pubnub-vue'
 const publish_Key = 'pub-c-3fdc5de3-f362-4802-9f5c-a64c447c34d0';
 const subscribe_Key = 'sub-c-afb1f7b6-5cd2-11ec-96e9-32997ff5e1b9';
@@ -40,7 +41,24 @@ function fourCharID() {
     return text;
   }
 
+
 Vue.use(VueSimpleAlert);
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     key: 'AIzaSyB80ihnigEJF8yfku9UlTAO5JcxpgbT4iQ',
+//     libraries: 'places',
+//   }
+// });
 
 Vue.config.productionTip = false;
 

@@ -1,58 +1,45 @@
 <template>
     <section class="section-products" >
-		<div class="container" style="max-height: 600px;">
-				<div class="row justify-content-center text-center">
-						<div class="col-md-8 col-lg-6">
-								<div class="header">
-										<h2>Mes annonces</h2>
-								</div>
-                
-						</div>
-				</div>
-                <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
-                           
-                            <!-- Single Product -->
-                            <div  class="col-md-5 col-lg-1 col-xxl-3">
-                             
+      <div class="header">
+          <h2 style="font-size:40px;">Mes annonces</h2>
+      </div>
+		<div class="container" style="max-height: 600px; display: flex;">
 
-                             
-                                    <div  id="product" class="single-product rounded" :style="{ backgroundImage : 'url(' + ad.photo[0].fields.url + ')' }">
-                                     
-                                            <div class="part-1">
-                                                <span  v-if="ad.state=='rejeté' " class="rejected rounded">{{ad.fields.state}}</span>
-                                                <span  v-else-if="ad.fields.state=='fermé' " class="closed rounded">{{ad.fields.state}}</span>
-                                                <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
-                                                <span  v-else-if="ad.fields.state=='publié'" class="valid rounded">{{ad.fields.state}}</span>
-                                                <a :href="'ads/'+ad.fields.pk" style=" left: -18px;   width: 241px;position: absolute; height: 175px !important;"></a>
-                                                    <ul >
-                                                            <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
-                                                    </ul>		
-
-                                            </div>
-                                          <div class="">
-                                                    <h3 class="product-title">{{ad.fields.title}}</h3>
-                                            </div> 
-                                    </div>
-                            </div>
-                                           
-                    <!-- </div> -->
-                </div>    
-        </div>    
-        <div v-show="notif"  class="row mt-3 notif" style="position: fixed; top: 8%; left: 58%;">
-                    <div class="col-md-6 Message Message--green">
-                            <div class="Message-icon">
-                            <i class="fa fa-exclamation"></i>
-                            </div>
-                            <div class="Message-body">
-                            <p>{{message}} </p>
-                            </div>
-
+            <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
+              <div  class="col-md-5 col-lg-1 col-xxl-3 offset-2">                        
+                <div  id="product" class="single-product rounded border ">
+                    <a :href="'/detailAd/'+ad.pk" style="   width: 200px;position: absolute; height: 175px !important;"></a>
+                        <img  class="center rounded" :src="ad.photo.url" style="width: 296px;height: 298px;">
+                        <div class="part-1">
+                            <span  v-if="ad.fields.state=='refusée' " class="rejected rounded">{{ad.fields.state}}</span>
+                            <span  v-else-if="ad.fields.state=='clôturée' " class="closed rounded">{{ad.fields.state}}</span>
+                            <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
+                            <span  v-else-if="ad.fields.state=='validée'" class="valid rounded">{{ad.fields.state}}</span>
+                            <ul >
+                                <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
+                            </ul>		
                         </div>
-        </div>
+                      <div class="titre">
+                                <h3 class="product-title">{{ad.fields.title}}</h3>
+                        </div> 
+                </div>
+              </div>
+          </div>    
+        </div>    
+        <div v-show="notif"  class="row mt-3 notif">
+          <div class="col-md-6 Message Message--green">
+              <div class="Message-icon">
+                <i class="fa fa-exclamation"></i>
+              </div>
+              <div class="Message-body">
+                <p>{{message}} </p>
+              </div>
+          </div>
+      </div>
 </section>
 
 </template>
-<style scoped src="../assets/css/myads.css"></style>
+<style  src="../assets/css/myads.css"></style>
 <script>
 
 import URL from "../config";
@@ -76,16 +63,22 @@ export default {
 
     }
   }, async mounted() {
+    if(this.$route.params.id)
+    this.user=this.$route.params.id;
+    else
+    this.user=this.user.id;
      console.log(this.user)
     //   let id=this.$store.getters.getUserId;
             try {
         await fetch(URL+"ads", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
+          console.log(response)
+          console.log(this.user)
           let ads=response.ads
-          this.medias= response
-          this.list=ads.filter(e=>e.fields.seller==this.user.id);
-          this.list.map(ad=>ad['photo']=this.medias[`${ad.pk}`])
+          this.medias= response.medias.map(e=>e=e.fields);
+          this.list=ads.filter(e=>e.fields.seller==this.user);
+          this.list.map(ad=>ad['photo']=this.medias.filter(e=>e.ad==ad.pk)[0])
           console.log(this.list)
                 
         });
@@ -101,7 +94,7 @@ export default {
         await fetch(URL+"ads/delete/"+e.target.id, {
           method: "GET"
         }).then(response => response.json()).then(()=>{
-            this.message = "votre annonce a  été bien suprrimé ";
+            this.message = "Votre annonce a bien été supprimée";
             this.notif=true;
            setTimeout(() => this.$router.go(),2000);
             

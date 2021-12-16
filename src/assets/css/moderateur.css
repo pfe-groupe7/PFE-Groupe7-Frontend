@@ -1,0 +1,118 @@
+.btn,
+.btnSave {
+  margin: 30px;
+  border-radius: 4px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0 40px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  text-align: center;
+  border: none;
+  background-color: #ca313c;
+  color: black;
+  box-shadow: 0 8px 24px 0 rgba(255, 235, 167, 0.2);
+  margin-left: 120px;
+  width: 300px;
+}
+.btn:active,
+.btn:focus {
+  background-color: #3a5749;
+  color: #ffeba7;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+.btn:hover {
+  background-color: #ff4753;
+  color: black;
+  box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
+}
+.btnSave {
+  background-color: #577e6b;
+  color: #ffeba7;
+}
+.btnSave:hover {
+  background-color: #3a5749;
+}
+.col-2 {
+  margin-left: 30px;
+  font-size: 25px;
+}
+#image {
+  background-repeat: no-repeat;
+}
+
+.d-block {
+  display: block !important;
+  width: 15% !important;
+  margin-bottom: 80px;
+}
+
+.card-heading {
+  color: white;
+  text-align: center;
+  margin: 20px;
+}
+h2 {
+  font-size: 60px;
+  font-weight: 700;
+}
+.col-12 {
+  width: 100%;
+}
+.card {
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  margin: 50px 200px 300px 200px;
+  padding: 100px;
+  background-color: #3a5749;
+}
+.annonce {
+  margin-bottom: 100px;
+}
+.card-2 {
+  width: 100%;
+  border-radius: 25px;
+  background-color: #ffeba7;
+}
+#cardAdd {
+  margin-top: 5%;
+}
+
+.Message {
+  display: table;
+  position: relative;
+  margin: 40px auto 0;
+  width: 800px;
+  background-color: #27ae60;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.Message--orange {
+  background-color: #fca624;
+}
+.Message--green {
+  background-color: #27ae60;
+}
+.Message-icon {
+  display: table-cell;
+  vertical-align: middle;
+  width: 60px;
+  padding: 30px;
+  text-align: center;
+  background-color: rgba(black, 0.25);
+}
+.Message-body {
+  padding: 30px 20px 30px 10px;
+}
