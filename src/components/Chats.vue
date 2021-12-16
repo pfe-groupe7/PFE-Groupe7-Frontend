@@ -36,6 +36,7 @@
   import PubNubVue from 'pubnub-vue';
   import {mapGetters} from 'vuex';
 import $ from 'jquery'
+import{URL}from '../config'
   function fetchHistory(store){
     PubNubVue.getInstance().history(
         
@@ -76,8 +77,21 @@ import $ from 'jquery'
         title: 'Contact-Support',
         
       };
+    },async created(){
+      console.log(this.user.id)
+     
+   
+    
     },
    async mounted() {
+     await fetch(URL+"users/" + this.user.id, {
+        method: "GET",
+      }).then((response) => response.json())
+            .then((response) => {
+              console.log(response);
+              this.moderator = response[0].fields.moderator;
+            })
+              console.log(this.moderator)
         $("#chat-circle").click(function() {
         $("#chat-circle").toggle('scale');
         $(".chat-box").toggle('scale');
@@ -95,13 +109,7 @@ import $ from 'jquery'
          channels: ['vueChat'],
       });
       this.$nextTick(fetchHistory(this.$store));
-       await fetch(URL+"users/" + this.user.id, {
-        method: "GET",
-      }).then((response) => response.json())
-            .then((response) => {
-              console.log(response);
-              this.moderator = response[0].fields.moderator;
-            })
+      
       try{
         await fetch(URL+"categories", {
           method: "GET"
