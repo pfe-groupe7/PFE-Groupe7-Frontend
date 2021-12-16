@@ -13,6 +13,7 @@
             @submit.prevent="handleSubmit"
           >
             <error v-if="error" :error="error" />
+
             <div v-for="ad in list" v-bind:key="ad.id" class="annonce">
               <div class="card-2">
                 <div class="row">
@@ -60,6 +61,7 @@
                       class="form-control"
                       readonly
                     />
+
                   </div>
                   <div class="col-2">
                     <label class="labels">Prix</label
@@ -249,6 +251,7 @@ export default {
             this.notif = true;
             setTimeout(() => this.$router.go(this.$router.currentRoute), 2000);
           });
+
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }

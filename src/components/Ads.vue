@@ -21,12 +21,6 @@
           </label>
         </div>
       </div>
-
-      <div class="prixCursor">
-        <label for="customRange2"   class="form-label">Prix</label>
-        <input type="range" @change="filter"  class="form-range" min="0" v-model="byPrice" max="5000" step="10"  id="customRange2">
-        <p class="">{{byPrice}}</p>
-      </div>
       
       <select name="campus" id="subject" @change="filter"  class="btn2" required="required"  v-model="byCampus">
           <option selected >{{byCampus}}</option>
