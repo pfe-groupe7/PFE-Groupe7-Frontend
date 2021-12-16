@@ -334,7 +334,8 @@
               <button
                 v-if="step > 1"
                 @click="(step -= 1), activatePanel(step)"
-                class="btn mb-2">
+                class="btn mb-2"
+              >
                 <i class="fa fa-arrow-left"></i> &nbsp;Précédent
               </button>
             </div>
