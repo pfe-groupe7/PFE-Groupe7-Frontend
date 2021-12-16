@@ -312,7 +312,7 @@
                     multiple
                   />
                   <label class="custom-file-label" for="customFile"
-                    >Choisir une photo ou une vidéo</label
+                    >Choisir une ou plusieurs photo(s) </label
                   >
                 </div>
                 <div v-for="(image, key) in imagepreview" :key="key">

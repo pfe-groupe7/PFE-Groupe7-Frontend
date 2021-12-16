@@ -38,8 +38,8 @@
 										<input type="password" v-model="confirmed_password" class="form-control" /> </div>
 								</div>
 								<div class="row mt-4">
-									<div class="col-md-5 mt-5 text-center">
-										<button v-on:click="deleteUser" class="btn btn-danger profile-button" type="button"> Supprimer mon compte </button>
+									<div class="col-md-6 mt-5 text-center">
+										<button v-on:click="deleteUser" class="btnDanger btn-danger profile-button" type="button"> Supprimer mon compte </button>
 									</div>
 									<div class="col-md-6 mt-5 text-center">
 										<button v-on:click="handleSubmit" class="btnSave" type="button">Enregistrer les modifications</button>
