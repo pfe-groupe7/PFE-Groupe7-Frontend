@@ -84,13 +84,18 @@
 	</div>
 </template>
 <script>
-// import { mapGetters } from "vuex";
+
+// import URL from "../config";
+// import {mapGetters} from 'vuex';
+import{URL}from '../config'
 export default {
   name: "Profile",
+
 
   components: {},
   data() {
     console.log(this.$store.getters.getUserId);
+
     return {
       notif: false,
       notifDel: false,
@@ -99,6 +104,7 @@ export default {
       email: "",
       password: "",
       campus: "",
+
       message: "",
       confirmed_password: "",
       user: "",
@@ -116,7 +122,7 @@ export default {
     console.log(id);
     console.log(localStorage.getItem("user"));
     try {
-      await fetch("http://localhost:8000/users/" + this.idUserConnected, {
+      await fetch(URL+"users/" + this.idUserConnected, {
         method: "GET",
       }).then((response) => response.json())
             .then((response) => {
@@ -125,7 +131,7 @@ export default {
             })
        
         .then(async () => {
-          await fetch("http://localhost:8000/users/" +id, {
+          await fetch(URL+"users/" +id, {
             method: "GET",
           }) .then((response) => response.json())
         .then((response) => {
@@ -137,7 +143,7 @@ export default {
           this.password = response[0].fields.password;
           this.confirmed_password = response[0].fields.password;
           this.campus = response[0].campusName;console.log(this);})
-            
+
         });
     } catch (e) {
       this.error = "Une erreur est survenue!";
@@ -150,6 +156,7 @@ voirAnnonces(){
 },
     async handleSubmit() {
       try {
+
         if (this.password !== this.confirmed_password) {
           this.message =
             "Les mots de passe que vous avez entrés ne sont pas identiques.";
@@ -157,8 +164,9 @@ voirAnnonces(){
           setTimeout(() => (this.notifDel = false), 3000);
           return;
         }
-        await fetch("http://localhost:8000/users/update/"+this.idUserProfil, {
+        await fetch(URL+"users/update/"+this.idUserProfil, {
           method: "PUT",
+
           body: JSON.stringify({
             email: this.email,
             password: this.password,
@@ -173,6 +181,7 @@ voirAnnonces(){
         this.error = "Une erreur est survenue!";
       }
     },
+
     async deleteUser() {
       if (
         this.$confirm(
@@ -182,7 +191,7 @@ voirAnnonces(){
         )
       ) {
         try {
-          await fetch("http://localhost:8000/users/delete/"+this.idUserProfil, {
+          await fetch(URL+"users/delete/"+this.idUserProfil, {
             method: "DELETE",
             body: JSON.stringify({
               email: this.email,

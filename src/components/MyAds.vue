@@ -41,6 +41,8 @@
 </template>
 <style  src="../assets/css/myads.css"></style>
 <script>
+
+import {URL} from "../config";
 export default {
   name: "Profile",
 
@@ -68,7 +70,7 @@ export default {
      console.log(this.user)
     //   let id=this.$store.getters.getUserId;
             try {
-        await fetch("http://localhost:8000/ads", {
+        await fetch(URL+"ads", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
           console.log(response)
@@ -89,7 +91,7 @@ export default {
     {
       console.log(this.list)
         try {
-        await fetch("http://localhost:8000/ads/delete/"+e.target.id, {
+        await fetch(URL+"ads/delete/"+e.target.id, {
           method: "GET"
         }).then(response => response.json()).then(()=>{
             this.message = "Votre annonce a bien été supprimée";

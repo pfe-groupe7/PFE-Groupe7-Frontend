@@ -84,6 +84,7 @@
 </template>
 
 <script>
+import{URL}from '../config'
 export default {
   name: "MederatorPage",
   components: {},
@@ -110,7 +111,7 @@ export default {
     console.log(this.user);
     //   let id=this.$store.getters.getUserId;
     try {
-      await fetch("http://localhost:8000/ads", {
+      await fetch(URL+"ads", {
         method: "GET",
       })
         .then((response) => response.json())
@@ -161,7 +162,7 @@ export default {
     async handleSubmit(e) {
       try {
         console.log(e.target.id);
-        await fetch("http://localhost:8000/ads/update/" + e.target.id, {
+        await fetch(URL+"ads/update/" + e.target.id, {
           method: "PUT",
           body: JSON.stringify({
             ad_id: e.target.id,
@@ -193,7 +194,7 @@ export default {
     async deleteAnnonce(e) {
       try {
         console.log(e.target);
-        await fetch("http://localhost:8000/ads/update/" + e.target.id, {
+        await fetch(URL+"ads/update/" + e.target.id, {
           method: "PUT",
           body: JSON.stringify({
             ad_id: e.target.id,
