@@ -74,6 +74,7 @@
                             class="form-style"
                             placeholder="Nom"
                             id="nom"
+                            required
                             v-model="nomRegister"
                           />
                           <i class="input-icon fa fa-user"></i>
@@ -85,20 +86,21 @@
                             class="form-style"
                             placeholder="Prénom"
                             id="prenom"
+                            required
                             v-model="prenomRegister"
                           />
                           <i class="input-icon fa fa-user"></i>
                         </div>
-                        <!-- pattern="/^([a-zA-Z0-9]+\.?[a-zA-Z0-9]+)[a-z0-9._%+-]+@((student\.)?vinci\.be)/" -->
                         <div class="form-group mt-3">
                           <input
                             type="email"
                             name="email"
                             class="form-style"
                             placeholder="Adresse e-mail"
-                            pattern="/^[a-zA-Z]+@(student\.)?vinci\.be)/"
-                            title="Veuillez entrer un email valide. EX :student.vinci.be Ou sans student. "
+                            pattern="^[a-zA-Z]+@((student\.)?vinci\.be)"
+                            title="student.vinci.be ou vinci.be "
                             v-model="emailRegister"
+                            required
                           />
                           <i class="input-icon fa fa-envelope"></i>
                         </div>
@@ -109,6 +111,7 @@
                             class="form-style"
                             placeholder="Mot de passe"
                             v-model="mdpRegister"
+                            required
                           />
                           <i class="input-icon fa fa-lock"></i>
                         </div>
@@ -118,7 +121,7 @@
                             id="campus"
                             class="form-style"
                             v-model="campusRegister"
-                          >
+                            required                          >
                             <option value="" disabled selected>
                               Sélectionne ton campus
                             </option>
