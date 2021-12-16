@@ -85,8 +85,8 @@
 </template>
 <script>
 
-import URL from "../config";
-import {mapGetters} from 'vuex';
+// import URL from "../config";
+// import {mapGetters} from 'vuex';
 
 export default {
   name: "Profile",

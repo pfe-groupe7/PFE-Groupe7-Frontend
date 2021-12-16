@@ -42,7 +42,7 @@
 <style  src="../assets/css/myads.css"></style>
 <script>
 
-import URL from "../config";
+import {URL} from "../config";
 export default {
   name: "Profile",
 

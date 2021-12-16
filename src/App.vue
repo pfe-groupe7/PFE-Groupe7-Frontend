@@ -18,7 +18,7 @@ import Nav from './components/Nav.vue'
 import Footer from './components/Footer.vue'
 import Chats from './components/Chats.vue'
 
-import URL from "./config";
+import {URL} from "./config";
 
 export default {
   name: "App",
