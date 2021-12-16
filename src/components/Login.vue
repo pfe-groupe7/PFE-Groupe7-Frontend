@@ -19,9 +19,8 @@
                 <div class="card-front">
                   <div class="center-wrap">
                     <div class="section text-center">
-                      <error  :error="error" />
+                      <error :error="error" />
                       <form @submit.prevent="handleSubmitLogin">
-                        
                         <h4 class="mb-4 pb-4">Connexion</h4>
                         <div class="form-group">
                           <input
@@ -46,8 +45,11 @@
                           <i class="input-icon fa fa-lock"></i>
                         </div>
                         <div class="form-group mt-4">
-
-                          <input class="btn mt-4" type="submit" value="Se connecter">
+                          <input
+                            class="btn mt-4"
+                            type="submit"
+                            value="Se connecter"
+                          />
                         </div>
                         <p class="mb-5 mt-5 text-center">
                           <a class="link" href="/forgot"
@@ -62,7 +64,7 @@
                 <div class="card-back">
                   <div class="center-wrap">
                     <div class="section text-center">
-                      <form @submit="handleSubmitRegister">
+                      <form @submit.prevent="handleSubmitRegister">
                         <error v-if="error" :error="error" />
                         <h4 class="mb-4 pb-3">Inscription</h4>
                         <div class="form-group">
@@ -87,7 +89,7 @@
                           />
                           <i class="input-icon fa fa-user"></i>
                         </div>
- <!-- pattern="/^([a-zA-Z0-9]+\.?[a-zA-Z0-9]+)[a-z0-9._%+-]+@((student\.)?vinci\.be)/" -->
+                        <!-- pattern="/^([a-zA-Z0-9]+\.?[a-zA-Z0-9]+)[a-z0-9._%+-]+@((student\.)?vinci\.be)/" -->
                         <div class="form-group mt-3">
                           <input
                             type="email"
@@ -127,8 +129,11 @@
                           <i class="input-icon fa fa-map-marker"></i>
                         </div>
 
-                          <input class="btn mt-4" type="submit" value="S'inscrire">
-
+                        <input
+                          class="btn mt-4"
+                          type="submit"
+                          value="S'inscrire"
+                        />
                       </form>
                     </div>
                   </div>
@@ -141,7 +146,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import { mapGetters } from "vuex";
@@ -164,7 +168,6 @@ export default {
     };
   },
   methods: {
-    
     async handleSubmitRegister() {
       try {
         await fetch("http://localhost:8000/register", {
@@ -177,18 +180,26 @@ export default {
             campus: this.campusRegister,
             moderator: "False",
           }),
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.log(response);
+            localStorage.setItem("token", response.token);
+            localStorage.setItem("user", response.user.id);
+            this.$store.dispatch("user", response.user);
 
-        }).then( 
-           this.$router.go("/"),
-           
-          );
-
+            // this.$parent.children[0].update()
+            console.log((this.$parent.$children[0].user = response.user));
+            console.log(this.$parent.$children[0]);
+            this.$router.push("/");
+            this.$router.go(0);
+          });
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
     },
     async handleSubmitLogin() {
-      try{
+      try {
         await fetch("http://localhost:8000/login", {
           method: "POST",
           body: JSON.stringify({
@@ -203,14 +214,12 @@ export default {
             localStorage.setItem("user", response.user.id);
             this.$store.dispatch("user", response.user);
 
-           // this.$parent.children[0].update()
-           console.log(this.$parent.$children[0].user=response.user)
-           console.log(this.$parent.$children[0])
-           this.$router.push("/")
-           this.$router.go(0);
-           
-
-        });
+            // this.$parent.children[0].update()
+            console.log((this.$parent.$children[0].user = response.user));
+            console.log(this.$parent.$children[0]);
+            this.$router.push("/");
+            this.$router.go(0);
+          });
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
@@ -219,4 +228,3 @@ export default {
 };
 </script>
 <style scoped src="../assets/css/login.css"></style>
-
