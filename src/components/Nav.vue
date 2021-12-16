@@ -50,7 +50,7 @@
 
 <script>
 //  import { mapGetters } from "vuex";
-
+import{URL}from '../config'
 
 export default {
   
@@ -68,7 +68,7 @@ export default {
 
 }
   },async mounted(){
-    await fetch("http://localhost:8000/users/" + this.user.id, {
+    await fetch(URL+"users/" + this.user.id, {
         method: "GET",
       }).then((response) => response.json())
             .then((response) => {
@@ -76,7 +76,7 @@ export default {
               this.moderator = response[0].fields.moderator;
             })
       try{
-        await fetch("http://localhost:8000/categories", {
+        await fetch(URL+"categories", {
           method: "GET"
         }).then(response => response.json()).then((response)=>{
                 console.log(this.user)         
