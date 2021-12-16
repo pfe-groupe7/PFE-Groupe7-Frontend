@@ -5,7 +5,7 @@
             <div class="card-heading">
                 <h2 class="title mb-4 pb-3">Annonces à valider/refuser</h2>
             </div>
-            <div class="card-body">
+            <div class="card-body" >
                 <form method="GET" action="#" id="js-wizard-form" @submit.prevent="handleSubmit">
                     <error v-if="error" :error="error" />
 
@@ -15,7 +15,7 @@
                                 <b-carousel id="carousel-1" v-model="slide" controls indicators :value="0">
                                     <b-carousel-slide v-for="(photo, i) in ad.photo" v-bind:key="i">
                                         <template #img>
-                                            <img class="d-block" :src="photo.url" alt="image slot" style=" margin-left: 39%;" />
+                                            <img class="d-block" :src="photo.url" alt="image slot" style=" margin-left: 39%; margin-top :20px;" />
                                         </template>
                                     </b-carousel-slide>
                                 </b-carousel>
@@ -32,17 +32,8 @@
                                     <label class="labels">Prix</label><input type="text" v-model="ad.price" class="form-control" readonly />
                                     <label class="labels">Categorie</label><input type="text" v-model="ad.category" class="form-control" readonly />
                                 </div>
-                            </div>
-                            <div class="col-2">
-                                <label class="labels">Lieu</label><input type="text" :value="getLocation(ad.id)" class="form-control" readonly />
-                                <label class="labels">Membre</label><input type="text" :value="getUser(ad.seller)" class="form-control" readonly />
-                            </div>
-                            <div class="col-2">
-                                <label class="labels">Prix</label><input type="text" v-model="ad.price" class="form-control" readonly />
-                                <label class="labels">Categorie</label><input type="text" v-model="ad.category" class="form-control" readonly />
-                            </div>
-                        </div>
-                          <div class="row mt-4">
+                            </div> 
+                            <div class="row mt-4">
                         <div class="col-md-5 mt-5 text-center">
                             <button :id="ad.id" v-on:click="deleteAnnonce" class="btn btn-danger profile-button" type="button">
                                 Refuser
@@ -54,6 +45,8 @@
                             </button>
                         </div>
                     </div>
+                        </div>
+                     
                     </div>
                   
                     <div v-show="notif" class="row mt-3 notif" style="position: fixed; top: 8%; left: 58%">
