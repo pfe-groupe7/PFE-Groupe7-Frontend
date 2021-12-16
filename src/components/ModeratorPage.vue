@@ -12,8 +12,8 @@
                     <div v-for="ad in list" v-bind:key="ad.id" class="annonce">
                         <div class="card-2">
                             <div class="row">
-                                <b-carousel id="carousel-1" v-model="slide" controls indicators :value="0">
-                                    <b-carousel-slide v-for="(photo, i) in ad.photo" v-bind:key="i">
+                                <b-carousel id="carousel-1" v-model="slide" controls indicators value=0>
+                                    <b-carousel-slide v-for="(photo, i) in ad.photo" v-bind:key="i" :value="i">
                                         <template #img>
                                             <img class="d-block" :src="photo.url" alt="image slot" style=" margin-left: 39%; margin-top :20px;" />
                                         </template>
@@ -96,7 +96,7 @@ export default {
       categorie: "",
       message: "",
       error: "",
-      slide:"",
+      slide:0,
       ad:""
     };
   },
@@ -124,18 +124,16 @@ export default {
           this.adsCampus = response.adsCampus.map((e) => (e = e.fields));
           response.ads.forEach((e) => (e.fields["id"] = e.pk));
           this.list = response.ads.map((e) => (e = e.fields));
+           
           this.list.map(
             (ad) => (ad["photo"] = this.medias.filter((e) => e.ad == ad.id))
           );
-          this.list.forEach(
-            (e) =>
-              (e["category"] = this.categories.filter(
-                (i) => i.id == e.id
-              )[0].categoryName)
-          );
+           this.list.forEach(e=>e['category']=this.categories.filter(i=>i.id==e.category)[0].categoryName)
+
+          
           console.log(this.list);
           this.list = this.list.filter(
-            (e) => e.state == "en attente de validation"
+            e => e.state.includes("attente")
           );
           console.log(this.list);
         });
@@ -162,7 +160,7 @@ export default {
             title: "",
             status: "",
             description: "",
-            state: "publié",
+            state: "validée",
           }),
         })
           .then((response) => response.json())
