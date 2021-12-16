@@ -31,7 +31,7 @@
         </ul>
         
         <ul class="mt-2 pb-2 nav-link  dropdown fa-10x" v-else  id="profile">
-           <i class="dropbtn fa fa-user-circle " >{{user.firstname}}</i>
+           <i class="dropbtn fa fa-user-circle " >&nbsp;{{user.firstname}}</i>
            
           <div class="dropdown-content" >
             

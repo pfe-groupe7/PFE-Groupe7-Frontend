@@ -35,7 +35,7 @@
     <div class="row">
       <div id="carousel">
         <h3>Annonces <b>récentes</b></h3>
-          <b-carousel id="carousel-1" v-model="slide" :interval="3000"  controls   indicators  :value=0 style="text-shadow: 1px 1px 2px #333;" >
+          <b-carousel id="carousel-1" v-model="slide" :interval="400000"  controls   indicators  :value=0  >
             <b-carousel-slide class="card" v-for="ad in filterdList" v-bind:key="ad.id">
             <p class="captionTitre"> {{ ad.title }} </p>
             <img class="d-block rounded" :src="getMedia(ad.id)">

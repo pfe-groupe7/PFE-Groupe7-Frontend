@@ -7,7 +7,7 @@
 
             <div v-for="ad in list"  v-bind:key="ad.pk" class="list">
               <div  class="col-md-5 col-lg-1 col-xxl-3 offset-2">                        
-                <div  id="product" class="single-product rounded border ">
+                <div   id="product" class="single-product rounded border ">
                     <a :href="'/detailAd/'+ad.pk" style="   width: 200px;position: absolute; height: 175px !important;"></a>
                         <img  class="center rounded" :src="ad.photo.url" style="width: 296px;height: 298px;">
                         <div class="part-1">
