@@ -22,6 +22,7 @@
 <script>
 import MessageBubble from '@/components/MessageBubble';
 import {mapGetters} from 'vuex';
+import $ from 'jquery'
 /**
  * Auto scrolls the chat log to the bottom when a new message is received
  */
@@ -42,6 +43,7 @@ export default {
   },
   watch: {
     vueChatMsg: function(){
+       $("#notif").show();
       this.$nextTick(scrollBottom);
     }
   },

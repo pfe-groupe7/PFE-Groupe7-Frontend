@@ -51,7 +51,7 @@ import $ from 'jquery'
         //       active();
         //   }
           console.log(msgs);
-          this.active();
+        
           // Iterate msgs array and save each element to history
           msgs.forEach(elem => {
             store.commit('addHistory', {history: [elem]});
@@ -72,13 +72,14 @@ import $ from 'jquery'
       };
     },
     mounted() {
-        $("#notif").show();
+       
         $("#chat-circle").click(function() {
         $("#chat-circle").toggle('scale');
         $(".chat-box").toggle('scale');
         })
 
         $(".chat-box-toggle").click(function() {
+          $("#notif").hide();
         $("#chat-circle").toggle('scale');
         $(".chat-box").toggle('scale');
 })

@@ -22,7 +22,7 @@ export default {
     me() {
       let result = false;
       // Check if the client uuid of the message received is your client uuid
-      if (this.$store.getters.getMyUuid === this.uuid) {
+      if (this.$store.getters.user.firstname=== this.uuid) {
         result = true;
       }
       // Render the message bubble on the right side if it is from this client

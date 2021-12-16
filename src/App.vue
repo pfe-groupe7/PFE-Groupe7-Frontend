@@ -6,7 +6,7 @@
       <router-view :user="user"/>
         </div>
     </div>
-    <Chats/>
+    <Chats v-if="user"/>
     <Footer />
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
   },
 
   async created() {
-    // this.user=this.$store.getters.user
+    this.user=this.$store.getters.user
     // const response = await axios.get("user");
     //  this.$store.dispatch('user',response.data);
     //  console.log("1")
