@@ -50,8 +50,7 @@
 							<div class="col-md-6 mt-3 text-center" >
 								<button v-on:click="voirAnnonces" class="btn btnSave profile-button" type="button"> Voir les annonces </button>
 							</div>
-							<div class="col-md-6 mt-3 text-center" >
-							 <a :href="'mailto:'+email+'?subject='+list.title+'&body=Bonjour, votre annonce m'intéresse  \n\n'">
+							<div class="col-md-6 mt-3 text-center" > <a :href="'mailto:'+email+'?subject='+list.title+'&body=Bonjour, votre annonce m\'intéresse\n\n'">
 								<button v-on:click="contacterVendeur" class="btnSave" type="button"> Contacter vendeur </button>
 								</a>
 							</div>

@@ -191,7 +191,7 @@ a {
 
 .wrapper--w820 {
   margin-top: -100px;
-  width: 116%;
+  max-width: 820px;
 }
 
 /* ==========================================================================
@@ -521,9 +521,7 @@ label.error {
   text-transform: capitalize;
   display: inline-block;
 }
-#tab2 {
-  margin-top: 25px;
-}
+
 .tab-content > .Panel-Content {
   display: none;
   padding: 35px 0;
@@ -554,7 +552,6 @@ label.error {
 }
 
 .card-1 {
-  padding: 0;
   background: transparent;
 }
 #cardAdd {
@@ -581,7 +578,7 @@ label.error {
 .wrapper {
   justify-content: space-evenly;
   border-radius: 5px;
-  padding-right: 200px;
+  padding-top: 5%;
 }
 
 .wrapper .option {
