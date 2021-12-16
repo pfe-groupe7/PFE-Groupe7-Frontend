@@ -20,8 +20,13 @@
           </div>
         </div>
       </form>
-      <div v-if="token">
+      <div v-if="user">
         <router-link to="/createAd"><a class="btn mt-1">
+          Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+        </router-link>
+      </div>
+      <div v-else>
+        <router-link to="/login"><a class="btn mt-1">
           Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
         </router-link>
       </div>
