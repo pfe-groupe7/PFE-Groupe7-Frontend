@@ -26,11 +26,13 @@
           </div>
 
         <div class="card-content__price is-pulled-left">
-            <button class="btn">Contactez ce vendeur</button> 
+            <div class="card-content__price is-pulled-left">
+                <a :href="'mailto:'+seller.email+'?subject='+list.title+'&body=Bonjour '+seller.firstname+', \n\n'">
+                <button class="btn" type="submit">Contactez ce vendeur</button>
+                </a>    
+            </div>
         </div>
-
     </div>
-    <div v-else>Veuillez vous connecter pour voir cette page</div>
 
 </template>
 
@@ -40,7 +42,6 @@
 import { mapGetters } from "vuex"
 import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
 import Map from './Map.vue'
-
 let token = localStorage.getItem('token')
 
 export default {
@@ -69,7 +70,9 @@ export default {
   },
 
   computed:{
+   
     ...mapGetters(['user'])
+     
   },  async mounted() {
 
       let id=this.$route.params.id;
@@ -92,7 +95,8 @@ export default {
                 this.seller=response.seller.map(e=>e=e.fields);
                  console.log(this)
                 this.list=this.list[0]
-                this.seller=this.seller[0]
+                console.log(this)
+                this.seller=this.seller.filter(e=>e.id==this.list.seller)[0]
                 this.location=response.location
                 this.medias=this.getMedia(1)
                  
@@ -101,7 +105,8 @@ export default {
       } catch (e) {
         this.error = "Une erreur est survenue!";
       }
-  },methods:{
+  },
+   methods:{
  
      onSlideStart(slide) {
          console.log(slide)

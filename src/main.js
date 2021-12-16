@@ -6,6 +6,8 @@ import store from "./vuex";
 import VueStepWizard from 'vue-step-wizard'
 import 'vue-step-wizard/dist/vue-step-wizard.css'
 import VueSimpleAlert from "vue-simple-alert";
+
+
 // import * as VueGoogleMaps from 'vue2-google-maps'
 // import VueSplide from '@splidejs/vue-splide';
 

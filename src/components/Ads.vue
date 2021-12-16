@@ -30,17 +30,17 @@
       
       <select name="campus" id="subject" @change="filter"  class="btn2" required="required"  v-model="byCampus">
           <option selected >{{byCampus}}</option>
-          <option value="2" >Woluwe</option>
-          <option value="1" >Ixelles</option>
-          <option value="3" >Louvain-La-Neuve</option>
+          <option value="Woluwe" >Woluwe</option>
+          <option value="Ixelles" >Ixelles</option>
+          <option value="Louvain-La-Neuve" >Louvain-La-Neuve</option>
       </select> 
   </div>  
   <div class="col-10">
     <div class="triControl">
       <div class="triText">Trier par</div>
-      <div class="selectPrix"><select class="mp-Select-input">
-        <option @click="sortASC()">Prix bas à élevé </option>
-        <option @click="sortDESC()">Prix élevé à bas</option>
+      <div class="selectPrix"><select @change="sort" class="mp-Select-input">
+        <option vaule="1">Prix bas à élevé </option>
+        <option vaule="2">Prix élevé à bas</option>
         </select>
       </div>
     </div>
@@ -102,7 +102,7 @@ export default {
       userId : userId,
       error: null,
       token:token,
-      byCampus:"Campus",
+      byCampus:"Tous les Campus",
       loading: false,
       addToCartLabel: "Add to cart",
       viewDetailsLabel: "Details",
@@ -119,7 +119,8 @@ export default {
 
     };
   },created(){
-    
+    console.log(this.$route.params)
+   
    },
   async mounted() {
      console.log(this.annonces)
@@ -139,11 +140,22 @@ export default {
                 this.adsCampus=response.adsCampus.map(e=>e=e.fields);
                 response.ads.forEach(e=>e.fields["id"]=e.pk);
                 this.list=response.ads.map(e=>e=e.fields)
-                this.list.forEach(e=>e['category']=this.categories.filter(i=>i.id==e.id)[0].categoryName)
+                console.log( this.list)
+                this.list.forEach(e=>e['category']=this.categories.filter(i=>i.id==e.category)[0].categoryName)
+
                  console.log(this.medias)
                  console.log(response)
                  this.filterdList=this.list
-                 this.filterdList= this.filterdList.filter(e=>e.state.includes("publié"))
+                
+                 this.filterdList= this.filterdList.filter(e=>e.state.includes("val"))
+                
+                  if(this.$route.params.cat){
+                      console.log(this.categories)
+                      this.byCategory=this.categories.filter(e=>e.id==this.$route.params.cat)[0].categoryName
+                      console.log(this.byCategory)
+                      this.filter()
+                    }
+                 
                 // this.list=response(e=>e.seller_id==this.annonces.id);
         });
       } catch (e) {
@@ -151,38 +163,51 @@ export default {
       }
   },methods:{
     filter(){
-    console.log(this.byPrice +"  " +this.byCategory+" "+this.state+" "+this.byCampus)
+    
     let filterdList=this.list;
-    if(this.byCampus!="Tous"){
+    if(this.byCampus!="Tous les Campus"){
       filterdList=[];
-      let listCampus=this.adsCampus.filter(e=>e.campus==this.byCampus)
-      // console.log(listCampus)
+      let listCampus=this.adsCampus.filter(e=>e.campus==(this.campus.filter(i=>i.campusName==this.byCampus)[0].id))
+     
       listCampus.forEach(element => {
       filterdList.push(this.list.filter(e=>e.id==element.ad)[0])
     });
     }
     
-    // console.log(filterdList)
-    if(this.byCategory=="Tous"&&this.byCampus!="Tous")
-     filterdList=filterdList.filter(e=>(e.status==this.state)&&(this.byPrice>=e.price));
-    else if(this.byCategory=="Tous"&&this.byCampus=="Tous")
-    filterdList=filterdList.filter(e=>(e.status==this.state)&&(this.byPrice>=e.price));
-    else if(this.byCategory!="Tous"&&this.byCampus=="Tous")
-    filterdList=filterdList.filter(e=>(e.category==this.byCategory)&&(e.status==this.state)&&(this.byPrice>=e.price));
+     
+    if(this.byCategory=="Toutes les catégories"&&this.byCampus!="Tous les Campus"){
+
+       filterdList=filterdList.filter(e=>(e.status==this.state)&&(this.byPrice>=e.price));
+    }
+   
+    else if(this.byCategory=="Toutes les catégories"&&this.byCampus=="Tous les Campus"){
+      
+       filterdList=filterdList.filter(e=>(e.status==this.state)&&(this.byPrice>=e.price));
+
+    }
+    else if(this.byCategory!="Toutes les catégories"&&this.byCampus=="Tous les Campus"){
+ 
+          filterdList=filterdList.filter(e=>(e.category==this.byCategory)&&(e.status==this.state)&&(this.byPrice>=e.price));
+    }
     else
-      filterdList=filterdList.filter(e=>(e.category==this.byCategory)&&(e.status==this.state)&&(this.byPrice>=e.price)&&(this.byCampus>=e.campus));
-  //  console.log(this.campus)
-  //  console.log(this.adsCampus)
+    {
+         
+            filterdList=filterdList.filter(e=>(e.category==this.byCategory)&&(e.status==this.state)&&(this.byPrice>=e.price));
+
+    }
+
    this.filterdList=filterdList
+   this.filterdList= this.filterdList.filter(e=>e.state.includes("val"))
   },
     getMedia(adId){
       return this.medias.filter(e=>e.ad==adId)[0] ? this.medias.filter(e=>e.ad==adId)[0].url: "testici"   
   },
-  sortASC(){
-    this.filterdList=this.filterdList.sort(function(a, b){return a.price-b.price});
-  },sortDESC(){
+  sort(e){
 
-    this.filterdList=this.filterdList.sort(function(a, b){return b.price-a.price});
+    if(e.target.value=="Prix élevé à bas")
+      this.filterdList=this.filterdList.sort(function(a, b){return b.price-a.price}); 
+    else
+   this.filterdList=this.filterdList.sort(function(a, b){return a.price-b.price});
   }
   
   }
