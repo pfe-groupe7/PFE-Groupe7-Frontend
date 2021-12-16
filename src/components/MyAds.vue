@@ -16,7 +16,7 @@
                             <span  v-else-if="ad.fields.state=='en attente de validation' " class="pending rounded">{{ad.fields.state}}</span>
                             <span  v-else-if="ad.fields.state=='validée'" class="valid rounded">{{ad.fields.state}}</span>
                             <ul >
-                                    <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
+                                <li ><a  :id="ad.pk" v-on:click="deleteAd"><i :id="ad.pk" class="bi bi-trash"></i></a></li>    									
                             </ul>		
                         </div>
                       <div class="titre">
