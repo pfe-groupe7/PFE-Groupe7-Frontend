@@ -46,16 +46,17 @@
 									</div>
 								</div>
 							</div>
-					<div v-if="idUserConnected!=idUserProfil">		
-							<div class="col-md-6 mt-3 text-center" >
+					<div class="" v-if="idUserConnected!=idUserProfil">		
+            <div class="row mt-3">
+							<div class="col-md-6 mt-5 text-center" >
 								<button v-on:click="voirAnnonces" class="btn btnSave profile-button" type="button"> Voir les annonces </button>
 							</div>
-							<div class="col-md-6 mt-3 text-center" > <a :href="'mailto:'+email+'?subject='+'&body=Bonjour, votre annonce m\'intéresse\n\n'">
-								<button v-on:click="contacterVendeur" class="btnSave" type="button"> Contacter vendeur </button>
+							<div class="col-sm mt-6 text-center" style="padding: 11px; top: 56%;left: 17%;  position: absolute;"> <a :href="'mailto:'+email+'?subject='+'&body=Bonjour, votre annonce m\'intéresse\n\n'">
+								<button v-on:click="contacterVendeur" class="btn  btnSave" type="button"> Contacter vendeur </button>
 								</a>
 							</div>
-					
-							<div class="col-md-6 mt-3 text-center" v-if="moderator">
+            </div>
+							<div class="row col-md-9 mt-5 text-center" v-if="moderator" style="    margin: 22px;"  >
 								<button v-on:click="deleteUser" class="btn-danger" type="button"> Bannir ce vendeur </button>
 							</div>
 							
@@ -206,9 +207,11 @@ voirAnnonces(){
             .then(() => {
               this.message = "Ce compte a  été bien suprrimé ";
               this.notifDel = true;
+              if(this.idUserProfil==this.idUserConnected){
               localStorage.removeItem("token");
               this.$store.dispatch("user", null);
               setTimeout(() => window.location.href="/", 2000);
+              }
             });
         } catch (e) {
           this.error = "Une erreur est survenue!";

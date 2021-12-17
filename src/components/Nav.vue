@@ -14,6 +14,7 @@
           </div>
         </div>
       </form>
+      <div><a href="/ads" class="btn mt-1" type="submit">Voir toutes les annonces</a></div>
       <div v-if="user">
         <router-link to="/createAd"><a class="btn mt-1">
           Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
