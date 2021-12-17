@@ -3,7 +3,7 @@
     <div class="video-background">
       <div class="video-wrap">
         <div id="video">
-          <video id="bgvid"  autoplay playsinline>
+          <video id="bgvid"  loop autoplay playsinline>
             <source src="../assets/videos/AnimationFinal.mp4" type="video/mp4" >
           </video>
         </div>
