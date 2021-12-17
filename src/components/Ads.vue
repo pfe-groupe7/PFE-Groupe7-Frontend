@@ -150,12 +150,12 @@ export default {
                  this.filterdList= this.filterdList.filter(e=>e.state.includes("validé"))
                 
                   if(this.$route.params.cat){
-                      console.log(this.categories)
+                      console.log(this.$route.params.cat!='1')
                       this.byCategory=this.categories.filter(e=>e.id==this.$route.params.cat)[0].categoryName
                       console.log(this.byCategory)
                       this.filter()
                     }
-                     if(this.$route.params.title){
+                     if(this.$route.params.title!="Tous"){
                       console.log(this.categories)
                       this.byTitle=this.$route.params.title
                       // this.byTitle=this.categories.filter(e=>e.id==this.$route.params.cat)[0].categoryName
