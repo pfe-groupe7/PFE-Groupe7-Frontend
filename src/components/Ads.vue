@@ -45,9 +45,9 @@
       <div class="error" v-if="error">{{ error }}</div>
       <div class="card col-3" id="annonce" v-for="ad in filterdList" v-bind:key="ad.id" >
         <div class="card-image">
-          <div id="product" class="single-product rounded">
+          <div class="single-product rounded">
             <a>
-            <img class="d-block w-100 rounded" :src="getMedia(ad.id)">
+            <img class=" d-block w-100" :src="getMedia(ad.id)">
             </a>
           </div>
         </div>
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="content is-clearfix">
-            <p>{{ ad.description }}</p>
+            <p class="description">{{ ad.description }}</p>
             <p class="is-pulled-right">
               <span class="prix"
                 ><strong>{{ ad.price }} &euro; </strong></span
@@ -115,6 +115,7 @@ export default {
       medias:[],
       adsCampus:[],
       filterdList:[],
+      byTitle:""
 
     };
   },created(){
@@ -146,19 +147,25 @@ export default {
                  console.log(response)
                  this.filterdList=this.list
                 
-                 this.filterdList= this.filterdList.filter(e=>e.state.includes("val"))
+                 this.filterdList= this.filterdList.filter(e=>e.state.includes("validé"))
                 
                   if(this.$route.params.cat){
-                      console.log(this.categories)
+                      console.log(this.$route.params.cat!='1')
                       this.byCategory=this.categories.filter(e=>e.id==this.$route.params.cat)[0].categoryName
                       console.log(this.byCategory)
                       this.filter()
+                    }
+                     if(this.$route.params.title!="Tous"){
+                      console.log(this.categories)
+                      this.byTitle=this.$route.params.title
+                      // this.byTitle=this.categories.filter(e=>e.id==this.$route.params.cat)[0].categoryName
+                      this.filterdList= this.list.filter(e=>e.title.toUpperCase().includes( this.byTitle.toUpperCase()))
                     }
                  
                 // this.list=response(e=>e.seller_id==this.annonces.id);
         });
       } catch (e) {
-        this.error = "Une erreur est survenue!";
+        // this.error = "Une erreur est survenue!";
       }
   },methods:{
     filter(){

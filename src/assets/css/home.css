@@ -12,17 +12,6 @@ h2 {
   color: #3a5749;
 }
 
-/* The colour of the indicators */
-.blog .carousel-indicators li {
-  background: #a3a3a3;
-  border-radius: 50%;
-  width: 8px;
-  height: 8px;
-}
-
-.blog .carousel-indicators .active {
-  background: #707070;
-}
 h3 {
   color: #3a5749;
   font-size: 50px;
@@ -71,7 +60,6 @@ video {
   width: 40%;
   font-size: 25px;
   font-weight: 700;
-  text-transform: uppercase;
   padding: 0 20px;
   letter-spacing: 1px;
   display: inline-flex;
@@ -118,6 +106,7 @@ video {
   padding: 100px 100px 250px 100px;
   border-radius: 20px;
   margin-bottom: 10px;
+  margin-left: 0px;
 }
 .d-block {
   display: block !important;

@@ -3,8 +3,8 @@
     <div class="video-background">
       <div class="video-wrap">
         <div id="video">
-          <video id="bgvid"  autoplay loop muted playsinline>
-            <source src="../assets/videos/stars.mp4" type="video/mp4" >
+          <video id="bgvid"  loop autoplay playsinline>
+            <source src="../assets/videos/AnimationFinal.mp4" type="video/mp4" >
           </video>
         </div>
       </div>
@@ -35,7 +35,7 @@
     <div class="row">
       <div id="carousel">
         <h3>Annonces <b>récentes</b></h3>
-          <b-carousel id="carousel-1" v-model="slide" :interval="3000"  controls   indicators  :value=0 style="text-shadow: 1px 1px 2px #333;" >
+          <b-carousel id="carousel-1" v-model="slide" :interval="400000"  controls   indicators  :value=0  >
             <b-carousel-slide class="card" v-for="ad in filterdList" v-bind:key="ad.id">
             <p class="captionTitre"> {{ ad.title }} </p>
             <img class="d-block rounded" :src="getMedia(ad.id)">

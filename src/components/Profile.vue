@@ -5,7 +5,7 @@
 				<div class="p-3 py-5">
 					<div>
 						<div class="d-flex justify-content-between align-items-center mb-3">
-							<h4 class="text-right p-2">Mon profil</h4> </div>
+							<h4 class="text-right p-2">Profil de {{prenom}}  </h4></div>
 						<div class="row mt-2">
 							<div class="col-md-6">
 								<label class="labels">Nom</label>
@@ -30,7 +30,7 @@
 									</select>
 								</div>
 								<div class="row mt-3">
-									<div class="col-md-6">
+									<div class="col-md-6 mt-4">
 										<label class="labels">Mot de passe</label>
 										<input id="password" type="password" class="form-control" v-model="password" /> </div>
 									<div class="col-md-6">
@@ -38,23 +38,25 @@
 										<input type="password" v-model="confirmed_password" class="form-control" /> </div>
 								</div>
 								<div class="row mt-4">
-									<div class="col-md-5 mt-5 text-center">
-										<button v-on:click="deleteUser" class="btn btn-danger profile-button" type="button"> Supprimer mon compte </button>
+									<div class="col-md-6 mt-5 text-center">
+										<button v-on:click="deleteUser" class="btnDanger btn-danger profile-button" type="button"> Supprimer mon compte </button>
 									</div>
 									<div class="col-md-6 mt-5 text-center">
 										<button v-on:click="handleSubmit" class="btnSave" type="button">Enregistrer les modifications</button>
 									</div>
 								</div>
 							</div>
-					<div v-if="idUserConnected!=idUserProfil">		
-							<div class="col-md-6 mt-3 text-center" >
+					<div class="" v-if="idUserConnected!=idUserProfil">		
+            <div class="row mt-3">
+							<div class="col-md-6 mt-5 text-center" >
 								<button v-on:click="voirAnnonces" class="btn btnSave profile-button" type="button"> Voir les annonces </button>
 							</div>
-							<div class="col-md-6 mt-3 text-center" >
-								<button v-on:click="contacterVendeur" class="btnSave" type="button"> Contacter vendeur </button>
+							<div class="col-sm mt-6 text-center" style="padding: 11px; top: 56%;left: 17%;  position: absolute;"> <a :href="'mailto:'+email+'?subject='+'&body=Bonjour, votre annonce m\'intéresse\n\n'">
+								<button v-on:click="contacterVendeur" class="btn  btnSave" type="button"> Contacter vendeur </button>
+								</a>
 							</div>
-					
-							<div class="col-md-6 mt-3 text-center" v-if="moderator">
+            </div>
+							<div class="row col-md-9 mt-5 text-center" v-if="moderator" style="    margin: 22px;"  >
 								<button v-on:click="deleteUser" class="btn-danger" type="button"> Bannir ce vendeur </button>
 							</div>
 							
@@ -111,7 +113,12 @@ export default {
       moderator: "",
       idUserProfil:"",
 	idUserConnected:"",};
+  },created(){
+     this.idUserConnected = localStorage.getItem("user");
+    let id = this.$route.params.id;
+    this.idUserProfil = id;
   },
+
   async mounted() {
     // console.log(this.$store.getters.getUserId)
     this.idUserConnected = localStorage.getItem("user");
@@ -182,14 +189,13 @@ voirAnnonces(){
       }
     },
 
-    async deleteUser() {
-      if (
+     deleteUser() {
         this.$confirm(
-          "Êtes-vous sûr de vouloir supprimer votre compte ?",
-          "Supprimer votre compte",
+          "Êtes-vous sûr de vouloir supprimer ce compte ?",
+          "Supprimer ce compte",
           "error"
-        )
-      ) {
+        ).then(
+      async()=> {
         try {
           await fetch(URL+"users/delete/"+this.idUserProfil, {
             method: "DELETE",
@@ -199,16 +205,18 @@ voirAnnonces(){
           })
             .then((response) => response.json())
             .then(() => {
-              this.message = "Votre compte a  été bien suprrimé ";
+              this.message = "Ce compte a  été bien suprrimé ";
               this.notifDel = true;
+              if(this.idUserProfil==this.idUserConnected){
               localStorage.removeItem("token");
               this.$store.dispatch("user", null);
-              setTimeout(() => this.$router.push("/"), 2000);
+              setTimeout(() => window.location.href="/", 2000);
+              }
             });
         } catch (e) {
           this.error = "Une erreur est survenue!";
         }
-      }
+      })
     },
   },
 };

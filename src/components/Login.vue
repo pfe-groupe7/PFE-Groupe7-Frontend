@@ -53,7 +53,7 @@
                         </div>
                         <p class="mb-5 mt-5 text-center">
                           <a class="link" href="/forgot"
-                            >Mot de passe oublié?</a
+                            >Mot de passe oublié ?</a
                           >
                         </p>
                       </form>
@@ -202,7 +202,8 @@ export default {
             this.$router.go(0);
           });
       } catch (e) {
-        this.error = "Une erreur est survenue!";
+        this.$fire({title:"Votre compte est bien enrengistré",text:"", type: "success", timer: 2000
+})
       }
     },
     async handleSubmitLogin() {
@@ -229,7 +230,8 @@ export default {
 
           });
       } catch (e) {
-        this.error = "Une erreur est survenue!";
+           this.$fire({title:"Veuillez verifier votre mot de passe et votre adresse mail",text:"", type: "warning", timer: 2000
+})
       }
     },
   },

@@ -68,7 +68,7 @@
                         margin-bottom: 5px;
                         font-size: 19px;
                       "
-                      >Titre</label
+                      >Titre *</label
                     >
                     <input
                       class="input--style-1"
@@ -86,7 +86,7 @@
                         margin-bottom: 5px;
                         font-size: 19px;
                       "
-                      >Catégorie</label
+                      >Catégorie *</label
                     >
                     <select
                       value="Catégorie"
@@ -149,7 +149,7 @@
                         margin-bottom: 5px;
                         font-size: 19px;
                       "
-                      >Description</label
+                      >Description *</label
                     >
                     <textarea
                       class="input--style-1"
@@ -165,7 +165,7 @@
             </div>
           </div>
           <!--status and capmus-->
-          <div v-if="step === 2" class="Panel-Content" id="tab2">
+          <div v-if="step === 2" class="Panel-Content" id="tab2" >
             <div class="form">
               <div class="wrapper">
                 <input
@@ -312,7 +312,7 @@
                     multiple
                   />
                   <label class="custom-file-label" for="customFile"
-                    >Choisir une photo ou une vidéo</label
+                    >Choisir une ou plusieurs photo(s) </label
                   >
                 </div>
                 <div v-for="(image, key) in imagepreview" :key="key">

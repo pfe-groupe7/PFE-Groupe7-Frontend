@@ -14,6 +14,7 @@
           </div>
         </div>
       </form>
+      <div><a href="/ads" class="btn mt-1" type="submit">Voir toutes les annonces</a></div>
       <div v-if="user">
         <router-link to="/createAd"><a class="btn mt-1">
           Publier une annonce &nbsp; <i class="fa fa-paper-plane" aria-hidden="true"></i></a>
@@ -31,7 +32,7 @@
         </ul>
         
         <ul class="mt-2 pb-2 nav-link  dropdown fa-10x" v-else  id="profile">
-           <i class="dropbtn fa fa-user-circle " >{{user.firstname}}</i>
+           <i class="dropbtn fa fa-user-circle " >&nbsp;{{user.firstname}}</i>
            
           <div class="dropdown-content" >
             
@@ -62,7 +63,7 @@ export default {
       user:user,
       token:token,
       title:"",
-      catgroy:"Catégorie",
+      catgroy:1,
       categories:[],
       moderator:""
 
