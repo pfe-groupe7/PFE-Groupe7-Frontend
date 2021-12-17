@@ -62,7 +62,7 @@ export default {
       user:user,
       token:token,
       title:"",
-      catgroy:"Catégorie",
+      catgroy:1,
       categories:[],
       moderator:""
 
